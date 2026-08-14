@@ -1,6 +1,6 @@
 {
   "name": "deks-plugin",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Create and edit polished, animated presentations through the DEKS MCP server.",
   "author": {
     "name": "EIGEN"
@@ -25,7 +25,10 @@
       "Improve the layout and motion of my DEKS deck.",
       "Audit my presentation for layout collisions."
     ],
-    "brandColor": "#FF7043"
+    "brandColor": "#FF7043",
+    "composerIcon": "./assets/deks-icon.png",
+    "logo": "./assets/deks-icon.png",
+    "logoDark": "./assets/deks-icon.png"
   },
   "mcpServers": "./.mcp.json"
 }

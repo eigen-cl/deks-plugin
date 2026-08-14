@@ -1,7 +1,7 @@
 {
   "name": "deks-plugin",
   "displayName": "DEKS",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Create and edit polished, animated presentations through the DEKS MCP server.",
   "author": {
     "name": "EIGEN"

@@ -4,6 +4,10 @@ Plugin de DEKS para ChatGPT, Codex y Claude. Incluye una skill para crear,
 editar, animar, validar y exportar presentaciones, además de la conexión al MCP
 remoto de DEKS.
 
+El MCP también puede renderizar previews PNG de checkpoints para QA, recomendar
+paletas con contraste medido y resolver íconos vectoriales offline por familia y
+semántica.
+
 El endpoint canónico es:
 
 ```text
@@ -39,6 +43,7 @@ consentimiento siguen ocurriendo con OAuth en el navegador.
 - `.claude-plugin/`: manifiesto y marketplace compatible con Claude Code y con
   el formato legacy del catálogo local de ChatGPT Desktop.
 - `.mcp.json`: conexión remota sin secretos.
+- `assets/deks-icon.png`: icono oficial DEKS, PNG opaco de 512 × 512 px sobre Ink con clearspace interior para superficies de app.
 - `skills/deks-presentations/`: workflow compartido para agentes.
 - `evals/prompts.jsonl`: casos positivos, negativos y destructivos.
 - `submission/`: material de preparación para una futura publicación pública.

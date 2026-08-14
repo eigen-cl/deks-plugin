@@ -1,4 +1,4 @@
-# OpenAI public submission — DEKS v0.1.1 candidate
+# OpenAI public submission — DEKS v0.1.2 candidate
 
 Use this as the source of truth for the submission portal. Do not submit until every blocking checklist item is confirmed against production.
 
@@ -60,7 +60,7 @@ The response must contain only the single token for this plugin: no JSON, HTML, 
 
 ## Reviewer test set
 
-Upload or transcribe all eight cases from `evals/prompts.jsonl`: five positive and three negative. Reset fixture data between destructive or mutation-heavy cases. The expected behavior and result shape are part of each positive case; every negative case records the safe fallback and why the requested action must not be completed.
+Upload or transcribe all 15 cases from `evals/prompts.jsonl`: ten positive and five negative. Reset fixture data between destructive or mutation-heavy cases. The expected behavior and result shape are part of each positive case; every negative case records the safe fallback and why the requested action must not be completed.
 
 ## Blocking checklist
 
@@ -76,14 +76,14 @@ Upload or transcribe all eight cases from `evals/prompts.jsonl`: five positive a
 - [ ] MCP responses contain no credentials, debug payloads, unnecessary personal data, or undisclosed identifiers.
 - [ ] Final skill tree passes local validation and matches the uploaded or scanned snapshot.
 - [ ] All three starter prompts succeed with the reviewer account.
-- [ ] All five positive and three negative reviewer cases pass from a clean fixture.
+- [ ] All ten positive and five negative reviewer cases pass from a clean fixture.
 - [ ] Reviewer credentials work without MFA, SMS, email verification, or private-network access.
 - [ ] Country/region availability matches actual legal and support readiness.
 - [ ] Release notes below match the final production version.
 
-## Portal release notes — v0.1.1 candidate
+## Portal release notes — v0.1.2 candidate
 
-Initial public submission candidate for DEKS in ChatGPT and Codex. The plugin connects to a user's DEKS workspace through OAuth and provides presentation creation, revision-safe editing, layout validation, motion choreography, guarded deletion, and portable `.deks` export, subject to the tool contract rescanned for the submitted version. It includes a workflow skill, three starter prompts, and five positive plus three negative reviewer cases. Reviewer credentials point to a synthetic workspace; the disposable deletion fixture must be reset before that case. Confirm capability boundaries against the submitted MCP snapshot.
+Public submission candidate for DEKS in ChatGPT and Codex. The plugin uses the approved opaque 512 px DEKS icon, connects to a user's workspace through OAuth, and provides presentation creation, revision-safe editing, rendered preview QA, palette and icon discovery, layout validation, motion choreography, guarded deletion, and portable `.deks` export, subject to the tool contract rescanned for the submitted version. It includes a workflow skill, three starter prompts, and ten positive plus five negative reviewer cases. Reviewer credentials point to a synthetic workspace; the disposable deletion fixture must be reset before that case. Confirm capability boundaries against the submitted MCP snapshot.
 
 ## Official references
 
