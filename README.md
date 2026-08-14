@@ -20,9 +20,9 @@ La conexión MCP se registra desde ChatGPT web en Developer mode. Después puede
 usarse desde una conversación y combinarse con el paquete local en ChatGPT
 Desktop. Sigue [integrations/chatgpt/setup.md](integrations/chatgpt/setup.md).
 
-El repositorio no reemplaza el registro OAuth: ChatGPT debe crear primero la
-conexión y entregar su ID técnico real. Hasta que ese ID exista, el paquete
-omite `.app.json` intencionalmente.
+El repositorio no reemplaza el registro OAuth. La conexión DEKS ya registrada
+en ChatGPT está asociada al paquete mediante `.app.json`; el login y el
+consentimiento siguen ocurriendo con OAuth en el navegador.
 
 ## Otras integraciones
 
@@ -32,6 +32,8 @@ omite `.app.json` intencionalmente.
 ## Contenido
 
 - `.codex-plugin/plugin.json`: manifiesto para ChatGPT y Codex.
+- `.app.json`: asociación con la conexión MCP registrada en ChatGPT; no contiene
+  tokens ni credenciales.
 - `.agents/plugins/marketplace.json`: catálogo para instalar este checkout o el
   repositorio desde ChatGPT Desktop y Codex.
 - `.claude-plugin/`: manifiesto y marketplace compatible con Claude Code y con

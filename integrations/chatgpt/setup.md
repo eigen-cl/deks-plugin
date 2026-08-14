@@ -9,6 +9,12 @@ ChatGPT needs two separate pieces:
 Do not paste a PAT into ChatGPT. The ChatGPT connection must complete DEKS
 OAuth in the browser.
 
+## Current development status
+
+The DEKS MCP connection is registered in ChatGPT Developer mode, its OAuth flow
+has completed successfully, and ChatGPT has scanned the current tool actions.
+The combined package is ready for local marketplace installation and testing.
+
 ## 1. Register and test the MCP
 
 Use ChatGPT web for registration:
@@ -54,29 +60,27 @@ in place.
 
 ## 3. Join the package to the registered MCP
 
-After ChatGPT creates the DEKS connection, copy the technical ID from its
-browser URL. It starts with `plugin_asdk_app`.
-
-Create `.app.json` only with that real ID:
+The DEKS connection is registered and the package maps its real technical ID in
+`.app.json`:
 
 ```json
 {
   "apps": {
     "deks": {
-      "id": "plugin_asdk_app_REPLACE_WITH_REAL_ID",
-      "required": true
+      "id": "plugin_asdk_app_6a7f1112a9a8819195c6a77ac011bfd5"
     }
   }
 }
 ```
 
-Then add `"apps": "./.app.json"` to `.codex-plugin/plugin.json`, validate the
-package again, refresh the marketplace, restart ChatGPT Desktop, and test in a
-new conversation. Do not invent this ID or commit credentials. Decide whether
-the technical ID is environment-specific before committing it.
+`.codex-plugin/plugin.json` points its `apps` field at this file. The technical
+ID identifies the registered connection; it is not an access token. Never add
+OAuth tokens, cookies, PATs, or browser session data to the package.
 
-Until this mapping exists, test the OAuth MCP connection in ChatGPT and the
-bundled skill/package as separate development surfaces.
+If the connection is recreated instead of refreshed, replace the mapping with
+the new real `plugin_asdk_app...` ID, validate the package again, refresh the
+marketplace, restart ChatGPT Desktop, and test in a new conversation. Never
+invent this ID.
 
 ## Refresh after MCP changes
 

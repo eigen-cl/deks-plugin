@@ -9,6 +9,7 @@
   "repository": "https://github.com/eigen-cl/deks-plugin",
   "keywords": ["deks", "presentations", "slides", "mcp"],
   "skills": "./skills/",
+  "apps": "./.app.json",
   "interface": {
     "displayName": "DEKS",
     "shortDescription": "Build animated decks with the DEKS MCP.",

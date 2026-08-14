@@ -43,7 +43,6 @@ Never add the PAT to `.mcp.json`, a marketplace manifest, Git, or chat output.
 
 ## ChatGPT MCP mapping
 
-The complete ChatGPT package also needs the real `plugin_asdk_app...` ID created
-when the MCP is registered in ChatGPT Developer mode. See
-`integrations/chatgpt/setup.md`. The repository intentionally omits `.app.json`
-until that ID exists.
+The complete package maps the registered DEKS MCP connection in `.app.json`
+using its real `plugin_asdk_app...` ID. See `integrations/chatgpt/setup.md`.
+OAuth tokens and cookies are not part of that file or this repository.
