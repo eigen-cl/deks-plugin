@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "deks": {
+      "type": "http",
+      "url": "https://api-deks.eigen.cl/mcp/"
+    }
+  }
+}

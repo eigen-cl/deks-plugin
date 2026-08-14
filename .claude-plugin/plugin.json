@@ -1,0 +1,11 @@
+{
+  "name": "deks-plugin",
+  "displayName": "DEKS",
+  "version": "0.1.1",
+  "description": "Create and edit polished, animated presentations through the DEKS MCP server.",
+  "author": {
+    "name": "EIGEN"
+  },
+  "homepage": "https://deks.eigen.cl",
+  "keywords": ["deks", "presentations", "slides", "mcp"]
+}

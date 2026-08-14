@@ -1,0 +1,30 @@
+{
+  "name": "deks-plugin",
+  "version": "0.1.1",
+  "description": "Create and edit polished, animated presentations through the DEKS MCP server.",
+  "author": {
+    "name": "EIGEN"
+  },
+  "homepage": "https://deks.eigen.cl",
+  "repository": "https://github.com/eigen-cl/deks-plugin",
+  "keywords": ["deks", "presentations", "slides", "mcp"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "DEKS",
+    "shortDescription": "Build animated decks with the DEKS MCP.",
+    "longDescription": "Connect an agent to a DEKS workspace, create and edit slide content, choreograph transitions, validate layouts, and export portable .deks presentations.",
+    "developerName": "EIGEN",
+    "category": "Productivity",
+    "capabilities": ["Read", "Write"],
+    "websiteURL": "https://deks.eigen.cl",
+    "privacyPolicyURL": "https://deks.eigen.cl/privacy",
+    "termsOfServiceURL": "https://deks.eigen.cl/terms",
+    "defaultPrompt": [
+      "Create a polished presentation in DEKS.",
+      "Improve the layout and motion of my DEKS deck.",
+      "Audit my presentation for layout collisions."
+    ],
+    "brandColor": "#FF7043"
+  },
+  "mcpServers": "./.mcp.json"
+}

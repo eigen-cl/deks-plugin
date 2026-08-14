@@ -1,0 +1,11 @@
+interface:
+  display_name: "DEKS Presentations"
+  short_description: "Create and edit animated DEKS decks"
+  default_prompt: "Use $deks-presentations to create a polished presentation in DEKS."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "deks"
+      description: "DEKS presentation authoring server"
+      transport: "streamable_http"
+      url: "https://api-deks.eigen.cl/mcp/"
