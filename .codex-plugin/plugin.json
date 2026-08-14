@@ -1,7 +1,7 @@
 {
   "name": "deks-plugin",
-  "version": "0.1.2",
-  "description": "Create and edit polished, animated presentations through the DEKS MCP server.",
+  "version": "0.1.3",
+  "description": "Operate DEKS safely and design coherent, animated presentations with an opinionated visual method.",
   "author": {
     "name": "EIGEN"
   },
@@ -13,7 +13,7 @@
   "interface": {
     "displayName": "DEKS",
     "shortDescription": "Build animated decks with the DEKS MCP.",
-    "longDescription": "Connect an agent to a DEKS workspace, create and edit slide content, choreograph transitions, validate layouts, and export portable .deks presentations.",
+    "longDescription": "Connect an agent to a DEKS workspace, inspect reusable assets, create and edit checkpoint content, choose cohesive palettes, choreograph semantic transitions, validate live renders, and export portable .deks presentations. Separate skills cover the product contract and an opinionated presentation-design method.",
     "developerName": "EIGEN",
     "category": "Productivity",
     "capabilities": ["Read", "Write"],
@@ -21,9 +21,9 @@
     "privacyPolicyURL": "https://deks.eigen.cl/privacy",
     "termsOfServiceURL": "https://deks.eigen.cl/terms",
     "defaultPrompt": [
-      "Create a polished presentation in DEKS.",
+      "Create a coherent presentation in DEKS using the design methodology.",
       "Improve the layout and motion of my DEKS deck.",
-      "Audit my presentation for layout collisions."
+      "Audit my presentation's story, palette, layout, and transitions."
     ],
     "brandColor": "#FF7043",
     "composerIcon": "./assets/deks-icon.png",

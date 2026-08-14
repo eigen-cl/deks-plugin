@@ -3,8 +3,8 @@
 ChatGPT needs two separate pieces:
 
 1. a registered OAuth connection to the remote DEKS MCP;
-2. the optional local plugin package, which contributes the DEKS skill and
-   install metadata.
+2. the optional local plugin package, which contributes the DEKS operational
+   and presentation-design skills plus install metadata.
 
 Do not paste a PAT into ChatGPT. The ChatGPT connection must complete DEKS
 OAuth in the browser.

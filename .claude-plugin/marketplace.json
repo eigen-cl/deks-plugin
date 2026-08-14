@@ -9,8 +9,8 @@
     {
       "name": "deks-plugin",
       "source": "./",
-      "description": "Create, edit, animate, validate, and export presentations through DEKS.",
-      "version": "0.1.2",
+      "description": "Operate DEKS safely and design coherent, animated presentations through a separate visual method.",
+      "version": "0.1.3",
       "author": {
         "name": "EIGEN"
       },

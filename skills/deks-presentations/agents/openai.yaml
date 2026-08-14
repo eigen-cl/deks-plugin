@@ -1,7 +1,7 @@
 interface:
-  display_name: "DEKS Presentations"
-  short_description: "Create and edit animated DEKS decks"
-  default_prompt: "Use $deks-presentations to create a polished presentation in DEKS."
+  display_name: "DEKS Product Operations"
+  short_description: "Operate DEKS tools safely and precisely"
+  default_prompt: "Use $deks-presentations to inspect and safely edit a presentation in DEKS."
 dependencies:
   tools:
     - type: "mcp"

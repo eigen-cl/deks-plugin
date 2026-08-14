@@ -1,4 +1,4 @@
-# OpenAI public submission — DEKS v0.1.2 candidate
+# OpenAI public submission — DEKS v0.1.3 candidate
 
 Use this as the source of truth for the submission portal. Do not submit until every blocking checklist item is confirmed against production.
 
@@ -8,7 +8,7 @@ Use this as the source of truth for the submission portal. Do not submit until e
 - **Developer identity:** EIGEN — select the matching verified business identity in OpenAI Platform; do not substitute a personal identity without updating all public publisher references.
 - **Category:** Productivity
 - **Short description:** Create polished, animated presentations with AI.
-- **Long description:** DEKS helps you create, edit, animate, inspect, and validate presentations in your own workspace. Build slide narratives, preserve visual continuity between slides, review layout collisions, and export a portable `.deks` file. Every write is revision-aware, destructive actions require explicit intent, and public connections authenticate through OAuth.
+- **Long description:** DEKS helps you create, edit, animate, inspect, and validate presentations in your own workspace. A product skill handles exact tools and safe revision-aware writes; a separate design skill guides narrative, cohesive palettes, semantic motion, and rendered audits. Reuse workspace assets, preserve visual continuity between checkpoints, and export a portable `.deks` file. Destructive actions require explicit intent, and public connections authenticate through OAuth.
 - **Website:** https://deks.eigen.cl
 - **Support:** https://deks.eigen.cl/support
 - **Privacy:** https://deks.eigen.cl/privacy
@@ -21,9 +21,9 @@ The website, support, privacy, and terms URLs are planned production URLs. Confi
 
 ## Starter prompts
 
-1. Create a polished four-slide product launch in DEKS.
+1. Create a coherent four-slide product launch in DEKS using the design methodology.
 2. Improve the hierarchy, gradients, and motion of my DEKS deck.
-3. Audit my presentation for layout collisions without changing it.
+3. Audit my presentation's story, palette, layout, and transitions without changing it.
 
 ## Authentication and reviewer account
 
@@ -60,7 +60,7 @@ The response must contain only the single token for this plugin: no JSON, HTML, 
 
 ## Reviewer test set
 
-Upload or transcribe all 17 cases from `evals/prompts.jsonl`: ten positive and seven negative. Reset fixture data between destructive or mutation-heavy cases. The expected behavior and result shape are part of each positive case; every negative case records the safe fallback and why the requested action must not be completed.
+Upload or transcribe all cases from `evals/prompts.jsonl`. Reset fixture data between destructive or mutation-heavy cases. The expected behavior and result shape are part of each positive case; every negative case records the safe fallback and why the requested action must not be completed.
 
 ## Blocking checklist
 
@@ -76,14 +76,14 @@ Upload or transcribe all 17 cases from `evals/prompts.jsonl`: ten positive and s
 - [ ] MCP responses contain no credentials, debug payloads, unnecessary personal data, or undisclosed identifiers.
 - [ ] Final skill tree passes local validation and matches the uploaded or scanned snapshot.
 - [ ] All three starter prompts succeed with the reviewer account.
-- [ ] All ten positive and seven negative reviewer cases pass from a clean fixture.
+- [ ] All fourteen positive and ten negative reviewer cases pass from a clean fixture.
 - [ ] Reviewer credentials work without MFA, SMS, email verification, or private-network access.
 - [ ] Country/region availability matches actual legal and support readiness.
 - [ ] Release notes below match the final production version.
 
-## Portal release notes — v0.1.2 candidate
+## Portal release notes — v0.1.3 candidate
 
-Public submission candidate for DEKS in ChatGPT and Codex. The plugin uses the approved opaque 512 px DEKS icon, connects to a user's workspace through OAuth, and provides presentation creation, revision-safe editing, rendered preview QA, palette and icon discovery, layout validation, motion choreography, guarded deletion, and portable `.deks` export, subject to the tool contract rescanned for the submitted version. It includes a workflow skill, three starter prompts, and ten positive plus seven negative reviewer cases. Reviewer credentials point to a synthetic workspace; the disposable deletion fixture must be reset before that case. Confirm capability boundaries against the submitted MCP snapshot.
+Public submission candidate for DEKS in ChatGPT and Codex. The plugin uses the approved opaque 512 px DEKS icon, connects to a user's workspace through OAuth, and separates the safe product contract from an opinionated presentation-design method. It provides workspace asset discovery, revision-safe editing, rendered preview QA, palette recommendation and completion, offline icon discovery, semantic motion choreography, guarded deletion, and portable `.deks` export, subject to the tool contract rescanned for the submitted version. Reviewer credentials point to a synthetic workspace; the disposable deletion fixture must be reset before that case. Confirm capability boundaries against the submitted MCP snapshot.
 
 ## Official references
 
