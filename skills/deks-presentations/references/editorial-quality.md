@@ -37,3 +37,6 @@ DEKS currently has no native speaker notes or citation metadata. Put a concise s
 
 Keep citations legible without competing with the focal claim. If a claim cannot be sourced or fairly qualified, remove it.
 
+## Close a proposal with a decision
+
+When the presentation is meant to secure approval, end with the specific decision requested and a bounded pilot that will generate evidence for the next decision. Reuse values supplied by the user or supported by sources. Never make up adoption goals, time boxes, participant counts, budgets, or success thresholds to make the close look concrete; state qualitative acceptance criteria or mark the missing value as unresolved instead.

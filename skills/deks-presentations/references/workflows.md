@@ -5,12 +5,14 @@
 1. Define audience, desired decision, duration, narrative spine, and evidence needs. Read [editorial-quality.md](editorial-quality.md) when claims matter.
 2. Use the production `create_presentation` tool with a semantic idempotency key and `expected_revision: 0`; capture its presentation ID, blank slide ID, dimensions, palette, and revision. For an existing deck, list, resolve, and read it first.
 3. Write a checkpoint storyboard. For every checkpoint, list persistent elements, changes of state/geometry, entering elements, exiting elements, and the single focal idea.
+   For a proposal or approval deck, make the final checkpoint the decision close: name the approval sought, define the smallest credible pilot, identify the evidence it should produce, and state the next decision. Do not invent numeric targets, dates, cohort sizes, or success thresholds; use sourced or user-provided values, qualitative criteria, or explicit unresolved placeholders.
 4. Establish one visual world: canvas direction, background treatment, margins, type scale, palette, and element naming scheme. Prefer left-to-right or top-to-bottom causality.
 5. Scaffold blank checkpoints before composing so `create_slide` cannot clone a populated predecessor accidentally.
 6. Compose the opening checkpoint with an atomic batch. Continue persistent objects with `add_existing_element_state`; create a new identity only for a new concept.
 7. Configure the adjacent transition. Let shared geometry tell the story; use entry/exit motion sparingly.
 8. Run geometry validation after each coherent checkpoint and inspect warnings by element name. Use [visual-qa.md](visual-qa.md) before making visual-quality claims.
-9. Re-read the final document, validate once more, report the exact QA level, and export only when requested.
+9. Render every checkpoint. Before using DOM diagnostics, require `layout_measurements_available: true` and exact equality between measured and expected rendered element IDs. Correct clipping or harmful wrapping and re-render the affected checkpoint at the new revision; never interpret false, absent, or incomplete diagnostics as proof of no overflow.
+10. Re-read the final document, validate once more, report the exact QA level, and export only when requested.
 
 ## Build an element-led narrative
 

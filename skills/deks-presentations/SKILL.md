@@ -27,6 +27,7 @@ Use the client's OAuth connection for public or shared installations. Use a work
 3. Storyboard checkpoints as changes in a persistent visual world. Ask what moves, changes state, enters, or exits; do not default to replacing the whole scene.
 4. Keep one background treatment across a sequence unless a semantic scene change justifies another. DEKS checkpoints are a timeline, not a stack of unrelated canvases.
 5. Identify persistent element names and IDs before composing. Add at most one or two new focal ideas per checkpoint.
+6. When the deck asks for approval or proposes a change, close with the exact decision requested and a scoped pilot that can produce evidence for the next decision. Use only supplied or sourced dates, targets, volumes, and thresholds; otherwise state qualitative criteria or leave the value explicitly unresolved.
 
 ## Work safely
 
@@ -37,7 +38,7 @@ Use the client's OAuth connection for public or shared installations. Use a work
 5. Prefer `apply_commands` for an atomic group of related edits. Keep a batch at or below 100 operations.
 6. Never delete a presentation, slide, or element unless the user explicitly requested that destructive change. Before the production `delete_presentation` tool, re-read the presentation and require both its current revision and exact name. Respect its destructive annotation and never retry it automatically.
 7. Run `validate_layout` after each completed checkpoint and after the whole deck. Treat errors as blockers. Inspect every warning and keep overlaps only when element names and geometry make the intent clear.
-8. Render every checkpoint with `render_slide_preview` at the current revision, inspect the ordered sequence, and iterate. Do not equate geometry validation with visual review.
+8. Render every checkpoint with `render_slide_preview` at the current revision. Treat its DOM diagnostics as complete only when `layout_measurements_available` is exactly `true` and the unique element IDs in `layout_measurements` match the freshly read slide's rendered element IDs exactly. Only then may an empty `overflow_element_ids` support a no-overflow conclusion. A false or absent availability flag, or missing, duplicate, or unexpected measurement IDs, means DOM diagnosis is unavailable or incomplete; never treat it as negative evidence. Fix every unintended overflow or wrapping defect, re-read the revision, and re-render the affected checkpoint before delivery. Do not equate estimated geometry with DOM measurement or rendered visual review.
 9. Re-read the presentation and summarize the final revision, QA level reached, remaining intentional warnings, and unsupported requests.
 
 ## Compose slides
