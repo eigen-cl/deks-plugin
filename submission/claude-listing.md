@@ -1,4 +1,4 @@
-# Claude community submission — DEKS v0.1.5 candidate
+# Claude official marketplace submission — DEKS v0.1.6 candidate
 
 Use this document as the source of truth for the Anthropic submission form. Do
 not submit until every blocking item below has been verified against the exact
@@ -6,14 +6,14 @@ public source commit and production MCP release under review.
 
 ## Publication channel
 
-- **Third-party destination:** `deks-plugin@claude-community`
-- **Community catalog:** `anthropics/claude-plugins-community`
+- **Submission destination:** Anthropic's authenticated plugin submission form
+- **Approved catalog:** `deks-plugin@claude-plugins-official`
 - **Independent marketplace:** `deks-plugin@eigen-plugins`
-- **Official marketplace:** not a submission target; Anthropic curates
-  `claude-plugins-official` separately.
+- **Submission forms:** https://claude.ai/settings/plugins/submit or
+  https://platform.claude.com/plugins/submit
 
 The independently distributed source is
-`https://github.com/eigen-cl/deks-plugin`. A community submission must reference
+`https://github.com/eigen-cl/deks-plugin`. The official submission must reference
 the exact public release commit reviewed by Anthropic.
 
 ## Listing
@@ -99,7 +99,7 @@ each destructive test.
 ## Reviewer eval set
 
 The current `evals/prompts.jsonl` contains **16 positive** and **12 negative**
-cases. This count is derived from the v0.1.5 source tree and must be recalculated
+cases. This count is derived from the v0.1.6 source tree and must be recalculated
 if the file changes before submission.
 
 Run all cases from reset fixtures. In particular, verify:
@@ -114,24 +114,24 @@ Run all cases from reset fixtures. In particular, verify:
 
 ## Blocking checklist
 
-- [ ] The submitted source repository is public and resolves to the exact clean
+- [x] The submitted source repository is public and resolves to the exact clean
       commit under review.
-- [ ] `LICENSE`, `CHANGELOG.md`, README, manifest metadata, and public listing
-      all match version `0.1.5`.
-- [ ] `claude plugin validate . --strict` passes from a clean checkout.
-- [ ] Installation from the final public repository succeeds in a fresh Claude
+- [x] `LICENSE`, `CHANGELOG.md`, README, manifest metadata, and public listing
+      all match version `0.1.6`.
+- [x] `claude plugin validate . --strict` passes from a clean checkout.
+- [x] Installation from the final public repository succeeds in a fresh Claude
       profile, remains disabled until explicitly enabled, and exposes both
       skills plus the expected MCP server.
-- [ ] The production MCP tool list matches the submitted skill contract.
-- [ ] Every production tool has a reviewed name, human-readable title,
+- [x] The production MCP tool list matches the submitted skill contract.
+- [x] Every production tool has a reviewed name, human-readable title,
       description, input schema, result shape, and correct `readOnlyHint`,
       `destructiveHint`, `idempotentHint`, and `openWorldHint` values.
-- [ ] Tool names are at most 64 characters and errors provide actionable,
+- [x] Tool names are at most 64 characters and errors provide actionable,
       non-secret feedback.
 - [ ] OAuth discovery, dynamic client registration, PKCE, consent, token,
       refresh, revocation, resource binding, scopes, and `WWW-Authenticate`
       behavior pass a fresh production smoke flow from Claude.
-- [ ] The three working prompts succeed through the production MCP connection.
+- [x] The three working prompts succeed through the production MCP connection.
 - [ ] All 16 positive and 12 negative eval cases pass from reset synthetic
       fixtures.
 - [ ] The reviewer credentials and fixture instructions work without MFA, SMS,
@@ -145,13 +145,13 @@ Run all cases from reset fixtures. In particular, verify:
 - [ ] The submitter has reviewed and accepted the current Anthropic Software
       Directory Policy and Software Directory Terms.
 - [ ] Submission is sent through the authenticated Anthropic form and approval
-      is confirmed in `anthropics/claude-plugins-community`; no direct pull
-      request is opened against that read-only mirror.
+      is confirmed in `claude-plugins-official`.
 
 ## Official references
 
-- https://code.claude.com/docs/en/plugins#submit-your-plugin-to-the-community-marketplace
+- https://code.claude.com/docs/en/plugins#submit-your-plugin-to-the-official-marketplace
 - https://code.claude.com/docs/en/plugin-marketplaces
 - https://support.claude.com/en/articles/13145358-anthropic-software-directory-policy
 - https://support.claude.com/en/articles/13145338-anthropic-software-directory-terms
-- https://github.com/anthropics/claude-plugins-community
+- https://claude.ai/settings/plugins/submit
+- https://platform.claude.com/plugins/submit

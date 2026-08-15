@@ -3,13 +3,20 @@
 All notable changes to the DEKS plugin are documented in this file. Versions
 follow Semantic Versioning.
 
+## 0.1.6 — 2026-08-15
+
+- Correct the Claude distribution guide to target Anthropic's authenticated
+  official marketplace submission flow.
+- Record the completed public install and production OAuth/MCP smoke evidence
+  while keeping reviewer-only credentials and reset fixtures out of Git.
+
 ## 0.1.5 — 2026-08-15
 
 - Publish the plugin source under Apache-2.0 with complete EIGEN contact,
   repository, and license metadata.
 - Keep the external DEKS MCP connection disabled until the user explicitly
   enables it.
-- Add independent and community marketplace installation guidance plus the
+- Add independent and official marketplace installation guidance plus the
   Claude review dossier.
 
 ## 0.1.4 — 2026-08-15
