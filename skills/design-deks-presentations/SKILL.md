@@ -7,14 +7,17 @@ description: "Design, improve, and audit persuasive DEKS presentations with an o
 
 Design one evolving visual argument, not a collection of unrelated slides. Pair this method with `$deks-presentations`; let that skill govern current MCP schemas, revisions, transactions, limits, and recovery.
 
+For every new presentation or complete rewrite, begin with a minimal cover. The story starts after the cover and must establish context before it introduces the proposal, product, architecture, or demo. Treat `cover -> context -> proposal` as a required ordering contract; the beats between context and proposal remain adaptable to the chosen narrative form.
+
 ## Run one continuous design loop
 
 1. Define audience, desired decision or behavior, delivery duration, narrative spine, and evidence standard.
 2. Inspect the live deck before planning. Audit its story, palette, composition, identities, motion, geometry, DOM measurements, and rendered sequence.
-3. Choose one coherent visual world and one presentation motion beat. Storyboard each checkpoint as a meaningful state change within that world.
-4. Implement one coherent scene or narrative beat through DEKS, then validate and render it immediately.
-5. Let findings drive both the next checkpoint and any in-scope tooling improvement. If the renderer or MCP lacks evidence needed for an honest audit, diagnose that capability, fix it with contract tests, and return to the same live deck; do not postpone presentation quality to a separate final phase.
-6. Repeat until the story is understandable in order, every required visual change is visible in playback, and the ending asks for the intended decision.
+3. Divide the narrative into coherent sections. For each section, define the persistent story elements, their anchor geometry, and the scene change that justifies entering or leaving the section.
+4. Choose one coherent visual world and one presentation motion beat. Storyboard each checkpoint as a meaningful state change within that world and name one central motion for every edge.
+5. Implement one coherent scene or narrative beat through DEKS, then validate and render it immediately.
+6. Let findings drive both the next checkpoint and any in-scope tooling improvement. If the renderer or MCP lacks evidence needed for an honest audit, diagnose that capability, fix it with contract tests, and return to the same live deck; do not postpone presentation quality to a separate final phase.
+7. Repeat until the story is understandable in order, every required visual change is visible in playback, and the ending asks for the intended decision.
 
 Read only the references needed for the task:
 
@@ -27,7 +30,10 @@ Read only the references needed for the task:
 
 - Give each checkpoint one focal idea and usually one or two newly introduced focal elements.
 - Continue conceptual objects through stable identities. Change state, position, emphasis, or relationships instead of rebuilding the whole scene.
+- Keep continuing objects on their section anchors. A small per-slide layout nudge is still visible motion; recompose local content around the anchor instead of making a protagonist, document, route, or icon wander without cause.
 - Keep the background and visual direction stable until the narrative truly changes scene.
+- Let ordinary text enter, exit, or remain with fade or no movement. Reserve travel and geometry interpolation for the story objects whose motion explains the checkpoint.
+- Assign one central motion to every checkpoint edge. Animate one or two focal elements by default; treat a tightly coupled set as one motion only when every member participates in the same causal action.
 - Prefer visible causality: left-to-right, top-to-bottom, accumulation, replacement, or state change. Do not rely on narration to explain an arbitrary layout jump.
 - For a proposal, close with the exact decision requested and the smallest credible pilot that produces evidence for the next decision. Never invent dates, counts, targets, budgets, or thresholds.
 
