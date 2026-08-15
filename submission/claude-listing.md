@@ -1,4 +1,4 @@
-# Claude official marketplace submission — DEKS v0.1.6 candidate
+# Claude official marketplace submission — DEKS v0.1.7 candidate
 
 Use this document as the source of truth for the Anthropic submission form. Do
 not submit until every blocking item below has been verified against the exact
@@ -98,8 +98,8 @@ each destructive test.
 
 ## Reviewer eval set
 
-The current `evals/prompts.jsonl` contains **16 positive** and **12 negative**
-cases. This count is derived from the v0.1.6 source tree and must be recalculated
+The current `evals/prompts.jsonl` contains **17 positive** and **12 negative**
+cases. This count is derived from the v0.1.7 source tree and must be recalculated
 if the file changes before submission.
 
 Run all cases from reset fixtures. In particular, verify:
@@ -117,7 +117,7 @@ Run all cases from reset fixtures. In particular, verify:
 - [x] The submitted source repository is public and resolves to the exact clean
       commit under review.
 - [x] `LICENSE`, `CHANGELOG.md`, README, manifest metadata, and public listing
-      all match version `0.1.6`.
+      all match version `0.1.7`.
 - [x] `claude plugin validate . --strict` passes from a clean checkout.
 - [x] Installation from the final public repository succeeds in a fresh Claude
       profile, remains disabled until explicitly enabled, and exposes both
@@ -132,7 +132,7 @@ Run all cases from reset fixtures. In particular, verify:
       refresh, revocation, resource binding, scopes, and `WWW-Authenticate`
       behavior pass a fresh production smoke flow from Claude.
 - [x] The three working prompts succeed through the production MCP connection.
-- [ ] All 16 positive and 12 negative eval cases pass from reset synthetic
+- [ ] All 17 positive and 12 negative eval cases pass from reset synthetic
       fixtures.
 - [ ] The reviewer credentials and fixture instructions work without MFA, SMS,
       private-network access, or real customer data.

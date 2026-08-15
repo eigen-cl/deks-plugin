@@ -35,4 +35,10 @@ Treat this mapping as adaptable guidance, not a universal cultural rule. Confirm
 - Query `list_assets` before asking for new media. Use existing workspace assets when relevant.
 - Ask the user to upload missing media in the DEKS web app; MCP does not upload assets.
 - Query `list_icon_catalog` by meaning. Use one icon family unless a deliberate change conveys a new visual language.
-- Create native catalog-backed icons; never fetch arbitrary SVG at render time.
+- Prefer native DEKS shapes and catalog-backed icons for vector artwork that must scale or animate
+  without losing quality.
+- Use SVG only when it is a trusted or sanitized asset and the active editor, preview and export
+  pipeline all support it. DEKS Cloud does not currently accept arbitrary SVG uploads; never fetch,
+  paste or recommend an untrusted SVG as a workaround.
+- Keep photographs and other inherently raster media in a suitable raster format instead of
+  converting them mechanically to SVG.
