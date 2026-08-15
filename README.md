@@ -49,12 +49,12 @@ consentimiento siguen ocurriendo con OAuth en el navegador.
 - `skills/design-deks-presentations/`: método de narrativa, diseño, movimiento y QA.
 - `evals/prompts.jsonl`: casos positivos, negativos y destructivos.
 - `submission/`: material de preparación para publicaciones públicas, incluido
-  el dossier de revisión de Claude Community.
+  el dossier de revisión del marketplace oficial de Claude.
 - `CHANGELOG.md`: cambios visibles y contractuales por versión.
 - `LICENSE`: licencia Apache-2.0 del paquete público.
 
 ## Estado de publicación
 
 Este repositorio es la fuente pública de distribución independiente. DEKS aún no
-está listado en `claude-community`: esa publicación requiere revisión separada
-de Anthropic y no ocurre al empujar `main`.
+está listado en `claude-plugins-official`: esa publicación requiere postularlo
+mediante el formulario autenticado de Anthropic y no ocurre al empujar `main`.

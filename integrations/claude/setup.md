@@ -28,19 +28,18 @@ claude plugin enable deks-plugin@eigen-plugins
 Start Claude Code, run `/reload-plugins` if prompted, then run `/mcp` and
 complete the DEKS OAuth flow.
 
-### Future community marketplace installation
+### Future official marketplace installation
 
 These commands become valid only after Anthropic approves DEKS and the plugin
-appears in the public `claude-community` catalog:
+appears in the automatically configured `claude-plugins-official` catalog:
 
 ```bash
-claude plugin marketplace add anthropics/claude-plugins-community
-claude plugin install deks-plugin@claude-community
-claude plugin enable deks-plugin@claude-community
+claude plugin install deks-plugin@claude-plugins-official
+claude plugin enable deks-plugin@claude-plugins-official
 ```
 
-Submitting a third-party plugin does not add it to
-`claude-plugins-official`; Anthropic curates that marketplace separately.
+Submit the public repository through one of Anthropic's authenticated plugin
+forms. Publication remains subject to Anthropic review.
 
 For development or a direct CLI connection only, set a workspace PAT in the shell and register a separate server name:
 
@@ -62,4 +61,6 @@ Current Anthropic guidance:
 
 - https://code.claude.com/docs/en/mcp
 - https://code.claude.com/docs/en/plugin-marketplaces
-- https://code.claude.com/docs/en/plugins#submit-your-plugin-to-the-community-marketplace
+- https://code.claude.com/docs/en/plugins#submit-your-plugin-to-the-official-marketplace
+- https://claude.ai/settings/plugins/submit
+- https://platform.claude.com/plugins/submit
