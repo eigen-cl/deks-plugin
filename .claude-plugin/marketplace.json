@@ -11,7 +11,7 @@
       "name": "deks-plugin",
       "source": "./",
       "description": "Operate DEKS safely and design coherent, animated presentations through a separate visual method.",
-      "version": "0.1.6",
+      "version": "0.1.7",
       "author": {
         "name": "EIGEN",
         "email": "hola@eigen.cl",

@@ -3,6 +3,13 @@
 All notable changes to the DEKS plugin are documented in this file. Versions
 follow Semantic Versioning.
 
+## 0.1.7 — 2026-08-15
+
+- Prefer native DEKS vector elements for scalable animation and limit SVG guidance to trusted or
+  sanitized assets supported by the complete editor, preview and export pipeline.
+- State explicitly that DEKS Cloud does not accept arbitrary SVG uploads and add eval coverage that
+  rejects unsafe SVG workarounds.
+
 ## 0.1.6 — 2026-08-15
 
 - Correct the Claude distribution guide to target Anthropic's authenticated
