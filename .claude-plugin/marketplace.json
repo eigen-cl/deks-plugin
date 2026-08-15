@@ -2,7 +2,8 @@
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "eigen-plugins",
   "owner": {
-    "name": "EIGEN"
+    "name": "EIGEN",
+    "email": "hola@eigen.cl"
   },
   "description": "Plugins by EIGEN for creative work with AI agents.",
   "plugins": [
@@ -10,11 +11,15 @@
       "name": "deks-plugin",
       "source": "./",
       "description": "Operate DEKS safely and design coherent, animated presentations through a separate visual method.",
-      "version": "0.1.4",
+      "version": "0.1.5",
       "author": {
-        "name": "EIGEN"
+        "name": "EIGEN",
+        "email": "hola@eigen.cl",
+        "url": "https://eigen.cl"
       },
       "homepage": "https://deks.eigen.cl",
+      "repository": "https://github.com/eigen-cl/deks-plugin",
+      "license": "Apache-2.0",
       "category": "productivity",
       "tags": ["presentations", "slides", "mcp", "design"],
       "strict": true
