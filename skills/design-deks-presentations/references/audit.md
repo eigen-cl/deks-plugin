@@ -13,13 +13,13 @@ Never call levels 1 or 2 polished visual review. Do not call isolated PNG inspec
 ## Audit the live deck
 
 1. Read the exact current revision and expected rendered element IDs.
-2. Inspect story order, focal idea per checkpoint, persistent identities, evidence, and decision close.
+2. Inspect story order, section boundaries, section anchor contracts, focal idea per checkpoint, persistent identities, evidence, and decision close.
 3. Run `validate_layout`; fix errors and unintended outside-canvas geometry. Inspect collision warnings by semantic names rather than dismissing them in bulk.
 4. Render every checkpoint at the current revision.
 5. Require `layout_measurements_available: true` and exact unique measurement coverage before using DOM diagnostics. Only complete coverage plus an empty `overflow_element_ids` supports a no-overflow conclusion.
 6. Inspect actual line wrapping, clipping, hierarchy, contrast, alignment, rhythm, palette consistency, icon scale, gradients, and asset crops in each PNG.
 7. Inspect the ordered contact sheet or sequence for continuity and visual pacing.
-8. Inspect every adjacent transition. Cross-check each entering identity against the destination `in_preset` and each exiting identity against the source `out_preset`; flag a `none` default when visible motion was intended. Confirm non-`none` defaults actually affect presence motion and that overrides have a narrative reason.
+8. Build an edge motion ledger. For every adjacent transition, name its single central motion; list the persistent identities allowed to move; compare all other shared geometry to the section anchors; and remove unexplained jitter. Cross-check each entering identity against the destination `in_preset` and each exiting identity against the source `out_preset`; flag a `none` default when visible motion was intended. Confirm non-`none` defaults actually affect presence motion and that overrides have a narrative reason.
 9. Correct the issue, re-read the resulting revision, and re-run the affected geometry, DOM, render, and motion checks.
 
 Estimated text bounds are conservative signals, not browser measurements. A clean geometry result cannot establish typography, contrast, crop quality, or motion. If DOM diagnostics or playback inspection are unavailable, state the limitation rather than inferring success.
