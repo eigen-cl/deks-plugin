@@ -30,7 +30,7 @@ Inside `apply_commands`, use the operation `{"command":"set_presentation_palette
 
 ## Slide tools
 
-- `create_presentation(name, motion_beat_ms, expected_revision, idempotency_key, canvas_width?, canvas_height?)` — create a presentation with one blank slide. Use `expected_revision: 0` when this tool is present in the discovered server contract.
+- `create_presentation(name, motion_beat_ms, expected_revision, idempotency_key, canvas?)` — create a presentation with one blank slide. `canvas` is the canonical `{width,height}` object. Use `expected_revision: 0` when this tool is present in the discovered server contract.
 - `delete_presentation(presentation_id, expected_revision, confirmation_name)` — permanently delete the complete presentation history when this tool is present. It is intentionally non-idempotent and requires an explicit user deletion request, a fresh read, the exact revision, and exact presentation name.
 - `create_slide(presentation_id, expected_revision, idempotency_key, after_slide_id?, copy_from_slide_id?, slide_id?)`
 - `duplicate_slide(presentation_id, slide_id, expected_revision, idempotency_key)`
@@ -54,16 +54,16 @@ A presentation contains at most 50 checkpoints. This is an internal complexity g
 Images require an existing `asset_id`. Shapes require `shape_kind`: `rectangle`, `ellipse`, or `line`. `shape_fill` accepts either:
 
 ```json
-{"kind":"solid","solid_color":"#FF7043"}
+{"kind":"solid","color":"#FF7043"}
 ```
 
 or:
 
 ```json
-{"kind":"linear-gradient","gradient_start":"#FF7043","gradient_end":"#0B0C0E","angle_deg":135}
+{"kind":"linear-gradient","start_color":"#FF7043","end_color":"#0B0C0E","angle_deg":135}
 ```
 
-Lines use `stroke_color`, not a gradient fill. A `link-button` requires a label and a safe absolute HTTPS URL. The current MCP does not expose group parent/child editing.
+Lines use `stroke` and a solid transparent `shape_fill`, never a gradient. A `link-button` requires a label and a safe absolute HTTPS URL. The current MCP does not expose group parent/child editing.
 
 An `icon` requires a catalog-backed `icon_family` and `icon_name`; use its normal element `color` for the glyph. Query the catalog by meaning first, keep the icon offline, and never paste arbitrary SVG or fetch an icon URL at render time. Treat icon identity changes as discrete between checkpoints; position, scale, rotation, opacity, and color may still animate through the stable element identity.
 
@@ -81,7 +81,7 @@ Publishing is an external state change and does not create a snapshot: the publi
 ## Motion and history tools
 
 - `set_presentation_motion_beat(presentation_id, motion_beat_ms, expected_revision, idempotency_key)`
-- `set_transition(presentation_id, from_slide_id, to_slide_id, duration_multiplier, delay_ms, easing_kind, expected_revision, idempotency_key, bezier_x1?, bezier_y1?, bezier_x2?, bezier_y2?)`
+- `set_transition(presentation_id, from_slide_id, to_slide_id, duration_multiplier, delay_ms, easing, expected_revision, idempotency_key, bezier?)` — `bezier` is the canonical four-number tuple `[x1,y1,x2,y2]` and is accepted only with `cubic-bezier`.
 - `set_transition_override(presentation_id, from_slide_id, to_slide_id, element_id, animate, expected_revision, idempotency_key, duration_multiplier?, delay_ms?)`
 - `set_element_transition_motion(presentation_id, from_slide_id, to_slide_id, element_id, direction, preset, duration_multiplier, delay_ms, expected_revision, idempotency_key)`
 - `apply_commands(presentation_id, commands, expected_revision, idempotency_key)` — apply 1–100 typed operations atomically as one revision and undo step. `update_slide` and `set_presentation_motion_beat` are not batch commands.

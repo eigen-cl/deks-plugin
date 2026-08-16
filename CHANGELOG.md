@@ -3,6 +3,12 @@
 All notable changes to the DEKS plugin are documented in this file. Versions
 follow Semantic Versioning.
 
+## 0.1.8 — 2026-08-16
+
+- Align the MCP tool guide with the canonical DEKS document and canvas contracts introduced by
+  DEKS Core 1.0.
+- Document the single canonical contract used by Core, Cloud and agent-driven presentation flows.
+
 ## 0.1.7 — 2026-08-15
 
 - Prefer native DEKS vector elements for scalable animation and limit SVG guidance to trusted or
