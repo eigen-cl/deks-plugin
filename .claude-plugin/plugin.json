@@ -1,7 +1,7 @@
 {
   "name": "deks-plugin",
   "displayName": "DEKS",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "Operate DEKS safely and design coherent, animated presentations with an opinionated visual method.",
   "author": {
     "name": "EIGEN",
@@ -12,5 +12,10 @@
   "repository": "https://github.com/eigen-cl/deks-plugin",
   "license": "Apache-2.0",
   "defaultEnabled": false,
-  "keywords": ["deks", "presentations", "slides", "mcp"]
+  "keywords": [
+    "deks",
+    "presentations",
+    "slides",
+    "mcp"
+  ]
 }

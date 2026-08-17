@@ -1,13 +1,18 @@
 {
   "name": "deks-plugin",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "Operate DEKS safely and design coherent, animated presentations with an opinionated visual method.",
   "author": {
     "name": "EIGEN"
   },
   "homepage": "https://deks.eigen.cl",
   "repository": "https://github.com/eigen-cl/deks-plugin",
-  "keywords": ["deks", "presentations", "slides", "mcp"],
+  "keywords": [
+    "deks",
+    "presentations",
+    "slides",
+    "mcp"
+  ],
   "skills": "./skills/",
   "apps": "./.app.json",
   "interface": {
@@ -16,7 +21,10 @@
     "longDescription": "Connect an agent to a DEKS workspace, inspect reusable assets, create and edit checkpoint content, choose cohesive palettes, choreograph semantic transitions, validate live renders, and export portable .deks presentations. Separate skills cover the product contract and an opinionated presentation-design method.",
     "developerName": "EIGEN",
     "category": "Productivity",
-    "capabilities": ["Read", "Write"],
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
     "websiteURL": "https://deks.eigen.cl",
     "privacyPolicyURL": "https://deks.eigen.cl/privacy",
     "termsOfServiceURL": "https://deks.eigen.cl/terms",

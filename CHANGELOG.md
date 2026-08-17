@@ -3,6 +3,16 @@
 All notable changes to the DEKS plugin are documented in this file. Versions
 follow Semantic Versioning.
 
+## 0.1.9 — 2026-08-17
+
+- Follow the inherited motion model of DEKS Core 2.0: three roles per element
+  (`in`, `out`, `morph`), each with an animation, a duration in beats, a delay and
+  an easing, declared complete on the presentation and patched by a slide or an
+  element state.
+- Replace the transition tools with `set_motion` and `clear_motion`, and document
+  the parameterised animations, including how far a `slide` travels and where a
+  `scale` starts.
+
 ## 0.1.8 — 2026-08-16
 
 - Align the MCP tool guide with the canonical DEKS document and canvas contracts introduced by

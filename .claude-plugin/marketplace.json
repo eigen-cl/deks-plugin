@@ -11,7 +11,7 @@
       "name": "deks-plugin",
       "source": "./",
       "description": "Operate DEKS safely and design coherent, animated presentations through a separate visual method.",
-      "version": "0.1.8",
+      "version": "0.1.9",
       "author": {
         "name": "EIGEN",
         "email": "hola@eigen.cl",
@@ -21,7 +21,12 @@
       "repository": "https://github.com/eigen-cl/deks-plugin",
       "license": "Apache-2.0",
       "category": "productivity",
-      "tags": ["presentations", "slides", "mcp", "design"],
+      "tags": [
+        "presentations",
+        "slides",
+        "mcp",
+        "design"
+      ],
       "strict": true
     }
   ]
