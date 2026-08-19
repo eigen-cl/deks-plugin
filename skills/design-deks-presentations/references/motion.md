@@ -28,9 +28,9 @@ Set the presentation-level motion first, with `set_motion` and no `slide_id`. Th
 declaration must be complete; it is the only one that is. Most elements should never
 need anything else.
 
-Use `fade` or `none` as the normal presence for titles, body text, labels, citations
-and supporting copy. Text may enter, exit or remain; do not make it travel merely
-because the composition changes between checkpoints.
+Text may enter, exit or remain; do not make it travel across the canvas merely
+because the composition changes between checkpoints. But do not reach for a fade
+either — see below.
 
 Before authoring motion, write a section contract with:
 
@@ -55,12 +55,13 @@ interpolation is jitter and must be removed.
 |---|---|---|
 | `{kind: "fade"}` | opacity only | an idea is restated, revealed, or changes emphasis without implied movement |
 | `{kind: "slide", edge, distance?}` | travels from or towards an edge | an object is displaced, transferred, or arrives from a meaningful direction |
+| `{kind: "crop", edge}` | revealed inside its own box, which masks it | text and figures, especially when one replaces another in the same position |
 | `{kind: "scale", from}` | starts smaller or larger, in place | something is presented, magnified or lands as an object rather than as text |
 | `{kind: "none"}` | instantaneous | the change is meant to be a cut |
 | `{kind: "morph"}` (role `morph`) | interpolates both states | the element continues and its geometry or style carries the change |
 | `{kind: "cut"}` (role `morph`) | snaps between states | a continuing element must not draw attention while something else moves |
 
-Two parameters are worth knowing:
+Three parameters are worth knowing:
 
 - **`distance`** on a slide. Without it the element travels until it is completely
   off the canvas, which is the right default for something that leaves the story.
@@ -68,11 +69,37 @@ Two parameters are worth knowing:
   slide reads as a nudge, an arrival in place, not an entrance from outside.
 - **`from`** on a scale. `0.8` to `0.95` reads as the object settling; below `0.5`
   it reads as a zoom and competes with the content.
+- **`crop` takes no distance.** The content always travels its own box, so the effect
+  is the same whatever the element's size. Pick the `edge` for meaning: a figure that
+  climbs reads better cropping up from `bottom`, a list item arriving under the one
+  above it from `top`.
 
 `easing` accepts the four named curves or four cubic-bezier controls
 `[x1, y1, x2, y2]`. Prefer `ease-out` for entrances, `ease-in` for exits and
 `ease-in-out` for morphs; reach for a bezier only when a specific overshoot or
 deceleration is part of the story.
+
+## How to animate text
+
+Prefer `crop`, a short `slide`, or an honest `cut` over a fade. A fade on text reads
+as mush: letterforms are thin, high-contrast and full of holes, so a half-opacity
+word looks like a rendering defect rather than like something arriving.
+
+It is worst exactly where it is most tempting — when one line of text is replaced by
+another in the same position. The two strings cross-dissolve through each other, the
+descenders of the outgoing line overlap the caps of the incoming one, and for a third
+of a second the audience reads neither. `crop` fixes this completely: the outgoing
+line leaves behind its own boundary while the incoming one arrives behind the same
+one, and at no point are two texts legible in the same place. A `cut` is also better
+than a fade here; it is abrupt, but abrupt is a choice the audience can follow.
+
+Fading text out is fine when nothing replaces it. A paragraph that is simply done, a
+citation that stops being relevant, a label whose object left — those can dissolve,
+because there is nothing behind them for the dissolve to muddy.
+
+The same reasoning applies to numbers. A figure that changes should count on its
+`morph` rather than cross-fade between two magnitudes, and a figure that arrives
+should crop or count in rather than materialize at half opacity.
 
 ## Where to write each value
 
