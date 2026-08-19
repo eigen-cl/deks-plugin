@@ -3,6 +3,18 @@
 All notable changes to the DEKS plugin are documented in this file. Versions
 follow Semantic Versioning.
 
+## 0.1.11 — 2026-08-19
+
+### Added
+
+- The `wipe` animation: the element stays still and the mask edge travels over
+  it, uncovering something already there rather than something arriving from
+  behind a boundary. Documented beside `crop` with guidance on which to reach
+  for.
+- `delay_beats` alongside `delay_ms`. The two add. A follow-on written in beats
+  survives a change of tempo; one written in milliseconds does not, and falls
+  silently out of step.
+
 ## 0.1.10 — 2026-08-19
 
 ### Changed
