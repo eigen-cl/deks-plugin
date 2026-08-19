@@ -44,7 +44,7 @@ A presentation contains at most 50 checkpoints. This is an internal complexity g
 
 ## Element tools
 
-- `create_element(...)` — create a stable identity and its state on one slide. Required geometry is `x`, `y`, `width`, and `height`; `kind` is `text`, `image`, `shape`, `group`, `link-button`, or `icon`.
+- `create_element(...)` — create a stable identity and its state on one slide. Required geometry is `x`, `y`, `width`, and `height`; `kind` is `text`, `number`, `image`, `shape`, `group`, `link-button`, or `icon`.
 - `update_element_state(...)` — replace one slide-local state without changing other checkpoints.
 - `add_existing_element_state(presentation_id, target_slide_id, source_slide_id, element_id, expected_revision, idempotency_key, x?, y?)` — continue a stable identity onto another slide.
 - `remove_element_from_slide(...)` — remove only one checkpoint state.
@@ -64,6 +64,16 @@ or:
 ```
 
 Lines use `stroke` and a solid transparent `shape_fill`, never a gradient. A `link-button` requires a label and a safe absolute HTTPS URL. The current MCP does not expose group parent/child editing.
+
+A `number` carries a magnitude, not a string of digits, so it has no `content`. Its state declares `value` plus the complete formatting the document renders it with: `decimals` (0 to 6), `group_separator` (`""`, `","`, `"."`, `" "` or `"'"`), `decimal_separator` (`"."` or `","`), `symbol` (up to 8 characters, `""` for none) and `symbol_position` (`before` or `after`). It takes the same typography as text. Formatting is never resolved from a locale: the document says exactly which separators to use, so the same file renders the same digits everywhere.
+
+Its identity carries `animate_magnitude`, three booleans naming which roles count towards the value:
+
+```json
+{"command":"create_element","arguments":{"kind":"number","value":38.5,"decimals":1,"symbol":"%","symbol_position":"after","group_separator":",","decimal_separator":".","animate_magnitude":{"in":true,"morph":true,"out":false}}}
+```
+
+Entering counts up from zero, leaving counts down to zero, and a morph counts between the two checkpoints' values on that role's own duration and easing. The toggles live on the identity, not on a state: whether a figure is the kind of figure that counts is decided once. A cut, a zero duration and reduced motion all land on the final value immediately.
 
 An `icon` requires a catalog-backed `icon_family` and `icon_name`; use its normal element `color` for the glyph. Query the catalog by meaning first, keep the icon offline, and never paste arbitrary SVG or fetch an icon URL at render time. Treat icon identity changes as discrete between checkpoints; position, scale, rotation, opacity, and color may still animate through the stable element identity.
 
@@ -90,6 +100,7 @@ Publishing is an external state change and does not create a snapshot: the publi
 
 - `{"kind": "none"}` and `{"kind": "fade"}` for `in` and `out`;
 - `{"kind": "slide", "edge": "left|right|top|bottom", "distance": 240}` — without `distance` the element travels completely off the canvas;
+- `{"kind": "crop", "edge": "left|right|top|bottom"}` — the element's own rectangle masks it and the content travels inside it, so the box never moves and opacity is never touched. It takes no `distance`: the travel is exactly the element's own extent on that axis;
 - `{"kind": "scale", "from": 0.8}`;
 - `{"kind": "morph"}` or `{"kind": "cut"}` for the `morph` role only.
 

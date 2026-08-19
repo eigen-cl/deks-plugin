@@ -97,9 +97,28 @@ Fading text out is fine when nothing replaces it. A paragraph that is simply don
 citation that stops being relevant, a label whose object left — those can dissolve,
 because there is nothing behind them for the dissolve to muddy.
 
-The same reasoning applies to numbers. A figure that changes should count on its
-`morph` rather than cross-fade between two magnitudes, and a figure that arrives
-should crop or count in rather than materialize at half opacity.
+## How to animate a figure
+
+A `number` element carries a magnitude, so it can count rather than cut between
+two values. Its identity declares `animate_magnitude` as three booleans — `in`,
+`morph`, `out` — and the count follows that role's own duration and easing, so
+the digits and the movement are on the same curve by construction.
+
+The common shape is `{"in": true, "morph": true, "out": false}`: the figure
+counts up when it arrives, counts to its new value when the story updates it, and
+simply leaves. Counting out to zero is for the rare edge where the point is that
+the quantity is gone.
+
+Count when the magnitude is the argument — a result, a growth, a total the
+audience is meant to feel the size of. Do not count a year, a version, a
+reference number or an axis label: those are identifiers that happen to be
+numeric, and watching them spin reads as a bug. And a figure that does not count
+should still not cross-fade between two magnitudes; give it a `crop` so one value
+replaces the other behind a boundary.
+
+Keep the box wide enough for the final value. The renderer uses tabular figures
+so the digits do not wobble while counting, but it cannot invent room that the
+composition never gave the element.
 
 ## Where to write each value
 

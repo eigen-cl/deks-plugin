@@ -3,6 +3,23 @@
 All notable changes to the DEKS plugin are documented in this file. Versions
 follow Semantic Versioning.
 
+## 0.1.10 — 2026-08-19
+
+### Changed
+
+- Prefer `crop`, a short `slide` or a `cut` over a fade when animating text. A
+  fade reads as mush on letterforms, and when one line replaces another in the
+  same position the two dissolve through each other until neither is readable.
+  Fading out stays right for text that nothing replaces.
+
+### Added
+
+- The `number` element: a magnitude with complete declared formatting, and
+  identity toggles saying which of the three roles count towards it.
+- The `crop` presence animation, revealed inside the element's own rectangle.
+- Guidance on when a figure should count and when it is an identifier that
+  merely looks numeric.
+
 ## 0.1.9 — 2026-08-17
 
 - Follow the inherited motion model of DEKS Core 2.0: three roles per element
