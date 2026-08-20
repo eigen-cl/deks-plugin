@@ -1,9 +1,16 @@
 # DEKS plugin
 
-Plugin de DEKS para ChatGPT, Codex y Claude. Separa dos responsabilidades:
-`deks-presentations` opera el producto y sus herramientas con seguridad, mientras
-`design-deks-presentations` aporta una metodología opinada para diseñar y auditar
-historias visuales. Incluye además la conexión al MCP remoto de DEKS.
+Plugin de DEKS para ChatGPT, Codex y Claude. Separa cinco responsabilidades para
+que ninguna skill mezcle el contrato del documento con las herramientas de un
+host concreto:
+
+- `deks-presentations`: el contrato del documento DEKS, independiente del host.
+- `deks-cloud-mcp`: cómo operar el MCP remoto de un workspace.
+- `deks-desktop-mcp`: cómo operar el MCP local sobre una carpeta del disco.
+- `design-deks-presentations`: el método para construir la presentación.
+- `deks-motion-patterns`: coreografías reutilizables, listas para aplicar.
+
+Incluye además la conexión al MCP remoto de DEKS.
 
 El MCP también puede listar assets del workspace, renderizar previews PNG de
 checkpoints para QA, recomendar o completar paletas con contraste medido y
@@ -45,8 +52,14 @@ consentimiento siguen ocurriendo con OAuth en el navegador.
   el formato legacy del catálogo local de ChatGPT Desktop.
 - `.mcp.json`: conexión remota sin secretos.
 - `assets/deks-icon.png`: icono oficial DEKS, PNG opaco de 512 × 512 px sobre Ink con clearspace interior para superficies de app.
-- `skills/deks-presentations/`: contrato operativo y seguro del producto DEKS.
+- `skills/deks-presentations/`: modelo del documento, contrato de movimiento,
+  invariantes de validación y recuperación de escrituras inciertas.
+- `skills/deks-cloud-mcp/`: mapa de herramientas, revisiones, cuotas y errores
+  del MCP remoto.
+- `skills/deks-desktop-mcp/`: las cinco herramientas locales, el envoltorio de
+  comandos de Core y lo que no existe fuera de Cloud.
 - `skills/design-deks-presentations/`: método de narrativa, diseño, movimiento y QA.
+- `skills/deks-motion-patterns/`: catálogo de patrones de animación con comandos.
 - `evals/prompts.jsonl`: casos positivos, negativos y destructivos.
 - `submission/`: material de preparación para publicaciones públicas, incluido
   el dossier de revisión del marketplace oficial de Claude.

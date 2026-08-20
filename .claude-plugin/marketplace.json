@@ -10,8 +10,8 @@
     {
       "name": "deks-plugin",
       "source": "./",
-      "description": "Operate DEKS safely and design coherent, animated presentations through a separate visual method.",
-      "version": "0.1.9",
+      "description": "Operate DEKS from Cloud or Desktop, and design coherent, animated presentations with an opinionated method and a pattern catalogue.",
+      "version": "0.2.0",
       "author": {
         "name": "EIGEN",
         "email": "hola@eigen.cl",

@@ -3,6 +3,50 @@
 All notable changes to the DEKS plugin are documented in this file. Versions
 follow Semantic Versioning.
 
+## 0.2.0 — 2026-08-20
+
+### Added
+
+- `deks-cloud-mcp` and `deks-desktop-mcp`: one skill per host. The two servers
+  never had the same surface — Cloud takes `{"command", "arguments"}` in
+  snake_case and exposes palettes, the icon catalogue, geometry validation,
+  publication and export; Desktop takes DEKS Core commands with a kebab-case
+  `type` and a camelCase payload, and has five tools. A single skill taught the
+  Cloud map to every agent, so anyone on Desktop called tools that do not exist.
+- `deks-motion-patterns`: a catalogue of reusable choreographies with the
+  commands to build each one, including promoting a list item into the next
+  slide's title, staggered entries and exits, text relay, a progress bar that
+  fills, a counting figure, accumulation, replacement, a travelling protagonist,
+  curtain and edge reveals, narrative zoom, focus by dimming, before/after, and
+  the object that carries a whole section.
+- `design-deks-presentations` now teaches how to *make* a presentation, not only
+  how to audit one: abstracting a subject into topics, shaping each topic as a
+  narration, and the two kinds of transition — advancing inside a narration, and
+  moving from one narration to the next — which govern every motion decision.
+  New reference `narrative.md`.
+- `deks-presentations` gains `document-model.md` and `motion-contract.md`, and
+  keeps `validation.md`: the document contract, host-independent.
+
+### Changed
+
+- `deks-presentations` is no longer the Cloud tool map. It is the contract of the
+  document itself and routes to the host skill, to the method, and to the
+  patterns. Its main page listed the animations as `none`, `fade`, `slide` and
+  `scale` — omitting `crop` and `wipe` — and said delays were milliseconds, a
+  version after both had changed.
+
+### Fixed
+
+- The Cloud tool map claimed the standalone `set_motion` tool accepts
+  `delay_beats`. It did not; only the `set_motion` command inside
+  `apply_commands` did, so staggered chains authored through the tool silently
+  lost their musical delay. The server now exposes it on both paths and the map
+  documents it.
+- The Cloud `update_slide` signature carried `in_preset`, `out_preset` and the
+  two `*_duration_multiplier` parameters from a retired motion API. Because the
+  command model forbids unknown fields, sending any of them failed validation
+  rather than being ignored. They are gone from the server and from the map.
+
 ## 0.1.11 — 2026-08-19
 
 ### Added

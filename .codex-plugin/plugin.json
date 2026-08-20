@@ -1,7 +1,7 @@
 {
   "name": "deks-plugin",
-  "version": "0.1.9",
-  "description": "Operate DEKS safely and design coherent, animated presentations with an opinionated visual method.",
+  "version": "0.2.0",
+  "description": "Operate DEKS from Cloud or Desktop, and design coherent, animated presentations with an opinionated method and a pattern catalogue.",
   "author": {
     "name": "EIGEN"
   },
@@ -18,7 +18,7 @@
   "interface": {
     "displayName": "DEKS",
     "shortDescription": "Build animated decks with the DEKS MCP.",
-    "longDescription": "Connect an agent to a DEKS workspace, inspect reusable assets, create and edit checkpoint content, choose cohesive palettes, choreograph semantic transitions, validate live renders, and export portable .deks presentations. Separate skills cover the product contract and an opinionated presentation-design method.",
+    "longDescription": "Connect an agent to a DEKS presentation, in a cloud workspace or in a folder on this machine. Five skills keep the concerns apart: the document contract itself, the exact tool map of each host, an opinionated method for turning a subject into topics and narrations, and a catalogue of reusable choreographies — from promoting a list item into the next slide's title to a figure that counts as it arrives.",
     "developerName": "EIGEN",
     "category": "Productivity",
     "capabilities": [
