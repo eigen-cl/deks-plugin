@@ -3,6 +3,22 @@
 All notable changes to the DEKS plugin are documented in this file. Versions
 follow Semantic Versioning.
 
+## 0.2.2 — 2026-08-22
+
+### Changed
+
+- Text motion now follows the narrative event: `fade` or `none` stays quiet when
+  no direction is implied, `slide` carries meaningful lateral arrival or exit,
+  and `crop` moves content inside its fixed mask while `wipe` uncovers content
+  that remains still.
+- Stagger timing is coordinated by visual bands using full vertical bounds and
+  text baselines. Elements on the same row start together unless their content
+  has an explicit sequential relationship.
+- Removed the contradictory blanket advice that ordinary text must never travel
+  and that every text entrance should avoid fade, while retaining the strict
+  rule that replacement copy cannot enter until the outgoing text has cleared
+  the shared zone.
+
 ## 0.2.1 — 2026-08-21
 
 ### Changed
