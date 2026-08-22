@@ -1,7 +1,7 @@
 {
   "name": "deks-plugin",
   "displayName": "DEKS",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Operate DEKS from Cloud or Desktop, and design coherent, animated presentations with an opinionated method and a pattern catalogue.",
   "author": {
     "name": "EIGEN",

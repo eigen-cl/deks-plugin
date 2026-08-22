@@ -99,6 +99,16 @@ downwards, a figure that should not appear to fly in.
 When one text replaces another in the same position, reach for `crop`: the
 outgoing line leaves behind the boundary the incoming one arrives behind.
 
+The rectangle is an exclusive temporal zone, not merely a shared layout slot. Give
+the two strings different identities and resolve their timings so the outgoing text
+is fully gone before the incoming one starts. With beat-only timing, require
+`incoming delay_beats >= outgoing delay_beats + outgoing duration_beats`; include
+the absolute delays in the same comparison when either side uses `delay_ms`. A
+shared text identity whose content changes compiles as a cross-fade and cannot
+satisfy this invariant. Preserve identity only when the string itself is unchanged.
+A changing magnitude is different: model it as one persistent `number` identity so
+the value counts without replacing the element.
+
 ## How to animate text
 
 Prefer `crop`, a short `slide`, or an honest `cut` over a fade. A fade on text reads
@@ -167,7 +177,9 @@ For every adjacent checkpoint edge:
 6. Play or otherwise inspect the real transition at normal speed.
 7. Confirm the visible result matches the prediction and narrative direction and that
    no secondary drift competes for attention.
-8. If an element merely appears despite a non-`none` inherited animation, treat it as
+8. For every pair of different strings whose rectangles overlap across the edge,
+   confirm the outgoing text is fully gone before the incoming text starts.
+9. If an element merely appears despite a non-`none` inherited animation, treat it as
    a renderer or contract defect. Capture the smallest reproducible edge and fix the
    implementation before compensating with per-element patches.
 
