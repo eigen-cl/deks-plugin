@@ -110,13 +110,18 @@ same boundary, so two texts are never legible in the same place at once.
 
 ```json
 {"type": "set-motion", "scope": {"kind": "element", "slideId": "b", "elementId": "claim-new"},
- "role": "in", "patch": {"animation": {"kind": "crop", "edge": "bottom"}, "durationBeats": 0.7, "delayBeats": 0.5}}
+ "role": "in", "patch": {"animation": {"kind": "crop", "edge": "bottom"}, "durationBeats": 0.7, "delayBeats": 0.7}}
 {"type": "set-motion", "scope": {"kind": "element", "slideId": "a", "elementId": "claim-old"},
  "role": "out", "patch": {"animation": {"kind": "crop", "edge": "top"}, "durationBeats": 0.7}}
 ```
 
 An honest `{"kind":"none"}` cut is also better than a fade here. Abrupt is a choice
 the audience can follow; mush is not.
+
+The `0.7`-beat delay is not decorative: it equals the outgoing duration, so the old
+line is fully outside the zone before the new one starts. If the outgoing motion has
+its own delay, add it too; the invariant is `incoming delay >= outgoing delay +
+outgoing duration`.
 
 **Do not use it** when nothing replaces the outgoing text. A paragraph that is simply
 done can fade out — there is nothing behind it for the dissolve to muddy.
@@ -207,7 +212,7 @@ and the incoming one with an `in` delayed behind it:
 {"type": "set-motion", "scope": {"kind": "element", "slideId": "a", "elementId": "plan-old"},
  "role": "out", "patch": {"animation": {"kind": "crop", "edge": "top"}, "durationBeats": 0.7, "easing": "ease-in"}}
 {"type": "set-motion", "scope": {"kind": "element", "slideId": "b", "elementId": "plan-new"},
- "role": "in", "patch": {"animation": {"kind": "crop", "edge": "bottom"}, "durationBeats": 0.7, "delayBeats": 0.6}}
+ "role": "in", "patch": {"animation": {"kind": "crop", "edge": "bottom"}, "durationBeats": 0.7, "delayBeats": 0.7}}
 ```
 
 The delay is the meaning: without it the two overlap and the substitution reads as an

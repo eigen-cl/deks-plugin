@@ -77,6 +77,11 @@ narration boundary, so two arguments blur into one.
 - **Ordinary text appears, disappears or remains.** It does not travel because the
   composition rebalanced. Reserve travel and geometry interpolation for the objects
   whose displacement *is* the point.
+- **A text rectangle is an exclusive temporal zone.** When a different string will
+  reuse any part of it, give the replacement a different identity and finish the
+  outgoing text before the incoming text begins. A shared text identity whose
+  content changes cross-fades both strings, so it cannot keep that zone clean;
+  preserve identity only while the string itself remains unchanged.
 - **Never animate re-layout.** A continuing element that shifts twelve pixels to
   balance the next composition is visible motion with no referent. Keep it on its
   anchor and arrange the local content around it.

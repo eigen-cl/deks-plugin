@@ -3,6 +3,21 @@
 All notable changes to the DEKS plugin are documented in this file. Versions
 follow Semantic Versioning.
 
+## 0.2.1 — 2026-08-21
+
+### Changed
+
+- Text relay now follows an explicit two-beat handoff: the outgoing copy clears
+  its space completely before replacement copy begins entering that same area.
+- Motion examples use a delayed second beat instead of overlapping the exit and
+  entrance of text that occupies the same region.
+
+### Added
+
+- Evaluation coverage for clean text replacement. The method also distinguishes
+  changed copy from a native number element, whose stable identity can count and
+  morph between checkpoints without being removed.
+
 ## 0.2.0 — 2026-08-20
 
 ### Added
