@@ -74,12 +74,17 @@ better then to write the title as its own element and use **replacement**.
 
 ## Staggered exit and staggered entry
 
-**The move.** Siblings leave or arrive one after another, top to bottom, so the eye
-reads an order.
+**The move.** Siblings leave or arrive in visual bands, so the eye reads an order
+without falsely sequencing elements that share one row.
 
 **Why it works.** `delayBeats` is musical: `0.12` is 12% of a beat, and a rising
 series of them is a staircase that survives a change of tempo. In milliseconds the
 same chain falls out of step the day someone edits `motionBeatMs`.
+
+First group the elements by their full vertical bounds and text baselines. Elements
+on the same row or baseline share a delay; increase it only for the next visual band
+in the reading direction. Do not sort by `y` alone: boxes of different heights may
+belong to the same band even when their top edges differ.
 
 ```json
 {"type": "set-motion", "scope": {"kind": "element", "slideId": "apertura", "elementId": "story-station-2"},
@@ -88,8 +93,9 @@ same chain falls out of step the day someone edits `motionBeatMs`.
            "durationBeats": 0.6, "delayBeats": 0.12, "easing": "ease-in"}}
 ```
 
-Repeat with `delayBeats` `0`, `0.12`, `0.24`, `0.36`, `0.48`. Keep the step small:
-above roughly `0.2` per item the group stops reading as one gesture and starts
+For five successive bands, repeat with `delayBeats` `0`, `0.12`, `0.24`, `0.36`,
+`0.48`. If two elements occupy one band, give both the same value. Keep the step
+small: above roughly `0.2` per band the group stops reading as one gesture and starts
 reading as separate events.
 
 **Do not use it** on more than about six items, and never on something the audience
