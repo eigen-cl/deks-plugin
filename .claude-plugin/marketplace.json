@@ -10,8 +10,8 @@
     {
       "name": "deks-plugin",
       "source": "./",
-      "description": "Operate DEKS from Cloud or Desktop, and design coherent, animated presentations with an opinionated method and a pattern catalogue.",
-      "version": "0.3.0",
+      "description": "Create and keep editing shared, animated presentations with people and AI agents.",
+      "version": "0.3.1",
       "author": {
         "name": "EIGEN",
         "email": "hola@eigen.cl",
