@@ -3,6 +3,20 @@
 All notable changes to the DEKS plugin are documented in this file. Versions
 follow Semantic Versioning.
 
+## 0.3.0 — 2026-08-23
+
+### Changed
+
+- `deks-desktop-mcp` now describes each presentation as one portable `.deks`
+  file with embedded assets and atomic replacement, matching Desktop's
+  file-first store instead of the retired expanded project folder.
+- Image guidance now reflects the shared Web, Cloud and Desktop admission
+  contract: PNG, JPEG, GIF and WebP up to 50 MB, plus canonical static SVG up to
+  5 MB under a deliberately restricted, script-free profile.
+- The skills distinguish the portable `.deks` bounds (95 MB physical and 90 MB
+  uncompressed) from Cloud workspace quotas and the MCP's separate 20 MB export
+  transport ceiling.
+
 ## 0.2.2 — 2026-08-22
 
 ### Changed
