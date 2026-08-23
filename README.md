@@ -67,12 +67,33 @@ consentimiento siguen ocurriendo con OAuth en el navegador.
 - `skills/deks-motion-patterns/`: catálogo de patrones de animación con comandos.
 - `evals/prompts.jsonl`: casos positivos, negativos y destructivos.
 - `submission/`: material de preparación para publicaciones públicas, incluido
-  el dossier de revisión del marketplace oficial de Claude.
+  el dossier de revisión del marketplace oficial de Claude y el bundle copiable
+  para el portal público de OpenAI.
 - `CHANGELOG.md`: cambios visibles y contractuales por versión.
 - `LICENSE`: licencia Apache-2.0 del paquete público.
+
+## Validar el bundle de OpenAI
+
+Este repositorio no tiene dependencias de runtime ni un entorno Docker propio.
+La validación del bundle usa solamente Node.js y comprueba la versión, metadata,
+URLs, cinco skills, icono de 512 px y que los cinco casos positivos y tres
+negativos sean copias exactas de `evals/prompts.jsonl`:
+
+```bash
+node scripts/validate-openai-submission.mjs
+claude plugin validate . --strict
+git diff --check
+```
+
+El workflow `.github/workflows/validate.yml` ejecuta estas comprobaciones en
+push y pull request. En CI instala de forma efímera y reproducible el paquete
+oficial `@anthropic-ai/claude-code@2.1.226`; no requiere login ni credenciales.
 
 ## Estado de publicación
 
 Este repositorio es la fuente pública de distribución independiente. DEKS aún no
 está listado en `claude-plugins-official`: esa publicación requiere postularlo
 mediante el formulario autenticado de Anthropic y no ocurre al empujar `main`.
+La asociación técnica de OpenAI sirve para Developer mode; la publicación
+universal también requiere crear el draft, pasar revisión y elegir Publish en el
+portal de OpenAI.

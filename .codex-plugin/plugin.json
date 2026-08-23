@@ -1,11 +1,11 @@
 {
   "name": "deks-plugin",
-  "version": "0.3.0",
-  "description": "Operate DEKS from Cloud or Desktop, and design coherent, animated presentations with an opinionated method and a pattern catalogue.",
+  "version": "0.3.1",
+  "description": "Create and keep editing shared, animated presentations with people and AI agents.",
   "author": {
     "name": "EIGEN"
   },
-  "homepage": "https://deks.eigen.cl",
+  "homepage": "https://deks.eigen.cl/",
   "repository": "https://github.com/eigen-cl/deks-plugin",
   "keywords": [
     "deks",
@@ -17,21 +17,22 @@
   "apps": "./.app.json",
   "interface": {
     "displayName": "DEKS",
-    "shortDescription": "Build animated decks with the DEKS MCP.",
-    "longDescription": "Connect an agent to a DEKS presentation, in a cloud workspace or in a portable .deks file on this machine. Five skills keep the concerns apart: the document contract itself, the exact tool map of each host, an opinionated method for turning a subject into topics and narrations, and a catalogue of reusable choreographies — from promoting a list item into the next slide's title to a figure that counts as it arrives.",
+    "shortDescription": "Decks for people and AI agents",
+    "longDescription": "DEKS is a collaborative presentation format built for people and AI agents to work on the same editable deck. Create a presentation, continue it across chats, edit individual elements, and share one current version with your team. Stable element identities let objects persist and transform between slides, while DEKS motion adds reusable rhythms and transitions. The plugin connects an agent to DEKS Cloud through OAuth or to a portable .deks file on this machine. Five focused skills cover the document contract, each host's tools, presentation design, and motion patterns.",
     "developerName": "EIGEN",
     "category": "Productivity",
     "capabilities": [
       "Read",
       "Write"
     ],
-    "websiteURL": "https://deks.eigen.cl",
-    "privacyPolicyURL": "https://deks.eigen.cl/privacy",
-    "termsOfServiceURL": "https://deks.eigen.cl/terms",
+    "websiteURL": "https://deks.eigen.cl/",
+    "supportURL": "https://deks.eigen.cl/support/",
+    "privacyPolicyURL": "https://deks.eigen.cl/privacy/",
+    "termsOfServiceURL": "https://deks.eigen.cl/terms/",
     "defaultPrompt": [
-      "Create a coherent presentation in DEKS using the design methodology.",
-      "Improve the layout and motion of my DEKS deck.",
-      "Audit my presentation's story, palette, layout, and transitions."
+      "Create a four-slide presentation in DEKS, then render it and fix any clipped text.",
+      "Continue my DEKS deck while preserving the changes my team already made.",
+      "Make one element persist and transform between two slides in my DEKS presentation."
     ],
     "brandColor": "#FF7043",
     "composerIcon": "./assets/deks-icon.png",

@@ -3,6 +3,31 @@
 All notable changes to the DEKS plugin are documented in this file. Versions
 follow Semantic Versioning.
 
+## 0.3.1 — 2026-08-23
+
+### Changed
+
+- Reposition the OpenAI listing around one collaborative presentation format
+  shared by people and AI agents, with editable elements, persistent identities,
+  and motion as part of the document.
+- Add the required support URL, canonical trailing-slash public URLs, concise
+  install-surface copy, and realistic starter prompts to the Codex manifest;
+  align the Claude manifest and marketplace with the same product position.
+- Prepare a copy-ready OpenAI portal sheet, initial-submission release notes,
+  five positive and three negative reviewer cases, and a complete annotation
+  worksheet for the 34 Cloud MCP tools.
+
+### Added
+
+- A dependency-free validator that keeps the OpenAI bundle, manifests, skills,
+  icon, reviewer cases, URLs, and expected tool annotations synchronized.
+- Push and pull-request CI for the bundle validator, whitespace checks, and the
+  pinned official Claude plugin validator.
+
+Publishing the package remains a separate reviewed portal action. A version bump,
+Git tag, Git-backed marketplace, or Developer mode association does not publish
+DEKS in either provider's official directory.
+
 ## 0.3.0 — 2026-08-23
 
 ### Changed
