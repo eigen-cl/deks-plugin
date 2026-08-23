@@ -6,7 +6,7 @@ host concreto:
 
 - `deks-presentations`: el contrato del documento DEKS, independiente del host.
 - `deks-cloud-mcp`: cómo operar el MCP remoto de un workspace.
-- `deks-desktop-mcp`: cómo operar el MCP local sobre una carpeta del disco.
+- `deks-desktop-mcp`: cómo operar el MCP local sobre archivos `.deks` del disco.
 - `design-deks-presentations`: el método para construir la presentación.
 - `deks-motion-patterns`: coreografías reutilizables, listas para aplicar.
 
@@ -15,6 +15,11 @@ Incluye además la conexión al MCP remoto de DEKS.
 El MCP también puede listar assets del workspace, renderizar previews PNG de
 checkpoints para QA, recomendar o completar paletas con contraste medido y
 resolver íconos vectoriales offline por familia y semántica.
+
+Web, Cloud y Desktop comparten el mismo contrato de imagen: PNG, JPEG, GIF y
+WebP de hasta 50 MB, más un perfil SVG estático seguro de hasta 5 MB. El archivo
+portable `.deks` incrusta los bytes canónicos de esos assets para abrir la misma
+presentación en cualquiera de los tres hosts.
 
 El endpoint canónico es:
 
