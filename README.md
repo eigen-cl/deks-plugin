@@ -12,7 +12,8 @@ host concreto:
 
 Incluye además la conexión al MCP remoto de DEKS.
 
-El MCP también puede listar assets del workspace, renderizar previews PNG de
+El MCP también puede listar assets del workspace, admitir archivos adjuntos
+explícitos, renderizar previews PNG de
 checkpoints para QA, recomendar o completar paletas con contraste medido y
 resolver íconos vectoriales offline por familia y semántica.
 
