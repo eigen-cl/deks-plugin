@@ -3,6 +3,25 @@
 All notable changes to the DEKS plugin are documented in this file. Versions
 follow Semantic Versioning.
 
+## 0.3.2 — 2026-08-24
+
+### Changed
+
+- Make text identity explicit: unchanged copy may keep one identity, while a
+  new phrase, claim, or label must use a new text element even when it occupies
+  the same rectangle.
+- Prefer bounded `apply_commands` transactions for a coherent checkpoint or
+  short narration so remote clients avoid one round trip per element or
+  property without weakening revision or idempotency safety.
+- Validate and render coherent checkpoints after each batch instead of after
+  every individual property mutation.
+
+### Added
+
+- Regression evals for changed-copy identity and low-latency batching, plus
+  validator assertions that keep the operational guidance present across the
+  shared, design, Cloud, and Desktop skills.
+
 ## 0.3.1 — 2026-08-23
 
 ### Changed

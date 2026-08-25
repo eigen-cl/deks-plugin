@@ -41,6 +41,23 @@ performs in the app, not something to work around.
 That is the whole surface. Everything that mutates the deck goes through
 `apply_commands`.
 
+## Keep client round trips semantic
+
+Do not call `apply_commands` once per element or property. Group the identities,
+states, styling and motion that complete one coherent checkpoint or short narration
+into one atomic batch of at most 100 commands. Keep assets in their required
+`add_asset` transactions and keep unrelated, destructive or scene-independent work
+out of a batch merely to reduce calls.
+
+Read before the first transaction. After a confirmed batch, use its returned
+revision as the next batch's `expected_revision` and issue a new semantic
+`idempotency_key`. Re-read on conflicts and uncertain responses; latency reduction
+never permits guessed revisions or reused keys for different payloads.
+
+Render the coherent checkpoint or narration after its batch commits, not after each
+property. Re-render the affected checkpoint after correction batches and inspect the
+whole ordered sequence at the final confirmed revision.
+
 ## The envelope is not the Cloud one
 
 This is the single most common way to get it wrong. Cloud takes
@@ -107,6 +124,10 @@ report says they are available and the measured IDs cover the slide's rendered
 element IDs. Render every checkpoint you touched at the freshly read revision, and
 look at the images — the report catches overflow, not hierarchy, contrast, or whether
 the motion means anything.
+
+“Every checkpoint” is the QA coverage target, not a request to render between
+individual commands. Compose a checkpoint coherently in `apply_commands`, then
+render it once at the returned revision; render it again only after a correction.
 
 The Desktop runtime pins the exact `@deks-js/render-preview@4.2.0` contract and
 renders both admitted raster images and canonical safe SVG from the embedded

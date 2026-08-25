@@ -7,6 +7,13 @@ the same object. Field names and value ranges are the document's own — see
 `apply_commands` takes 1–100 of them and applies the whole array as **one** revision
 and one undo step. If any command is invalid, nothing is applied.
 
+Prefer one call for the coherent commands that compose a checkpoint or short
+narration. Defining an identity, adding its state, placing its related elements and
+setting their motion are normally one transaction, not one MCP call per command or
+property. Continue from the revision returned by that transaction and use a new
+semantic idempotency key for the next one. Render the completed checkpoint after the
+batch, not between its commands.
+
 ```json
 {
   "presentation_id": "propuesta-q3",

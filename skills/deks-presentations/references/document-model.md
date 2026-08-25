@@ -121,6 +121,19 @@ position change is one node that travels and grows — which is how a list item
 becomes the next slide's title. Change the string too, and the same authoring
 degrades silently into a cross-fade. See `$deks-motion-patterns`.
 
+Do not use that discrete cross-fade as a shortcut for replacement copy. Text
+identity follows content, not the rectangle that happens to contain it:
+
+| Boundary | Identity decision |
+|---|---|
+| `Revenue` moves and grows into the next title as `Revenue` | Keep one identity. |
+| `Revenue` is replaced by the new claim `Growth` in the same box | Give each string its own identity. |
+
+In the second case, the `Revenue` state exists only before the boundary and plays
+`out`; the `Growth` state exists only after it and plays `in`. Sequence those roles
+so the first text is fully gone before the second starts. A shared semantic role,
+style or geometry never overrides this rule.
+
 ## Universal interoperability limits
 
 These bound the portable file itself, not any plan:
