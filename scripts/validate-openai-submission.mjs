@@ -7,7 +7,7 @@ const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const read = (path) => readFileSync(join(root, path), "utf8");
 const json = (path) => JSON.parse(read(path));
 
-const version = "0.3.2";
+const version = "0.3.3";
 const manifest = json(".codex-plugin/plugin.json");
 const claudeManifest = json(".claude-plugin/plugin.json");
 const claudeMarketplace = json(".claude-plugin/marketplace.json");
@@ -85,8 +85,48 @@ for (const entry of evals) {
   assert.ok(!sourceById.has(entry.id), `duplicate eval id: ${entry.id}`);
   sourceById.set(entry.id, entry);
 }
-assert.equal(evals.filter(({ kind }) => kind === "positive").length, 21);
+assert.equal(evals.filter(({ kind }) => kind === "positive").length, 22);
 assert.equal(evals.filter(({ kind }) => kind === "negative").length, 14);
+
+const attachedAssetCase = sourceById.get("positive-upload-attached-logo");
+assert.ok(attachedAssetCase, "attached asset upload regression case is required");
+assert.equal(attachedAssetCase.kind, "positive");
+for (const requirement of [/upload_asset/i, /attached/i, /asset_id/i]) {
+  assert.ok(
+    attachedAssetCase.expected_behavior.some((behavior) => requirement.test(behavior)),
+    `attached asset upload regression is missing ${requirement}`,
+  );
+}
+
+const unattachedPathCase = sourceById.get("negative-unattached-local-path");
+assert.ok(unattachedPathCase, "unattached local path regression case is required");
+assert.equal(unattachedPathCase.kind, "negative");
+assert.match(unattachedPathCase.prompt, /local path|\/Users\//i);
+for (const requirement of [/do not call upload_asset/i, /attach/i, /do not invent/i]) {
+  assert.ok(
+    unattachedPathCase.expected_behavior.some((behavior) => requirement.test(behavior)),
+    `unattached local path regression is missing ${requirement}`,
+  );
+}
+
+for (const [name, document] of [
+  ["deks-cloud-mcp", cloudMcpSkill],
+  ["Cloud tool map", read("skills/deks-cloud-mcp/references/tools.md")],
+  ["design visual system", read("skills/design-deks-presentations/references/visual-system.md")],
+]) {
+  assert.match(document, /upload_asset/i, `${name} must document upload_asset`);
+  assert.match(
+    document,
+    /explicitly attached|explicit attachment/i,
+    `${name} must require an explicit attachment`,
+  );
+  assert.match(document, /asset_id/i, `${name} must require reuse of the returned asset_id`);
+  assert.match(
+    document,
+    /do not invent|never invent/i,
+    `${name} must reject invented files, paths, or URLs`,
+  );
+}
 
 const textIdentityCase = sourceById.get("negative-reuse-text-identity-for-new-copy");
 assert.ok(textIdentityCase, "text identity regression case is required");
@@ -168,6 +208,14 @@ for (const entry of selected) {
   assert.deepEqual(entry, sourceById.get(entry.id), `${entry.id} must be copied exactly from evals`);
   assert.ok(listing.includes(`\`${entry.id}\``), `${entry.id} missing from listing`);
 }
+assert.ok(
+  reviewCases.positive.some(({ id }) => id === "positive-upload-attached-logo"),
+  "review cases must exercise an explicitly attached asset upload",
+);
+assert.ok(
+  reviewCases.negative.some(({ id }) => id === "negative-unattached-local-path"),
+  "review cases must reject an unattached local path",
+);
 
 for (const document of [listing, portal]) {
   assert.ok(document.includes("Decks for people and AI agents"));
@@ -227,6 +275,7 @@ const destructivePublicTools = [
 const expectedAnnotations = new Map();
 for (const name of readOnlyTools) expectedAnnotations.set(name, [true, false, false]);
 expectedAnnotations.set("create_presentation", [false, false, false]);
+expectedAnnotations.set("upload_asset", [false, false, false]);
 for (const name of additivePublicTools) expectedAnnotations.set(name, [false, true, false]);
 for (const name of overwritingPublicTools) expectedAnnotations.set(name, [false, true, true]);
 for (const name of destructivePublicTools) expectedAnnotations.set(name, [false, true, true]);
@@ -239,7 +288,7 @@ for (const line of annotationWorksheet.split("\n")) {
   assert.ok(!annotationRows.has(name), `duplicate annotation row: ${name}`);
   annotationRows.set(name, [readOnly === "true", openWorld === "true", destructive === "true"]);
 }
-assert.equal(annotationRows.size, 34, `annotation worksheet must cover all 34 v${version} tools`);
+assert.equal(annotationRows.size, 35, `annotation worksheet must cover all 35 v${version} tools`);
 assert.deepEqual(annotationRows, expectedAnnotations, "annotation worksheet values or tool inventory drifted");
 assert.ok(portal.includes(`openai-tool-annotations-v${version}.md`));
 
@@ -249,6 +298,7 @@ assert.equal(png.readUInt32BE(16), 512, "logo width must be 512 px");
 assert.equal(png.readUInt32BE(20), 512, "logo height must be 512 px");
 
 const publicBundle = [listing, portal, releaseNotes, JSON.stringify(reviewCases)].join("\n");
+assert.doesNotMatch(publicBundle, /cannot upload (?:new files|a new asset)|does not upload assets/i);
 const secretPatterns = [
   /deks_pat_[A-Za-z0-9_-]{8,}/,
   /sk-[A-Za-z0-9_-]{20,}/,

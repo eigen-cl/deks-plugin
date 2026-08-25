@@ -3,6 +3,23 @@
 All notable changes to the DEKS plugin are documented in this file. Versions
 follow Semantic Versioning.
 
+## 0.3.3 — 2026-08-25
+
+### Added
+
+- Teach Cloud agents to admit one explicitly attached image with `upload_asset`,
+  reuse the returned asset ID across image states and preserve one image identity
+  when the same logo continues between checkpoints.
+- Add a positive reviewer case for an attached logo and a negative case that
+  refuses to invent bytes, URLs or local-path access when no file is attached.
+
+### Changed
+
+- Update the OpenAI submission bundle and tool worksheet for the 35-tool Cloud
+  MCP surface, including the private, non-destructive upload annotation.
+- Regenerate the five uploadable skill archives and align the portal copy with
+  the dedicated reviewer workflow.
+
 ## 0.3.2 — 2026-08-24
 
 ### Changed

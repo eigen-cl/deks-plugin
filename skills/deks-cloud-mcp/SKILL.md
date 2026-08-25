@@ -1,6 +1,6 @@
 ---
 name: deks-cloud-mcp
-description: "Operate the DEKS Cloud MCP server at api-deks.eigen.cl: OAuth or workspace PAT, the full tool map (presentations, slides, elements, motion, palettes, icon catalog, layout validation, rendered previews, publication, export, undo), the exact apply_commands envelope in snake_case, revisions and idempotency keys, workspace assets, the 50-checkpoint and 100-state quotas, and what each error code means. Use it whenever the discovered tools include validate_layout, recommend_palettes, publish_presentation or export_deck, or whenever the deck lives in a workspace rather than in a local `.deks` file. Pair with $deks-presentations for the document contract itself."
+description: "Operate the DEKS Cloud MCP server at api-deks.eigen.cl: OAuth or workspace PAT, the full tool map (presentations, slides, elements, motion, palettes, icon catalog, asset upload, layout validation, rendered previews, publication, export, undo), the exact apply_commands envelope in snake_case, revisions and idempotency keys, workspace assets, the 50-checkpoint and 100-state quotas, and what each error code means. Use it whenever the discovered tools include validate_layout, recommend_palettes, upload_asset, publish_presentation or export_deck, or whenever the deck lives in a workspace rather than in a local `.deks` file. Pair with $deks-presentations for the document contract itself."
 ---
 
 # Operate the DEKS Cloud MCP
@@ -57,9 +57,11 @@ and run whole-deck validation plus ordered rendered review at the end.
 
 1. `list_presentations` to resolve the deck, then `get_presentation` immediately
    before planning any mutation. Capture the revision.
-2. `list_assets` before asking for media. **The MCP does not upload assets** — ask
-   the user to upload them in the web app, where they pass the shared image
-   admission contract.
+2. `list_assets` before requesting new media. Reuse a matching admitted asset when
+   one exists. When the user has explicitly attached a file, call `upload_asset`
+   once and reuse the returned `id` as the image state's `asset_id`; never invent file bytes, a local path,
+   or a URL. If the user only mentions a file or path, ask them to attach it before
+   calling the tool. Uploaded media passes the shared image admission contract.
 3. Plan the change. Group each coherent checkpoint or narration into one
    `apply_commands` batch of at most 100 operations; a failed batch is atomic and
    leaves the revision untouched. Prefer this over element-by-element mutation tools.

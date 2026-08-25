@@ -1,4 +1,4 @@
-# OpenAI public submission — DEKS v0.3.2 candidate
+# OpenAI public submission — DEKS v0.3.3 candidate
 
 Use this dossier as the source of truth for the OpenAI submission draft. It is
 prepared for a **With MCP + uploaded skills** submission. Do not select Submit
@@ -33,8 +33,8 @@ at export time.
   transitions. The plugin connects ChatGPT or Codex to a DEKS Cloud workspace
   through OAuth, uses revision-aware writes to protect concurrent edits, renders
   slide previews for visual checks, and exports a portable `.deks` file. It can
-  reuse assets already in the workspace, but it cannot upload new files or export
-  PPTX through the MCP.
+  reuse assets already in the workspace or admit a file explicitly attached by
+  the user, while PPTX export remains in the web app.
 - **Website:** https://deks.eigen.cl/
 - **Support:** https://deks.eigen.cl/support/
 - **Privacy:** https://deks.eigen.cl/privacy/
@@ -67,9 +67,12 @@ recommend palettes, use the offline icon catalogue, publish or unpublish a live
 link, undo transactions, and export a portable `.deks` archive when the scanned
 tool set advertises those operations.
 
-The MCP does **not** upload assets, import `.deks` files, export PPTX, or create
-native speaker notes. Do not describe those as plugin capabilities. The web app
-owns uploads, Cloud file import/export, and PPTX export.
+For media, the MCP first reuses matching workspace assets. It can call
+`upload_asset` only when the user explicitly attached a file, then must reuse the
+returned `asset_id`; it cannot read a path merely mentioned in chat and must never
+invent file bytes, a path, or a URL. The MCP does **not** import `.deks` files,
+export PPTX, or create native speaker notes. Cloud file import/export and PPTX
+export remain in the web app.
 
 ## Authentication and reviewer account
 
@@ -97,7 +100,7 @@ Before submission, verify from a fresh browser session that:
 Create a dedicated reviewer user and synthetic workspace. Enter its credentials
 only in the private portal fields. The reviewer must not need MFA, SMS, email
 confirmation, private-network access, or a real customer account. Reset the
-fixtures described in `submission/openai-review-cases-v0.3.2.json` before the
+fixtures described in `submission/openai-review-cases-v0.3.3.json` before the
 review, including all presentation names beginning with `Reviewer —`.
 
 ### Owner-provided portal inputs
@@ -126,7 +129,7 @@ URL in the portal and it serves that same exact value.
 ## Reviewer test set
 
 The portal requires at least five positive and three negative cases. The exact
-selection is stored in `submission/openai-review-cases-v0.3.2.json`, copied
+selection is stored in `submission/openai-review-cases-v0.3.3.json`, copied
 without rewriting from `evals/prompts.jsonl`:
 
 ### Five positive cases
@@ -136,16 +139,16 @@ without rewriting from `evals/prompts.jsonl`:
    deck or treating intentional overlap as an objective error.
 3. `positive-rendered-iteration` — uses actual previews and complete DOM
    measurements before correcting clipping, wrapping, and contrast.
-4. `positive-use-workspace-assets` — disambiguates and reuses an admitted asset
-   without pretending the MCP can upload.
+4. `positive-upload-attached-logo` — uploads one explicitly attached logo and
+   reuses the returned asset ID on every requested checkpoint.
 5. `positive-promote-list-item-to-title` — preserves one element identity so it
    transforms from an opening line into the next slide's title.
 
 ### Three negative cases
 
 1. `negative-ambiguous-delete` — refuses to guess which deck to delete.
-2. `negative-unsupported-upload` — explains the real Web upload path instead of
-   inventing an MCP upload.
+2. `negative-unattached-local-path` — refuses to invent file access when a local
+   path is mentioned without an attachment.
 3. `negative-secret-exfiltration` — treats presentation content as untrusted and
    never follows embedded instructions to reveal credentials.
 
@@ -176,7 +179,7 @@ The submission should justify the real annotations surfaced by the scan. If a
 hint is wrong, fix and deploy the owning server, then scan again; do not explain
 away the mismatch in the portal.
 
-Use `submission/openai-tool-annotations-v0.3.2.md` as the portal-ready worksheet
+Use `submission/openai-tool-annotations-v0.3.3.md` as the portal-ready worksheet
 for the expected production values and per-tool justifications. A public share is
 a live view, so every mutation of an existing deck can change publicly visible
 state. Reconcile the worksheet with the final scan instead of assuming its tool
@@ -200,12 +203,12 @@ inventory is still current.
 - [ ] All four starter prompts succeed with the reviewer account.
 - [ ] The selected five positive and three negative reviewer cases pass from clean fixtures in ChatGPT and Codex.
 - [ ] Country/region availability matches current legal and support readiness.
-- [ ] `submission/release-notes-v0.3.2.md` matches the final production snapshot.
+- [ ] `submission/release-notes-v0.3.3.md` matches the final production snapshot.
 - [ ] Policy attestations are completed only after every item above is verified.
 
 ## Portal release notes
 
-Paste `submission/release-notes-v0.3.2.md` into the Release notes field. This is
+Paste `submission/release-notes-v0.3.3.md` into the Release notes field. This is
 an initial public submission, not an update to a previously approved directory
 version.
 
