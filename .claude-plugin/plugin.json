@@ -1,7 +1,7 @@
 {
   "name": "deks-plugin",
   "displayName": "DEKS",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Create and keep editing shared, animated presentations with people and AI agents.",
   "author": {
     "name": "EIGEN",

@@ -100,6 +100,19 @@ Publishing is an external state change and does not create a snapshot: the publi
 - `apply_commands(presentation_id, commands, expected_revision, idempotency_key)` — apply 1–100 typed operations atomically as one revision and undo step. `update_slide` and `set_presentation_motion_beat` are not batch commands.
 - `undo_transaction(presentation_id, expected_revision, idempotency_key, transaction_id?)`
 
+For remote-client latency, prefer one `apply_commands` transaction for the coherent
+composition of a checkpoint or short narration: create the needed identities, add
+their states, apply styling and set local motion together. Do not turn each element
+or property into its own MCP round trip. Use the returned revision as the next
+transaction's `expected_revision`, and give every new semantic transaction a new
+idempotency key. A conflict or uncertain response still requires a re-read and the
+normal recovery procedure.
+
+After the batch commits, validate the completed checkpoint or narration and render
+each affected checkpoint. Do not validate or render after every property. Correction
+batches require re-validation and re-rendering of what they changed; the finished
+deck still requires whole-deck validation and ordered rendered review.
+
 Each role carries two delays that **add**: `delay_beats` is a multiple of `motion_beat_ms`, so "start when the previous animation ends" is `delay_beats: 1` and stays true when the deck's tempo changes; `delay_ms` is absolute, for an offset that is about a specific instant. Both default to `0`. The wait is `motion_beat_ms * delay_beats + delay_ms`.
 
 `animation` is one object, discriminated by `kind`:

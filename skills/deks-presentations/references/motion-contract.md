@@ -20,6 +20,19 @@ reader.
 
 A `morph` is resolved from the slide the element is arriving at.
 
+### Text replacement is `out` then `in`, not one reused identity
+
+Preserve a text identity only while the exact same `content` continues. When the
+next checkpoint introduces a new phrase, claim or label, declare a new identity:
+the old text is `out` and the new text is `in`, even when both use the same
+rectangle. Resolve their timing so the incoming start is at or after the outgoing
+end.
+
+With a 600 ms beat, an old line with `out.durationBeats: 1` and no delay ends at
+600 ms; the new line can use `in.delayBeats: 1` and begin at 600 ms. Reusing one
+identity and changing `content` instead produces a cross-fade of both strings and
+cannot create a clean interval.
+
 ## Four properties per role
 
 | Property | Meaning |
