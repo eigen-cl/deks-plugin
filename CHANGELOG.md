@@ -3,6 +3,37 @@
 All notable changes to the DEKS plugin are documented in this file. Versions
 follow Semantic Versioning.
 
+## 0.4.0 — 2026-08-31
+
+### Changed
+
+- Document the canonical codec v3 and its sequential v1 → v2 → v3 migration. Legacy
+  text conflicts resolve deterministically from the first state in slide order;
+  future codec versions remain explicit failures.
+- Move fixed text fields (`content`, font family, alignments and overflow mode)
+  to element identity, keep continuous typography and four-sided padding on the
+  slide state, and make that ownership explicit in Cloud/Desktop commands.
+- Require different identities for different copy or semantic text types, and
+  use `x`/`y` or padding—not alignment changes—for fine visual positioning.
+- Add portable per-slide narration with script, pauses and one embedded WAV/MP3
+  rendition; document the Desktop `set-slide-narration` and
+  `clear-slide-narration` commands and audio admission through `add_asset`.
+- Bring the Cloud MCP to the canonical Core 6 codec v3 surface without
+  version-suffixed tools. `get_presentation`, `get_slide_state`,
+  `create_element`, `update_element_identity` and `list_icon_catalog` are the
+  canonical contract.
+- Add logical groups through `parent_id`/`clear_parent`, preserving absolute
+  member geometry and group-aware collision diagnostics.
+- Add `set_slide_narration` and `clear_slide_narration` for portable scripts,
+  pauses and references to already admitted audio. `upload_asset` remains
+  image-only and never admits narration audio.
+
+### Fixed
+
+- Replace ambiguous reviewer cases with five deterministic positive and three
+  negative cases that name their fixtures and reset independently between
+  ChatGPT web and mobile runs.
+
 ## 0.3.3 — 2026-08-25
 
 ### Added

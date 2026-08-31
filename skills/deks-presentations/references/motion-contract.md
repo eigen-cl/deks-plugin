@@ -22,16 +22,18 @@ A `morph` is resolved from the slide the element is arriving at.
 
 ### Text replacement is `out` then `in`, not one reused identity
 
-Preserve a text identity only while the exact same `content` continues. When the
-next checkpoint introduces a new phrase, claim or label, declare a new identity:
-the old text is `out` and the new text is `in`, even when both use the same
-rectangle. Resolve their timing so the incoming start is at or after the outgoing
-end.
+Since codec v2 (including current v3), `content`, font family, alignments and overflow mode live once on a
+text identity and cannot vary by checkpoint. Preserve that identity only while the
+same text continues. When the next checkpoint introduces a new phrase, claim,
+label or semantic text type, declare a new identity: the old text is `out` and the
+new text is `in`, even when both use the same rectangle. Resolve their timing so
+the incoming start is at or after the outgoing end.
 
 With a 600 ms beat, an old line with `out.durationBeats: 1` and no delay ends at
-600 ms; the new line can use `in.delayBeats: 1` and begin at 600 ms. Reusing one
-identity and changing `content` instead produces a cross-fade of both strings and
-cannot create a clean interval.
+600 ms; the new line can use `in.delayBeats: 1` and begin at 600 ms. Do not try to
+put replacement `content` or alignment in a slide state: v2 rejects those fixed
+identity fields. For fine visual tuning, keep alignment stable and move the state
+with `x`/`y` or adjust its animatable padding.
 
 ## Four properties per role
 
@@ -73,6 +75,13 @@ Presence animations, for `in` and `out`:
 - `{"kind": "scale", "from": 0.9}` — starts smaller or larger, in place, and fades.
   Factor between 0.01 and 10.
 
+`crop` and `wipe` are presence animations: they run only for an identity whose
+role is actually `in` or `out`. A shared identity present on both slides has the
+`morph` role, so putting `in.crop` on its destination state is inert and the box
+will not crop. Either make the arrival a genuinely new identity, or keep the
+identity and animate its geometry with `morph`. This is especially easy to miss
+with rectangles copied across adjacent checkpoints.
+
 Continuity animations, for `morph` only:
 
 - `{"kind": "morph"}` — interpolate between the two states.
@@ -105,9 +114,11 @@ everything else inherits.
 To predict a transition, for each identity: determine its role from presence, then
 resolve each of the four properties document → slide → element state, property by
 property. Then check the discrete-change rules in
-[document-model.md](document-model.md): a `morph` whose element changed something
-discrete plays as a cross-fade of two nodes, not as one node interpolating, whatever
-the `morph` animation says.
+[document-model.md](document-model.md): a `morph` whose state changed something
+discrete plays as a cross-fade of two nodes, not as one node interpolating,
+whatever the `morph` animation says. Fixed text identity fields cannot diverge
+across a valid v2 boundary; editing one applies globally to every state of that
+identity.
 
 Reduced motion is honoured by the renderer. The story must remain understandable
 with every animation removed.

@@ -40,15 +40,17 @@ merges role by role, so setting `primary` alone leaves the other five in place.
 
 ## Assets
 
-Use the `add_asset` tool for image bytes: it validates PNG/JPEG/GIF/WebP up to
+Use the `add_asset` tool for admitted bytes: it validates PNG/JPEG/GIF/WebP up to
 50 MB or canonicalizes a safe static SVG up to 5 MB, then embeds the admitted
 bytes and declares the descriptor in one step. Every image is capped at 16,384
 units per side and 40 megapixels of logical width × height. Safe SVG
 has no scripts, CSS/fonts/`<text>`, `foreignObject`, nested `<image>`, `<use>`,
-SMIL content or remote/data references. `define-asset` is only for a descriptor
+SMIL content or remote/data references. It also admits narration as canonical
+WAV integer PCM or frame-only MPEG-1 Layer III, up to 50 MB and 10 minutes, with
+1–2 channels at 8–48 kHz. `define-asset` is only for a descriptor
 whose exact admitted bytes are already present; it is never an upload or
-validation bypass. `remove-asset` refuses to drop one that any state still
-references.
+validation bypass. `remove-asset` refuses to drop one that any state or slide
+narration still references.
 
 ```json
 {"type": "remove-asset", "assetId": "a1b2c3"}
@@ -57,9 +59,16 @@ references.
 ## Element identities
 
 An identity carries no geometry. Declare it once, then give it state per slide.
+Since codec v2 (including current v3), a text identity also owns the fields that must never diverge between
+slides.
 
 ```json
-{"type": "define-element", "element": {"id": "story-title", "kind": "text", "name": "Título", "isLocked": false}}
+{"type": "define-element", "element": {
+  "id": "story-title", "kind": "text", "name": "Título",
+  "content": "Un trimestre que cambia el plan.", "fontFamily": "Poppins",
+  "horizontalAlignment": "left", "verticalAlignment": "middle",
+  "overflowMode": "hidden", "isLocked": false
+}}
 ```
 
 ```json
@@ -71,12 +80,38 @@ An identity carries no geometry. Declare it once, then give it state per slide.
 {"type": "define-element", "element": {"id": "rule", "kind": "shape", "shapeKind": "line", "name": "Separador", "isLocked": false}}
 ```
 
+Shapes also accept `shapeKind: "diamond"`.
+
+Define a named logical group, then attach existing identities through
+`parentId`. Do not add relative geometry or move child states: membership is an
+identity relationship and every child keeps absolute checkpoint coordinates.
+
+```json
+{"type":"define-element","element":{"id":"hero-composite","kind":"group","name":"Hero compuesto","isLocked":false}}
+{"type":"update-element-identity","elementId":"story-title","patch":{"parentId":"hero-composite"}}
+{"type":"update-element-identity","elementId":"kpi-growth","patch":{"parentId":"hero-composite"}}
+```
+
+Elements in the same effective outermost group are excluded from collision
+diagnostics. Elements across different groups, or grouped versus ungrouped,
+remain collision candidates. Ungroup explicitly with the portable null removal
+sentinel:
+
+```json
+{"type":"update-element-identity","elementId":"story-title","patch":{"parentId":null}}
+```
+
 ```json
 {"type": "update-element-identity", "elementId": "story-title", "patch": {"name": "Título del capítulo"}}
+{"type": "update-element-identity", "elementId": "story-title", "patch": {"horizontalAlignment": "center"}}
 {"type": "delete-element", "elementId": "story-title"}
 ```
 
-`delete-element` removes the identity and every state it has anywhere.
+`content`, `fontFamily`, `horizontalAlignment`, `verticalAlignment` and
+`overflowMode` are text identity fields: an update changes every slide where the
+identity appears. Use a new identity for different copy or a different semantic
+text type. For fine positioning, keep alignment stable and patch state `x`/`y`
+instead. `delete-element` removes the identity and every state it has anywhere.
 
 ## Slides
 
@@ -101,6 +136,30 @@ slide starts exactly as you declare it.
 `reorder-slides` needs the complete list, every existing slide exactly once. A
 presentation always keeps at least one slide.
 
+### Portable narration
+
+Admit the selected WAV/MP3 with `add_asset` first and continue from the revision
+it returns. Then set the slide-owned script, pauses and embedded rendition:
+
+```json
+{"type":"set-slide-narration","slideId":"resultados","narration":{
+  "script":"Estos resultados cambian el siguiente trimestre.",
+  "pauseBeforeMs":250,"pauseAfterMs":600,
+  "audio":{"assetId":"voice-resultados","provenance":"human-recorded"}
+}}
+```
+
+`provenance` is `human-recorded` or `synthetic`. Provider/model/voice IDs,
+credits, consent records and generation jobs never enter the portable command.
+A script-only draft omits `audio`. Clear the whole narration explicitly:
+
+```json
+{"type":"clear-slide-narration","slideId":"resultados"}
+```
+
+Clearing narration does not silently delete its asset; remove an unreferenced
+asset only when the user also asked to remove that material.
+
 ## Element states
 
 This is where the composition actually happens.
@@ -109,13 +168,16 @@ This is where the composition actually happens.
 {"type": "add-element-state", "slideId": "resultados", "state": {
   "elementId": "story-title", "x": 80, "y": 188, "width": 920, "height": 224,
   "rotationDeg": 0, "opacity": 1, "zIndex": 4,
-  "content": "Un trimestre que cambia el plan.",
-  "fontFamily": "Poppins", "fontSize": 64, "fontWeight": 600,
+  "fontSize": 64, "fontWeight": 600,
   "lineHeight": 1.05, "letterSpacing": -1.4,
-  "horizontalAlignment": "left", "verticalAlignment": "middle",
-  "overflowMode": "hidden", "fill": "#F2F1EC"
+  "padding": {"top": 8, "right": 16, "bottom": 8, "left": 16},
+  "fill": "#F2F1EC"
 }}
 ```
+
+Text `padding` is animatable state. All four non-negative sides are required when
+present; omission means four zeros. It changes the inner text box, not the outer
+geometry, anchor or snapping bounds.
 
 A number state carries the magnitude and its complete formatting instead of text:
 
@@ -131,6 +193,21 @@ A number state carries the magnitude and its complete formatting instead of text
   "overflowMode": "hidden", "fill": "#65C18C"
 }}
 ```
+
+Every state may include an optional normalized `anchor`:
+
+```json
+{"type": "add-element-state", "slideId": "resultados", "state": {
+  "elementId": "decision", "x": 800, "y": 450, "width": 240, "height": 160,
+  "anchor": {"x": 0.5, "y": 0.5},
+  "rotationDeg": 12, "opacity": 1, "zIndex": 3,
+  "shapeFill": {"kind": "solid", "color": "#FF7043"},
+  "stroke": "#00000000", "strokeWidth": 0
+}}
+```
+
+Both anchor coordinates are required and each is within `0..1`. `x` and `y`
+identify that pivot; omit `anchor` to preserve legacy top-left positioning.
 
 To **continue** an identity onto the next checkpoint, add another state for the same
 `elementId` on that slide. That is what makes it morph. To change one already there:
@@ -184,7 +261,7 @@ If you have a Cloud batch in hand, the mapping is mechanical:
 | `update_element_state` | `update-element-state` |
 | `add_existing_element_state` | `add-element-state` with the same `elementId` |
 | `remove_element_from_slide` | `remove-element-state` |
-| `rename_element` | `update-element-identity` with `{"name": …}` |
+| `update_element_identity` | `update-element-identity` with the corresponding identity fields |
 | `delete_element` | `delete-element` |
 | `create_slide` / `duplicate_slide` | `create-slide` (states declared explicitly) |
 | `update_slide` | `update-slide` |
@@ -195,4 +272,5 @@ If you have a Cloud batch in hand, the mapping is mechanical:
 
 And every snake_case field becomes camelCase: `duration_beats` → `durationBeats`,
 `font_size` → `fontSize`, `shape_fill` → `shapeFill`, `symbol_position` →
-`symbolPosition`, `animate_magnitude` → `animateMagnitude`.
+`symbolPosition`, `animate_magnitude` → `animateMagnitude`. The nested `anchor`
+object remains `{x, y}` on both hosts.
