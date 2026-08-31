@@ -15,7 +15,25 @@ Incluye además la conexión al MCP remoto de DEKS.
 El MCP también puede listar assets del workspace, admitir archivos adjuntos
 explícitos, renderizar previews PNG de
 checkpoints para QA, recomendar o completar paletas con contraste medido y
-resolver íconos vectoriales offline por familia y semántica.
+resolver por semántica y páginas el catálogo completo de íconos Lucide 1.34.0,
+incluido offline como geometría vectorial segura.
+
+El contrato portable ahora emite codec v3. Los documentos sin versión, con v1 o
+con v2 migran mediante el mismo decoder secuencial antes de editarse. En texto v2+,
+contenido, fuente, alineaciones y overflow viven en la identidad; la tipografía
+continua y el padding exacto por cuatro lados siguen animables por slide.
+
+Codec v3 agrega una narración opcional por slide: guion, pausa anterior/posterior
+y una toma WAV o MP3 incrustada por hash dentro del mismo `.deks`. Desktop, Web
+y Cloud conservan ese contrato; el MCP Cloud permite definir o limpiar el guion,
+las pausas y una referencia a audio ya admitido. `upload_asset` sigue aceptando
+solamente imágenes: no carga audio de narración. La voz, el proveedor, créditos
+y consentimientos Cloud nunca forman parte del archivo portable.
+
+Los elementos pueden organizarse en grupos lógicos con `parentId` sin alterar
+sus coordenadas absolutas. El MCP Cloud usa una superficie canónica sin nombres
+versionados: `get_presentation`, `get_slide_state`, `create_element`,
+`update_element_identity` y `list_icon_catalog` trabajan directamente con Core 6.
 
 Web, Cloud y Desktop comparten el mismo contrato de imagen: PNG, JPEG, GIF y
 WebP de hasta 50 MB, más un perfil SVG estático seguro de hasta 5 MB. El archivo
@@ -89,6 +107,10 @@ git diff --check
 El workflow `.github/workflows/validate.yml` ejecuta estas comprobaciones en
 push y pull request. En CI instala de forma efímera y reproducible el paquete
 oficial `@anthropic-ai/claude-code@2.1.226`; no requiere login ni credenciales.
+
+El validador abre los cinco ZIP del candidato OpenAI 0.4.0, comprueba sus hashes
+y árboles contra las skills vivas, y conserva por separado los cinco ZIP 0.3.3
+como evidencia inmutable del rechazo anterior.
 
 ## Estado de publicación
 

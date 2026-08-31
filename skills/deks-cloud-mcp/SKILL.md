@@ -1,6 +1,6 @@
 ---
 name: deks-cloud-mcp
-description: "Operate the DEKS Cloud MCP server at api-deks.eigen.cl: OAuth or workspace PAT, the full tool map (presentations, slides, elements, motion, palettes, icon catalog, asset upload, layout validation, rendered previews, publication, export, undo), the exact apply_commands envelope in snake_case, revisions and idempotency keys, workspace assets, the 50-checkpoint and 100-state quotas, and what each error code means. Use it whenever the discovered tools include validate_layout, recommend_palettes, upload_asset, publish_presentation or export_deck, or whenever the deck lives in a workspace rather than in a local `.deks` file. Pair with $deks-presentations for the document contract itself."
+description: "Operate the DEKS Cloud MCP server at api-deks.eigen.cl: OAuth or workspace PAT, the canonical Core 6 codec v3 tool map (presentations, slides, narration, groups, elements, motion, palettes, searchable paged Lucide nodes, image upload, layout validation, rendered previews, publication, export and undo), the exact apply_commands snake_case envelope, revisions, idempotency and quotas. Use it whenever the discovered tools include validate_layout, set_slide_narration, update_element_identity, publish_presentation or export_deck, or whenever the deck lives in a Cloud workspace. Pair with $deks-presentations for the document contract itself."
 ---
 
 # Operate the DEKS Cloud MCP
@@ -9,6 +9,13 @@ Endpoint: `https://api-deks.eigen.cl/mcp/`.
 
 The document contract — what the fields mean and what values they take — lives in
 `$deks-presentations`. This skill is only about reaching it through this server.
+
+Cloud exposes the canonical Core 6 codec v3 document directly. Tool names are
+not versioned: use `get_presentation`, `get_slide_state`, `create_element`,
+`update_element_identity` and `list_icon_catalog`. Slide narration uses
+`set_slide_narration` and `clear_slide_narration`. Those tools may reference an
+audio asset already embedded in the deck, but `upload_asset` remains image-only;
+never send WAV or MP3 bytes to it.
 
 - Read [references/tools.md](references/tools.md) for the exact tool map, inputs, outputs, and unsupported operations.
 - Read `$deks-presentations` → `references/recovery.md` before retrying anything uncertain.
@@ -48,7 +55,7 @@ semantic `idempotency_key`; do not move `expected_revision` or the key inside th
 commands. Re-read on a conflict, an uncertain response, or whenever authoritative
 state may have changed — batching never relaxes revision or recovery rules.
 
-Validate and render the coherent result: complete one checkpoint or narration,
+Validate and render the coherent visual result: complete one checkpoint or narrative section,
 validate it, then render its affected checkpoints once. Do not validate or render
 after each property mutation. Re-render checkpoints changed by a correction batch,
 and run whole-deck validation plus ordered rendered review at the end.
@@ -58,10 +65,11 @@ and run whole-deck validation plus ordered rendered review at the end.
 1. `list_presentations` to resolve the deck, then `get_presentation` immediately
    before planning any mutation. Capture the revision.
 2. `list_assets` before requesting new media. Reuse a matching admitted asset when
-   one exists. When the user has explicitly attached a file, call `upload_asset`
+   one exists. When the user has explicitly attached an image, call `upload_asset`
    once and reuse the returned `id` as the image state's `asset_id`; never invent file bytes, a local path,
    or a URL. If the user only mentions a file or path, ask them to attach it before
-   calling the tool. Uploaded media passes the shared image admission contract.
+   calling the tool. Uploaded media passes the shared image admission contract;
+   narration audio is admitted through Web/import flows, not this MCP tool.
 3. Plan the change. Group each coherent checkpoint or narration into one
    `apply_commands` batch of at most 100 operations; a failed batch is atomic and
    leaves the revision untouched. Prefer this over element-by-element mutation tools.
