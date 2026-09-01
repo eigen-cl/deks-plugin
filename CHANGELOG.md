@@ -3,6 +3,18 @@
 All notable changes to the DEKS plugin are documented in this file. Versions
 follow Semantic Versioning.
 
+## 0.4.1 — 2026-09-01
+
+### Changed
+
+- Require `delete_presentation` calls to attest
+  `explicit_user_confirmation: true` only when the most recent user message
+  explicitly authorizes permanent deletion of one exact presentation by name.
+- Refuse to inspect DEKS or choose among alternative deletion targets; ask the
+  user to send a new message that selects and authorizes one exact target.
+- Strengthen the deterministic deletion review cases for ChatGPT web and mobile
+  while preserving the complete versioned 0.4.0 submission as immutable evidence.
+
 ## 0.4.0 — 2026-08-31
 
 ### Changed

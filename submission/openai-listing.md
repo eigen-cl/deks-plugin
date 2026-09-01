@@ -1,4 +1,4 @@
-# OpenAI public submission — DEKS v0.4.0 candidate
+# OpenAI public submission — DEKS v0.4.1 candidate
 
 ## Product
 
@@ -55,7 +55,7 @@ export remain in the web app.
 ## Reviewer cases
 
 The candidate uses these exact deterministic fixtures from
-`openai-review-cases-v0.4.0.json`:
+`openai-review-cases-v0.4.1.json`:
 
 ### Positive
 

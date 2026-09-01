@@ -35,6 +35,11 @@ sus coordenadas absolutas. El MCP Cloud usa una superficie canónica sin nombres
 versionados: `get_presentation`, `get_slide_state`, `create_element`,
 `update_element_identity` y `list_icon_catalog` trabajan directamente con Core 6.
 
+La eliminación permanente de una presentación exige una autorización explícita
+en el mensaje más reciente para un único nombre exacto. Sólo entonces el agente
+puede enviar `explicit_user_confirmation: true`; si el usuario ofrece alternativas
+o delega la elección, debe pedir aclaración sin inspeccionar el workspace.
+
 Web, Cloud y Desktop comparten el mismo contrato de imagen: PNG, JPEG, GIF y
 WebP de hasta 50 MB, más un perfil SVG estático seguro de hasta 5 MB. El archivo
 portable `.deks` incrusta los bytes canónicos de esos assets para abrir la misma
@@ -108,9 +113,9 @@ El workflow `.github/workflows/validate.yml` ejecuta estas comprobaciones en
 push y pull request. En CI instala de forma efímera y reproducible el paquete
 oficial `@anthropic-ai/claude-code@2.1.226`; no requiere login ni credenciales.
 
-El validador abre los cinco ZIP del candidato OpenAI 0.4.0, comprueba sus hashes
-y árboles contra las skills vivas, y conserva por separado los cinco ZIP 0.3.3
-como evidencia inmutable del rechazo anterior.
+El validador abre los cinco ZIP del candidato OpenAI 0.4.1, comprueba sus hashes
+y árboles contra las skills vivas, y conserva por separado los cinco ZIP 0.3.3 y
+0.4.0 como evidencia inmutable de revisiones anteriores.
 
 ## Estado de publicación
 
