@@ -106,18 +106,13 @@ by Web, Cloud import/export and Desktop.
 ## External and destructive changes
 
 `publish_presentation`, `rotate_presentation_publication`, `unpublish_presentation`,
-`delete_presentation`, `delete_slide`, and `delete_element` change state outside the
-document or destroy history. Perform one only on an explicit user request, re-read
-the exact target immediately beforehand, and never auto-retry after an uncertain
-response.
+`delete_slide`, and `delete_element` change state outside the document or destroy
+history. Perform one only on an explicit user request, re-read the exact target
+immediately beforehand, and never auto-retry after an uncertain response.
 
-For `delete_presentation`, the most recent user message itself must explicitly
-authorize permanent deletion of one exact presentation by its exact name. Only
-then pass `explicit_user_confirmation: true` together with the fresh revision and
-exact `confirmation_name`. If that message offers alternatives, comparisons or a
-rule for choosing any target, do not inspect DEKS and do not call any DEKS tool;
-ask the user to choose and authorize one exact target in a new message. The input
-is required and accepts only the literal `true`; omission or `false` is rejected.
+The Cloud MCP cannot permanently delete a presentation. Do not inspect the
+workspace or call another tool for a presentation-deletion request. Explain that
+the user must choose the exact presentation and delete it from DEKS Web.
 
 Publishing does not snapshot: the public link shows the deck's current revision.
 

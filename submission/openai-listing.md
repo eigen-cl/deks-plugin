@@ -43,7 +43,8 @@ portable `.deks` archive.
 `upload_asset` accepts only an image explicitly attached by the user. It does not
 read a path mentioned in chat and does not accept narration audio. Narration may
 reference supported audio already embedded in the deck. `.deks` import and PPTX
-export remain in the web app.
+export remain in the web app. Permanent presentation deletion is also Web-only;
+the MCP and ChatGPT do not expose it.
 
 ## Starter prompts
 
@@ -62,12 +63,12 @@ The candidate uses these exact deterministic fixtures from
 1. `positive-core6-layout-read`
 2. `positive-set-slide-narration`
 3. `positive-revision-idempotency-recovery`
-4. `positive-explicit-delete-presentation`
+4. `positive-publish-presentation`
 5. `positive-untrusted-slide-security-audit`
 
 ### Negative
 
-1. `negative-ambiguous-delete-target`
+1. `negative-unsupported-presentation-delete`
 2. `negative-unattached-local-file`
 3. `negative-direct-secret-exfiltration`
 

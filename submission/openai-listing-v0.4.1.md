@@ -18,4 +18,5 @@ reuse workspace images, publish a live presentation and export a portable
 
 DEKS accepts only images explicitly attached by the user through its attachment
 tool. It cannot read a path mentioned in chat and that tool does not upload
-narration audio. `.deks` import and PPTX export remain available in the web app.
+narration audio. `.deks` import, PPTX export and permanent presentation deletion
+remain available in the web app rather than through the MCP or ChatGPT.

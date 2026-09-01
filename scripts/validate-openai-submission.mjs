@@ -152,30 +152,31 @@ for (const entry of reviewCases.positive) {
 for (const entry of reviewCases.negative) {
   assert.ok(entry.expected_behavior.some((item) => /Do not invoke any DEKS tool/i.test(item)));
 }
-const negativeDelete = sourceById.get("negative-ambiguous-delete-target");
-assert.match(negativeDelete.prompt, /either “Reviewer — Test A” or “Reviewer — Test B”/i);
-assert.match(negativeDelete.prompt, /pick whichever seems older/i);
-assert.ok(negativeDelete.expected_behavior.some((item) => /Do not invoke any DEKS tool, including list_presentations or delete_presentation/i.test(item)));
-const positiveDelete = sourceById.get("positive-explicit-delete-presentation");
-assert.match(positiveDelete.prompt, /explicitly authorize this irreversible deletion now/i);
-assert.match(positiveDelete.prompt, /cannot be undone/i);
-assert.match(positiveDelete.prompt, /complete history/i);
-assert.match(positiveDelete.prompt, /exact confirmation name is “Reviewer — Promotion”/i);
-assert.doesNotMatch(positiveDelete.prompt, /explicit_user_confirmation/i);
-assert.ok(positiveDelete.expected_behavior.some((item) => /explicit_user_confirmation true/i.test(item)));
+const negativeDelete = sourceById.get("negative-unsupported-presentation-delete");
+assert.match(negativeDelete.prompt, /permanently delete exactly “Reviewer — Test A”/i);
+assert.match(negativeDelete.prompt, /do not inspect or modify my workspace/i);
+assert.ok(negativeDelete.expected_behavior.some((item) => /Do not invoke any DEKS tool/i.test(item)));
+assert.ok(negativeDelete.expected_behavior.some((item) => /not available through the DEKS MCP or ChatGPT/i.test(item)));
+assert.ok(negativeDelete.expected_behavior.some((item) => /delete .*presentation from DEKS Web/i.test(item)));
+const positivePublish = sourceById.get("positive-publish-presentation");
+assert.match(positivePublish.prompt, /publish exactly the presentation “Reviewer — Promotion”/i);
+assert.match(positivePublish.prompt, /explicit request to create its live public link/i);
+assert.ok(positivePublish.expected_behavior.some((item) => /publish_presentation exactly once/i.test(item)));
+assert.ok(positivePublish.expected_behavior.some((item) => /get_presentation_publication afterward/i.test(item)));
 assert.ok(!reviewCases.positive.some(({ prompt }) => /upload_asset|attached file/i.test(prompt)));
 
 const readOnly = ["list_icon_catalog", "recommend_palettes", "complete_palette", "list_presentations", "list_assets", "get_presentation", "render_slide_preview", "get_presentation_publication", "get_layout_snapshot", "get_slide_state", "validate_layout", "export_deck"];
 const privateCreate = ["create_presentation", "upload_asset"];
 const publicAdd = ["publish_presentation", "duplicate_slide", "create_slide", "create_element", "add_existing_element_state"];
-const publicDestructive = ["set_presentation_palette", "delete_presentation", "rotate_presentation_publication", "unpublish_presentation", "reorder_slides", "delete_slide", "update_slide", "set_slide_narration", "clear_slide_narration", "update_element_state", "remove_element_from_slide", "update_element_identity", "delete_element", "set_presentation_motion_beat", "apply_commands", "set_motion", "clear_motion", "undo_transaction"];
+const publicDestructive = ["set_presentation_palette", "rotate_presentation_publication", "unpublish_presentation", "reorder_slides", "delete_slide", "update_slide", "set_slide_narration", "clear_slide_narration", "update_element_state", "remove_element_from_slide", "update_element_identity", "delete_element", "set_presentation_motion_beat", "apply_commands", "set_motion", "clear_motion", "undo_transaction"];
 const expected = new Map();
 for (const name of readOnly) expected.set(name, [true, false, false]);
 for (const name of privateCreate) expected.set(name, [false, false, false]);
 for (const name of publicAdd) expected.set(name, [false, true, false]);
 for (const name of publicDestructive) expected.set(name, [false, true, true]);
-assert.equal(expected.size, 37, "canonical candidate must contain 37 tools");
+assert.equal(expected.size, 36, "canonical candidate must contain 36 tools");
 assert.ok(!expected.has("rename_element"));
+assert.ok(!expected.has("delete_presentation"));
 assert.ok([...expected.keys()].every((name) => !/_v[0-9]+$/.test(name)));
 
 const rows = new Map();
@@ -185,6 +186,7 @@ for (const line of annotations.split("\n")) {
 }
 assert.deepEqual(rows, expected, "annotation worksheet inventory or hints drifted");
 assert.deepEqual(new Set(Object.keys(submission.tools)), new Set(expected.keys()), "submission JSON tool inventory drifted");
+assert.ok(!Object.hasOwn(submission.tools, "delete_presentation"));
 for (const [name, values] of expected) {
   const hints = submission.tools[name].annotations;
   assert.deepEqual([hints.readOnlyHint, hints.openWorldHint, hints.destructiveHint], values, `${name} hints drifted`);
@@ -205,11 +207,13 @@ assert.match(cloudTools, /clear_parent/);
 assert.match(cloudTools, /absolute canvas geometry/i);
 assert.match(cloudTools, /primitive nodes/);
 assert.match(cloudTools, /Lucide[\s\S]{0,100}1\.34\.0/i);
-assert.match(cloudSkill, /most recent user message[\s\S]{0,300}explicit_user_confirmation: true/i);
-assert.match(cloudTools, /explicit_user_confirmation[\s\S]{0,300}most recent user message/i);
-assert.match(cloudTools, /alternatives, comparisons, tie-breaks/i);
-assert.match(annotations, /explicit_user_confirmation: true[\s\S]{0,240}most recent user message/i);
-assert.match(portal, /deletion cases test the required attestation/i);
+for (const text of [cloudSkill, cloudTools, annotations, portal, releaseNotes, JSON.stringify(submission)]) {
+  assert.doesNotMatch(text, /\bdelete_presentation\b/);
+}
+assert.match(cloudSkill, /cannot permanently delete a presentation/i);
+assert.match(cloudTools, /Presentation deletion is not exposed through the Cloud MCP/i);
+assert.match(annotations, /Permanent presentation deletion is not part of this 36-tool MCP surface/i);
+assert.match(portal, /does not expose permanent presentation deletion/i);
 
 const candidateHashes = checksumMap(version);
 assert.equal(candidateHashes.size, 5);
@@ -244,7 +248,7 @@ assert.match(finding, /portal version `v1\.0\.0`/);
 for (const document of [listing, publicListing, portal, releaseNotes]) {
   assert.match(document, /https:\/\/deks\.eigen\.cl\//);
 }
-assert.match(portal, /37 scanned tools/);
+assert.match(portal, /36 scanned tools/);
 assert.match(releaseNotes, /ChatGPT web and mobile/i);
 assert.ok(listing.startsWith(`# OpenAI public submission — DEKS v${version} candidate`));
 assert.ok(portal.startsWith(`# DEKS v${version} — portal copy sheet`));
@@ -260,4 +264,4 @@ for (const pattern of [/deks_pat_[A-Za-z0-9_-]{8,}/, /sk-[A-Za-z0-9_-]{20,}/, /B
   assert.doesNotMatch(publicBundle, pattern, `submission bundle matches secret-like pattern ${pattern}`);
 }
 
-console.log("OpenAI candidate v0.4.1 valid: 37 canonical tools, 5+3 deterministic cases, five live ZIPs, and immutable v0.3.3/v0.4.0 evidence verified.");
+console.log("OpenAI candidate v0.4.1 valid: 36 canonical tools, 5+3 deterministic cases, five live ZIPs, and immutable v0.3.3/v0.4.0 evidence verified.");

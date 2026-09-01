@@ -59,7 +59,6 @@ Inside `apply_commands`, use the operation `{"command":"set_presentation_palette
 ## Slide tools
 
 - `create_presentation(name, motion_beat_ms, expected_revision, idempotency_key, canvas?)` — create a presentation with one blank slide. `canvas` is the canonical `{width,height}` object. Use `expected_revision: 0` when this tool is present in the discovered server contract.
-- `delete_presentation(presentation_id, expected_revision, confirmation_name, explicit_user_confirmation)` — permanently delete the complete presentation history when this tool is present. It is intentionally non-idempotent. `explicit_user_confirmation` is required and accepts only the literal `true`; omission or `false` is rejected. Set it to true only when the most recent user message explicitly authorizes irreversible deletion of one exact presentation by its exact name. If that message offers alternatives, comparisons, tie-breaks or delegates choosing any target, do not inspect DEKS and ask the user to choose and authorize one exact presentation in a new message. After that authorization, read the exact target immediately before deletion and pass its fresh revision and exact name. `confirmation_name` is an identity guard; the required true attestation records that the conversation met the separate authorization rule.
 - `create_slide(presentation_id, expected_revision, idempotency_key, after_slide_id?, copy_from_slide_id?, slide_id?)`
 - `duplicate_slide(presentation_id, slide_id, expected_revision, idempotency_key)`
 - `update_slide(presentation_id, slide_id, expected_revision, idempotency_key, name?, background?, is_template?)` — identity only. Motion is a separate command.
@@ -67,6 +66,10 @@ Inside `apply_commands`, use the operation `{"command":"set_presentation_palette
 - `delete_slide(presentation_id, slide_id, expected_revision, idempotency_key)`
 - `set_slide_narration(presentation_id, slide_id, script, pause_before_ms, pause_after_ms, expected_revision, idempotency_key, audio?)` — replace the complete portable narration object. `audio`, when present, is `{asset_id, provenance}` and must reference an embedded WAV/MP3 asset already admitted to the deck. This tool never uploads bytes.
 - `clear_slide_narration(presentation_id, slide_id, expected_revision, idempotency_key)` — remove the complete narration object from one slide.
+
+Presentation deletion is not exposed through the Cloud MCP. Do not inspect DEKS
+for a deletion request; direct the user to choose and delete the presentation in
+DEKS Web.
 
 `reorder_slides` requires the complete ordered list. `create_slide` copies the preceding checkpoint by default, including all element states. To scaffold a new deck safely, create every checkpoint while its predecessor is still blank, or pass an explicitly blank `copy_from_slide_id`; compose afterward. The MCP `create_presentation` input does not accept a palette; persist the default with `set_presentation_palette` immediately after creation, then use its roles consistently in slide and element states.
 

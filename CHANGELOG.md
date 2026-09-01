@@ -7,13 +7,13 @@ follow Semantic Versioning.
 
 ### Changed
 
-- Require `delete_presentation` calls to attest
-  `explicit_user_confirmation: true` only when the most recent user message
-  explicitly authorizes permanent deletion of one exact presentation by name.
-- Refuse to inspect DEKS or choose among alternative deletion targets; ask the
-  user to send a new message that selects and authorizes one exact target.
-- Strengthen the deterministic deletion review cases for ChatGPT web and mobile
-  while preserving the complete versioned 0.4.0 submission as immutable evidence.
+- Remove permanent presentation deletion from the Cloud MCP surface. Presentation
+  deletion remains an explicit DEKS Web action.
+- Route presentation-deletion requests to Web without inspecting the workspace or
+  choosing among alternative destructive targets.
+- Replace the positive deletion review case with deterministic live publication
+  verification while preserving the complete versioned 0.4.0 submission as
+  immutable evidence.
 
 ## 0.4.0 — 2026-08-31
 

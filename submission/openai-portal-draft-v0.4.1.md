@@ -44,7 +44,7 @@ el archivo `.deks`.
 - UI: none; leave screenshots and CSP empty unless the final scan discovers a UI resource.
 - Challenge URL: https://api-deks.eigen.cl/.well-known/openai-apps-challenge
 
-After deployment, compare the 37 scanned tools with
+After deployment, compare the 36 scanned tools with
 `openai-tool-annotations-v0.4.1.md`. Names, schemas, output schemas and annotations
 must match production; this worksheet cannot override Scan Tools.
 
@@ -68,13 +68,11 @@ synthetic reviewer workspace. Run the case in a new ChatGPT web conversation,
 reset again, and run it in a new mobile conversation. Compare tool calls and final
 workspace state; do not reuse mutations across surfaces.
 
-The deletion cases test the required attestation on the changed input schema.
-The negative prompt offers two targets and delegates choosing the older one, so
-the assistant must not inspect DEKS and must ask for a new message choosing and
-explicitly authorizing one exact target. The positive prompt supplies that exact
-name and irreversible authorization in its most recent user message, then expects
-`delete_presentation` once with `explicit_user_confirmation: true`, the fresh
-revision and matching `confirmation_name`.
+The MCP does not expose permanent presentation deletion. The negative deletion
+case must invoke no DEKS tool and direct the user to choose and delete the exact
+presentation in DEKS Web. The replacement positive case publishes exactly
+`Reviewer — Promotion`, verifies its publication state before and after, and
+returns the live public link.
 
 Enter reviewer credentials only in the portal's private fields. Leave legal,
 rights, policy and availability attestations for the accountable developer.

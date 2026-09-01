@@ -35,10 +35,9 @@ sus coordenadas absolutas. El MCP Cloud usa una superficie canónica sin nombres
 versionados: `get_presentation`, `get_slide_state`, `create_element`,
 `update_element_identity` y `list_icon_catalog` trabajan directamente con Core 6.
 
-La eliminación permanente de una presentación exige una autorización explícita
-en el mensaje más reciente para un único nombre exacto. Sólo entonces el agente
-puede enviar `explicit_user_confirmation: true`; si el usuario ofrece alternativas
-o delega la elección, debe pedir aclaración sin inspeccionar el workspace.
+La eliminación permanente de una presentación no está disponible mediante el
+MCP Cloud ni ChatGPT. Debe hacerse explícitamente desde DEKS Web; ante esa solicitud
+el agente no inspecciona el workspace ni intenta sustituirla con otra herramienta.
 
 Web, Cloud y Desktop comparten el mismo contrato de imagen: PNG, JPEG, GIF y
 WebP de hasta 50 MB, más un perfil SVG estático seguro de hasta 5 MB. El archivo

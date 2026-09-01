@@ -24,9 +24,8 @@ Creating a new presentation creates private workspace state only.
 | `complete_palette` | true | false | false | Computes a complete palette from supplied anchors without changing state. |
 | `export_deck` | true | false | false | Reads and packages the deck as a portable `.deks` archive without mutating it. |
 | `get_presentation_publication` | true | false | false | Reads publication status without changing public or private state. |
-| `create_presentation` | false | false | false | Creates a new private workspace presentation; it is not publicly visible and is reversible by later explicit deletion. |
+| `create_presentation` | false | false | false | Creates a new private workspace presentation; it is not publicly visible and can later be removed explicitly in DEKS Web. |
 | `upload_asset` | false | false | false | Admits one explicitly attached image into the user's private workspace and returns its reusable asset ID without publishing it; it does not accept narration audio. |
-| `delete_presentation` | false | true | true | Permanently deletes a presentation and its history, removes any live public view, and requires a fresh revision, exact name and true attestation that the most recent user message explicitly authorized that exact target. |
 | `set_presentation_palette` | false | true | true | Overwrites the complete palette of an existing deck; a published deck's live public view changes with it. |
 | `create_slide` | false | true | false | Adds a checkpoint to an existing deck and therefore to its live public view when published. |
 | `duplicate_slide` | false | true | false | Adds a copied checkpoint to an existing deck and therefore to its live public view when published. |
@@ -59,11 +58,9 @@ Creating a new presentation creates private workspace state only.
 - `destructiveHint: false` does not authorize the model to write without user
   intent. Expected revisions, idempotency keys, scopes, and DEKS history remain
   separate safeguards.
-- For `delete_presentation`, `confirmation_name` guards target identity while
-  `explicit_user_confirmation: true` attests that the most recent user message
-  itself explicitly authorized irreversible deletion of that one exact name.
-  Alternatives, comparisons and delegated target selection require a clarifying
-  question without inspecting DEKS.
+- Permanent presentation deletion is not part of this 36-tool MCP surface. Route
+  those requests to DEKS Web without inspecting the workspace or choosing a
+  destructive target for the user.
 - `openWorldHint: true` on ordinary deck writes follows DEKS's live publication
   contract. It does not mean the tool sends data to an unrelated third party.
 - Recheck this list against the final production discovery snapshot immediately
