@@ -118,7 +118,8 @@ by Web, Cloud import/export and Desktop.
 ## External and destructive changes
 
 `publish_presentation`, `rotate_presentation_publication`, `unpublish_presentation`,
-`delete_presentation`, `delete_slide`, and `delete_element` change state outside
+`delete_slide`, `delete_element`, and the app-only `confirm_delete_presentation`
+change state outside
 the document or destroy history. Perform one only on an explicit user request,
 re-read the exact target immediately beforehand, and never auto-retry after an
 uncertain response.

@@ -26,7 +26,7 @@ Creating a new presentation creates private workspace state only.
 | `get_presentation_publication` | true | false | false | Reads publication status without changing public or private state. |
 | `create_presentation` | false | false | false | Creates a new private workspace presentation; it is not publicly visible and does not remove existing data. |
 | `upload_asset` | false | false | false | Admits one explicitly attached image into the user's private workspace and returns its reusable asset ID without publishing it; it does not accept narration audio. |
-| `delete_presentation` | false | true | true | Prepares an irreversible deletion for one exact presentation and renders a human confirmation card without deleting; confirmation can later remove the presentation, its history and any live public view. |
+| `delete_presentation` | true | false | false | Reads and validates one exact presentation, issues a short-lived widget-only confirmation capability and renders a human confirmation card without changing private or public state. |
 | `confirm_delete_presentation` | false | true | true | App-only tool that consumes the widget's hidden signed token after one human click and permanently removes the exact presentation, its history and any live public view. |
 | `set_presentation_palette` | false | true | true | Overwrites the complete palette of an existing deck; a published deck's live public view changes with it. |
 | `create_slide` | false | true | false | Adds a checkpoint to an existing deck and therefore to its live public view when published. |
@@ -61,7 +61,7 @@ Creating a new presentation creates private workspace state only.
   intent. Expected revisions, idempotency keys, scopes, and DEKS history remain
   separate safeguards.
 - Raw MCP discovery contains 38 descriptors. `delete_presentation` is visible to
-  the model and app; it only prepares `ui://deks/confirm-presentation-deletion-v1.html`
+  the model and app; it only prepares `ui://deks/confirm-presentation-deletion-v2.html`
   and leaves the deck unchanged. `confirm_delete_presentation` is app-only/private,
   so the model-visible surface contains 37 tools.
 - The confirmation resource uses `text/html;profile=mcp-app`, the dedicated
@@ -69,11 +69,11 @@ Creating a new presentation creates private workspace state only.
   `resourceDomains`; it loads no frames and makes no external browser requests.
 - The preparer advertises `ui.visibility: ["model", "app"]`; the executor
   advertises `ui.visibility: ["app"]` plus `openai/visibility: "private"`.
-- Both deletion tools use `readOnlyHint: false`, `openWorldHint: true`,
-  `destructiveHint: true` and `idempotentHint: false`. The preparer is deliberately
-  classified for the consequence it initiates and because it issues a fresh,
-  expiring confirmation. The executor permanently removes data and may remove a
-  live public view.
+- The preparer uses `readOnlyHint: true`, `openWorldHint: false`,
+  `destructiveHint: false` and `idempotentHint: true`: it only validates the exact
+  target and prepares the card. The app-only executor uses `readOnlyHint: false`,
+  `openWorldHint: true`, `destructiveHint: true` and `idempotentHint: false` because
+  it permanently removes data and may remove a live public view.
 - The signed confirmation token is returned only in tool-result `_meta`, hidden
   from the model. Only the confirmation card sends it to the app-only executor
   after one human click. The token must never appear in content, structured

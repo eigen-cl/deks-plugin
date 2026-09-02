@@ -171,10 +171,10 @@ assert.equal(positiveDelete.expected_result_shape.before_human_confirmation, "Re
 assert.equal(positiveDelete.expected_result_shape.after_human_confirmation, "Presentation deleted.");
 assert.ok(!reviewCases.positive.some(({ prompt }) => /upload_asset|attached file/i.test(prompt)));
 
-const readOnly = ["list_icon_catalog", "recommend_palettes", "complete_palette", "list_presentations", "list_assets", "get_presentation", "render_slide_preview", "get_presentation_publication", "get_layout_snapshot", "get_slide_state", "validate_layout", "export_deck"];
+const readOnly = ["list_icon_catalog", "recommend_palettes", "complete_palette", "list_presentations", "list_assets", "get_presentation", "render_slide_preview", "get_presentation_publication", "get_layout_snapshot", "get_slide_state", "validate_layout", "export_deck", "delete_presentation"];
 const privateCreate = ["create_presentation", "upload_asset"];
 const publicAdd = ["publish_presentation", "duplicate_slide", "create_slide", "create_element", "add_existing_element_state"];
-const publicDestructive = ["delete_presentation", "confirm_delete_presentation", "set_presentation_palette", "rotate_presentation_publication", "unpublish_presentation", "reorder_slides", "delete_slide", "update_slide", "set_slide_narration", "clear_slide_narration", "update_element_state", "remove_element_from_slide", "update_element_identity", "delete_element", "set_presentation_motion_beat", "apply_commands", "set_motion", "clear_motion", "undo_transaction"];
+const publicDestructive = ["confirm_delete_presentation", "set_presentation_palette", "rotate_presentation_publication", "unpublish_presentation", "reorder_slides", "delete_slide", "update_slide", "set_slide_narration", "clear_slide_narration", "update_element_state", "remove_element_from_slide", "update_element_identity", "delete_element", "set_presentation_motion_beat", "apply_commands", "set_motion", "clear_motion", "undo_transaction"];
 const expected = new Map();
 for (const name of readOnly) expected.set(name, [true, false, false]);
 for (const name of privateCreate) expected.set(name, [false, false, false]);
@@ -197,7 +197,7 @@ for (const [name, values] of expected) {
   const hints = submission.tools[name].annotations;
   assert.deepEqual([hints.readOnlyHint, hints.openWorldHint, hints.destructiveHint], values, `${name} hints drifted`);
 }
-assert.equal(submission.tools.delete_presentation.annotations.idempotentHint, false);
+assert.equal(submission.tools.delete_presentation.annotations.idempotentHint, true);
 assert.equal(submission.tools.confirm_delete_presentation.annotations.idempotentHint, false);
 assert.equal(submission.test_cases.length, 5);
 assert.equal(submission.negative_test_cases.length, 3);
@@ -217,14 +217,14 @@ assert.match(cloudTools, /primitive nodes/);
 assert.match(cloudTools, /Lucide[\s\S]{0,100}1\.34\.0/i);
 assert.match(cloudSkill, /delete_presentation[\s\S]{0,180}prepares a confirmation card but cannot delete/i);
 assert.match(cloudSkill, /confirm_delete_presentation[\s\S]{0,180}app-only/i);
-assert.match(cloudTools, /ui:\/\/deks\/confirm-presentation-deletion-v1\.html/);
+assert.match(cloudTools, /ui:\/\/deks\/confirm-presentation-deletion-v2\.html/);
 assert.match(cloudTools, /signed, expiring confirmation token[\s\S]{0,180}result `_meta`/i);
 assert.match(cloudTools, /confirm_delete_presentation\(confirmation_token\)[\s\S]{0,180}app-only\/private/i);
 assert.match(cloudTools, /do not call any DEKS tool—not even `list_presentations`/i);
 assert.match(annotations, /Raw MCP discovery contains 38 descriptors/i);
 assert.match(annotations, /model-visible surface contains 37 tools/i);
 assert.match(annotations, /idempotentHint: false/i);
-assert.match(portal, /ui:\/\/deks\/confirm-presentation-deletion-v1\.html/);
+assert.match(portal, /ui:\/\/deks\/confirm-presentation-deletion-v2\.html/);
 assert.match(portal, /UI domain: `https:\/\/api-deks\.eigen\.cl`/i);
 assert.match(portal, /connectDomains: \[\]`, `resourceDomains: \[\]/i);
 assert.match(portal, /ui\.prefersBorder: true/i);
