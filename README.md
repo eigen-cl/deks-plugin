@@ -35,9 +35,13 @@ sus coordenadas absolutas. El MCP Cloud usa una superficie canónica sin nombres
 versionados: `get_presentation`, `get_slide_state`, `create_element`,
 `update_element_identity` y `list_icon_catalog` trabajan directamente con Core 6.
 
-La eliminación permanente de una presentación no está disponible mediante el
-MCP Cloud ni ChatGPT. Debe hacerse explícitamente desde DEKS Web; ante esa solicitud
-el agente no inspecciona el workspace ni intenta sustituirla con otra herramienta.
+La eliminación permanente de una presentación en ChatGPT usa una tarjeta de
+confirmación humana. La herramienta visible al modelo sólo prepara el nombre y la
+revisión exactos sin borrar; el token firmado queda oculto en metadata privada. El
+botón **Delete permanently** llama una herramienta app-only una sola vez y sólo su
+resultado autoritativo puede confirmar el borrado. Si el usuario ofrece dos targets
+o delega cuál elegir, el agente no inspecciona el workspace y pide una elección
+exacta antes de preparar la tarjeta.
 
 Web, Cloud y Desktop comparten el mismo contrato de imagen: PNG, JPEG, GIF y
 WebP de hasta 50 MB, más un perfil SVG estático seguro de hasta 5 MB. El archivo
@@ -88,7 +92,8 @@ consentimiento siguen ocurriendo con OAuth en el navegador.
   comandos de Core y lo que no existe fuera de Cloud.
 - `skills/design-deks-presentations/`: método de narrativa, diseño, movimiento y QA.
 - `skills/deks-motion-patterns/`: catálogo de patrones de animación con comandos.
-- `evals/prompts.jsonl`: casos positivos, negativos y destructivos.
+- `evals/prompts.jsonl`: casos positivos, negativos y destructivos, incluida la
+  confirmación humana de borrado dentro de ChatGPT.
 - `submission/`: material de preparación para publicaciones públicas, incluido
   el dossier de revisión del marketplace oficial de Claude y el bundle copiable
   para el portal público de OpenAI.

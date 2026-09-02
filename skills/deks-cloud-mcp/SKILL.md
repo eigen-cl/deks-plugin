@@ -1,6 +1,6 @@
 ---
 name: deks-cloud-mcp
-description: "Operate the DEKS Cloud MCP server at api-deks.eigen.cl: OAuth or workspace PAT, the canonical Core 6 codec v3 tool map (presentations, slides, narration, groups, elements, motion, palettes, searchable paged Lucide nodes, image upload, layout validation, rendered previews, publication, export and undo), the exact apply_commands snake_case envelope, revisions, idempotency and quotas. Use it whenever the discovered tools include validate_layout, set_slide_narration, update_element_identity, publish_presentation or export_deck, or whenever the deck lives in a Cloud workspace. Pair with $deks-presentations for the document contract itself."
+description: "Operate the DEKS Cloud MCP server at api-deks.eigen.cl: OAuth or workspace PAT, the canonical Core 6 codec v3 tool map (presentations, human-confirmed deletion, slides, narration, groups, elements, motion, palettes, searchable paged Lucide nodes, image upload, layout validation, rendered previews, publication, export and undo), the exact apply_commands snake_case envelope, revisions, idempotency and quotas. Use it whenever the discovered tools include validate_layout, set_slide_narration, update_element_identity, publish_presentation or export_deck, or whenever the deck lives in a Cloud workspace. Pair with $deks-presentations for the document contract itself."
 ---
 
 # Operate the DEKS Cloud MCP
@@ -16,6 +16,13 @@ not versioned: use `get_presentation`, `get_slide_state`, `create_element`,
 `set_slide_narration` and `clear_slide_narration`. Those tools may reference an
 audio asset already embedded in the deck, but `upload_asset` remains image-only;
 never send WAV or MP3 bytes to it.
+
+Permanent presentation deletion is a two-step ChatGPT UI flow. The model-visible
+`delete_presentation` tool prepares a confirmation card but cannot delete. Its
+signed token is returned only in result `_meta`, which is private to the widget.
+Only one human click on **Delete permanently** may call the app-only
+`confirm_delete_presentation` tool. Never ask for, repeat, log or place that token
+in content or structured content, and never call the app-only tool as the model.
 
 - Read [references/tools.md](references/tools.md) for the exact tool map, inputs, outputs, and unsupported operations.
 - Read `$deks-presentations` → `references/recovery.md` before retrying anything uncertain.
@@ -39,6 +46,11 @@ Treat the tools the server actually advertises as the source of truth, together 
 their `readOnlyHint`, `openWorldHint`, and `destructiveHint` annotations. Do not rely
 on a hard-coded tool count, and do not call a tool named in this file if discovery
 does not list it.
+
+The v0.4.1 review contract has 38 descriptors but only 37 model-visible tools.
+`confirm_delete_presentation` has `ui.visibility: ["app"]` and is callable only
+from its confirmation card. If a client does not render MCP Apps UI, report that
+human-confirmed presentation deletion is unavailable there; never bypass the card.
 
 ## Keep remote round trips semantic
 

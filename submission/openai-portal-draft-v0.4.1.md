@@ -41,12 +41,32 @@ el archivo `.deks`.
 - URL type: Universal
 - Production URL: https://api-deks.eigen.cl/mcp/
 - Authentication: OAuth
-- UI: none; leave screenshots and CSP empty unless the final scan discovers a UI resource.
+- UI: one inline confirmation card for permanent presentation deletion.
+- UI resource: `ui://deks/confirm-presentation-deletion-v1.html`
+- UI domain: `https://api-deks.eigen.cl`
+- Resource MIME: `text/html;profile=mcp-app`
+- Resource CSP: `connectDomains: []`, `resourceDomains: []`; no frames or external redirects.
+- Resource metadata: `ui.prefersBorder: true`, `ui.domain: "https://api-deks.eigen.cl"`
+  and the matching `openai/widgetDomain` compatibility alias.
+- Screenshots: capture the deployed Web and mobile confirmation states before
+  submission; do not upload a placeholder or a screenshot from a different build.
 - Challenge URL: https://api-deks.eigen.cl/.well-known/openai-apps-challenge
 
-After deployment, compare the 36 scanned tools with
+After deployment, compare all 38 scanned descriptors with
 `openai-tool-annotations-v0.4.1.md`. Names, schemas, output schemas and annotations
-must match production; this worksheet cannot override Scan Tools.
+must match production; this worksheet cannot override Scan Tools. The model-visible
+surface contains 37 tools. `confirm_delete_presentation` must scan with
+`ui.visibility: ["app"]` and `openai/visibility: "private"`; it must not be
+available to the model.
+
+`delete_presentation` must link the resource through
+`ui.resourceUri: "ui://deks/confirm-presentation-deletion-v1.html"`, retain the
+ChatGPT compatibility `openai/outputTemplate`, use
+`ui.visibility: ["model", "app"]`, advertise `openai/widgetAccessible: true`,
+and allow its widget to call the private tool.
+Its visible result contains only the exact presentation name, revision, expiry
+and `confirmationRequired: true`. The signed token belongs only in result `_meta`,
+hidden from the model and transcript.
 
 ## Skills
 
@@ -68,11 +88,17 @@ synthetic reviewer workspace. Run the case in a new ChatGPT web conversation,
 reset again, and run it in a new mobile conversation. Compare tool calls and final
 workspace state; do not reuse mutations across surfaces.
 
-The MCP does not expose permanent presentation deletion. The negative deletion
-case must invoke no DEKS tool and direct the user to choose and delete the exact
-presentation in DEKS Web. The replacement positive case publishes exactly
-`Reviewer — Promotion`, verifies its publication state before and after, and
-returns the live public link.
+The positive deletion case resolves exactly `Reviewer — Promotion`, prepares the
+card, then lists again to prove preparation did not delete it. The card shows the
+exact name, revision 1, an irreversible warning and **Delete permanently**. Only
+one human click may invoke app-only `confirm_delete_presentation`; after its
+authoritative `deleted: true` result, the card displays exactly
+`Presentation deleted.`
+
+The ambiguous negative case names both `Reviewer — Test A` and
+`Reviewer — Test B` but withholds an exact choice. It must invoke zero DEKS tools,
+must not prepare a card, and must ask the user to choose and explicitly confirm
+one exact presentation.
 
 Enter reviewer credentials only in the portal's private fields. Leave legal,
 rights, policy and availability attestations for the accountable developer.

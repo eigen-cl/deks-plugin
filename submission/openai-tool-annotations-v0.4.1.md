@@ -24,8 +24,10 @@ Creating a new presentation creates private workspace state only.
 | `complete_palette` | true | false | false | Computes a complete palette from supplied anchors without changing state. |
 | `export_deck` | true | false | false | Reads and packages the deck as a portable `.deks` archive without mutating it. |
 | `get_presentation_publication` | true | false | false | Reads publication status without changing public or private state. |
-| `create_presentation` | false | false | false | Creates a new private workspace presentation; it is not publicly visible and can later be removed explicitly in DEKS Web. |
+| `create_presentation` | false | false | false | Creates a new private workspace presentation; it is not publicly visible and does not remove existing data. |
 | `upload_asset` | false | false | false | Admits one explicitly attached image into the user's private workspace and returns its reusable asset ID without publishing it; it does not accept narration audio. |
+| `delete_presentation` | false | true | true | Prepares an irreversible deletion for one exact presentation and renders a human confirmation card without deleting; confirmation can later remove the presentation, its history and any live public view. |
+| `confirm_delete_presentation` | false | true | true | App-only tool that consumes the widget's hidden signed token after one human click and permanently removes the exact presentation, its history and any live public view. |
 | `set_presentation_palette` | false | true | true | Overwrites the complete palette of an existing deck; a published deck's live public view changes with it. |
 | `create_slide` | false | true | false | Adds a checkpoint to an existing deck and therefore to its live public view when published. |
 | `duplicate_slide` | false | true | false | Adds a copied checkpoint to an existing deck and therefore to its live public view when published. |
@@ -58,9 +60,26 @@ Creating a new presentation creates private workspace state only.
 - `destructiveHint: false` does not authorize the model to write without user
   intent. Expected revisions, idempotency keys, scopes, and DEKS history remain
   separate safeguards.
-- Permanent presentation deletion is not part of this 36-tool MCP surface. Route
-  those requests to DEKS Web without inspecting the workspace or choosing a
-  destructive target for the user.
+- Raw MCP discovery contains 38 descriptors. `delete_presentation` is visible to
+  the model and app; it only prepares `ui://deks/confirm-presentation-deletion-v1.html`
+  and leaves the deck unchanged. `confirm_delete_presentation` is app-only/private,
+  so the model-visible surface contains 37 tools.
+- The confirmation resource uses `text/html;profile=mcp-app`, the dedicated
+  `https://api-deks.eigen.cl` UI domain, and empty `connectDomains` and
+  `resourceDomains`; it loads no frames and makes no external browser requests.
+- The preparer advertises `ui.visibility: ["model", "app"]`; the executor
+  advertises `ui.visibility: ["app"]` plus `openai/visibility: "private"`.
+- Both deletion tools use `readOnlyHint: false`, `openWorldHint: true`,
+  `destructiveHint: true` and `idempotentHint: false`. The preparer is deliberately
+  classified for the consequence it initiates and because it issues a fresh,
+  expiring confirmation. The executor permanently removes data and may remove a
+  live public view.
+- The signed confirmation token is returned only in tool-result `_meta`, hidden
+  from the model. Only the confirmation card sends it to the app-only executor
+  after one human click. The token must never appear in content, structured
+  content, logs, prompts or final answers.
+- An ambiguous deletion request must invoke no DEKS tools. Do not inspect or
+  choose between alternatives; ask the user to name and confirm one exact target.
 - `openWorldHint: true` on ordinary deck writes follows DEKS's live publication
   contract. It does not mean the tool sends data to an unrelated third party.
 - Recheck this list against the final production discovery snapshot immediately
