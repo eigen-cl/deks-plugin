@@ -20,6 +20,9 @@ never send WAV or MP3 bytes to it.
 Permanent presentation deletion is a two-step ChatGPT UI flow. The model-visible
 `delete_presentation` tool prepares a confirmation card but cannot delete. Its
 signed token is returned only in result `_meta`, which is private to the widget.
+Each preparation has a unique confirmation ID in both visible output and private
+metadata; the card fails closed unless those IDs match, so delayed metadata cannot
+authorize a newer card.
 Only one human click on **Delete permanently** may call the app-only
 `confirm_delete_presentation` tool. Never ask for, repeat, log or place that token
 in content or structured content, and never call the app-only tool as the model.

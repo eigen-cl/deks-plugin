@@ -8,7 +8,8 @@ Version 0.4.1 keeps the Core 6 Cloud surface introduced in 0.4.0 and adds an
 inline human confirmation card for permanent presentation deletion. Preparing
 the card leaves the presentation unchanged. Only a person pressing **Delete
 permanently** can execute the exact deletion, and the card confirms success from
-the authoritative result. Narration can reference supported audio already
+the authoritative result. Each card is uniquely bound to its private capability
+and stays disabled if ChatGPT delivers stale metadata. Narration can reference supported audio already
 embedded in the deck; the attachment tool remains image-only.
 
 The release also replaces the prior reviewer suite with deterministic fixtures.

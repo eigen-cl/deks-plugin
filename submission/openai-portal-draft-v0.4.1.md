@@ -42,7 +42,7 @@ el archivo `.deks`.
 - Production URL: https://api-deks.eigen.cl/mcp/
 - Authentication: OAuth
 - UI: one inline confirmation card for permanent presentation deletion.
-- UI resource: `ui://deks/confirm-presentation-deletion-v2.html`
+- UI resource: `ui://deks/confirm-presentation-deletion-v3.html`
 - UI domain: `https://api-deks.eigen.cl`
 - Resource MIME: `text/html;profile=mcp-app`
 - Resource CSP: `connectDomains: []`, `resourceDomains: []`; no frames or external redirects.
@@ -60,14 +60,15 @@ surface contains 37 tools. `confirm_delete_presentation` must scan with
 available to the model.
 
 `delete_presentation` must link the resource through
-`ui.resourceUri: "ui://deks/confirm-presentation-deletion-v2.html"`, retain the
+`ui.resourceUri: "ui://deks/confirm-presentation-deletion-v3.html"`, retain the
 ChatGPT compatibility `openai/outputTemplate`, use
 `ui.visibility: ["model", "app"]`, advertise `openai/widgetAccessible: true`,
 use read-only/closed-world/non-destructive annotations, and allow its widget to
 call the private tool.
-Its visible result contains only the exact presentation name, revision, expiry
-and `confirmationRequired: true`. The signed token belongs only in result `_meta`,
-hidden from the model and transcript.
+Its visible result contains only the exact presentation name, revision, expiry,
+a unique `confirmationId` and `confirmationRequired: true`. Private metadata
+contains the same confirmation ID plus the signed token; the card stays disabled
+unless the IDs match. The token remains hidden from the model and transcript.
 
 ## Skills
 
