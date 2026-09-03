@@ -1,4 +1,4 @@
-# OpenAI public submission — DEKS v0.4.0 candidate
+# OpenAI public submission — DEKS v0.4.1 candidate
 
 ## Product
 
@@ -43,7 +43,9 @@ portable `.deks` archive.
 `upload_asset` accepts only an image explicitly attached by the user. It does not
 read a path mentioned in chat and does not accept narration audio. Narration may
 reference supported audio already embedded in the deck. `.deks` import and PPTX
-export remain in the web app.
+export remain in the web app. Permanent presentation deletion in ChatGPT requires
+a person to confirm the exact target through an inline card; preparing the card
+does not delete anything.
 
 ## Starter prompts
 
@@ -55,14 +57,14 @@ export remain in the web app.
 ## Reviewer cases
 
 The candidate uses these exact deterministic fixtures from
-`openai-review-cases-v0.4.0.json`:
+`openai-review-cases-v0.4.1.json`:
 
 ### Positive
 
 1. `positive-core6-layout-read`
 2. `positive-set-slide-narration`
 3. `positive-revision-idempotency-recovery`
-4. `positive-explicit-delete-presentation`
+4. `positive-human-confirmed-delete-presentation`
 5. `positive-untrusted-slide-security-audit`
 
 ### Negative

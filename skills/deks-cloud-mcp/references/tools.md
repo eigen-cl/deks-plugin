@@ -59,7 +59,8 @@ Inside `apply_commands`, use the operation `{"command":"set_presentation_palette
 ## Slide tools
 
 - `create_presentation(name, motion_beat_ms, expected_revision, idempotency_key, canvas?)` — create a presentation with one blank slide. `canvas` is the canonical `{width,height}` object. Use `expected_revision: 0` when this tool is present in the discovered server contract.
-- `delete_presentation(presentation_id, expected_revision, confirmation_name)` — permanently delete the complete presentation history when this tool is present. It is intentionally non-idempotent and requires an explicit user deletion request, a fresh read, the exact revision, and exact presentation name.
+- `delete_presentation(presentation_id, expected_revision, confirmation_name)` — prepare, but do not execute, permanent deletion of one exact presentation. Call only after the user chooses exactly one name and explicitly requests permanent deletion. Re-read that presentation immediately before calling and pass its fresh revision and exact current name. The read-only result reports `confirmationRequired: true`, a unique `confirmationId`, and renders `ui://deks/confirm-presentation-deletion-v3.html`; the presentation must still exist at this point. The same confirmation ID binds the structured result to the signed, expiring confirmation token that exists only in result `_meta` for the widget. The card remains disabled if those IDs do not match. Never request, copy or expose the token to the model.
+- `confirm_delete_presentation(confirmation_token)` — app-only/private execution tool. It is absent from the model's usable surface even though it is present in raw MCP discovery. Only the confirmation card may call it after a human presses **Delete permanently**. A successful one-time call returns `deleted: true`; the card then displays exactly `Presentation deleted.`. Never attempt to call it as the model or reconstruct its hidden token.
 - `create_slide(presentation_id, expected_revision, idempotency_key, after_slide_id?, copy_from_slide_id?, slide_id?)`
 - `duplicate_slide(presentation_id, slide_id, expected_revision, idempotency_key)`
 - `update_slide(presentation_id, slide_id, expected_revision, idempotency_key, name?, background?, is_template?)` — identity only. Motion is a separate command.
@@ -67,6 +68,13 @@ Inside `apply_commands`, use the operation `{"command":"set_presentation_palette
 - `delete_slide(presentation_id, slide_id, expected_revision, idempotency_key)`
 - `set_slide_narration(presentation_id, slide_id, script, pause_before_ms, pause_after_ms, expected_revision, idempotency_key, audio?)` — replace the complete portable narration object. `audio`, when present, is `{asset_id, provenance}` and must reference an embedded WAV/MP3 asset already admitted to the deck. This tool never uploads bytes.
 - `clear_slide_narration(presentation_id, slide_id, expected_revision, idempotency_key)` — remove the complete narration object from one slide.
+
+If a deletion request names alternatives, asks DEKS to compare them, or delegates
+which target to choose, do not call any DEKS tool—not even `list_presentations`.
+Ask the user to choose and explicitly confirm one exact presentation. Preparing
+the card is non-destructive; closing or ignoring it leaves the presentation
+unchanged. A client without MCP Apps UI cannot complete deletion and must not fall
+back to a direct textual tool call.
 
 `reorder_slides` requires the complete ordered list. `create_slide` copies the preceding checkpoint by default, including all element states. To scaffold a new deck safely, create every checkpoint while its predecessor is still blank, or pass an explicitly blank `copy_from_slide_id`; compose afterward. The MCP `create_presentation` input does not accept a palette; persist the default with `set_presentation_palette` immediately after creation, then use its roles consistently in slide and element states.
 

@@ -3,6 +3,21 @@
 All notable changes to the DEKS plugin are documented in this file. Versions
 follow Semantic Versioning.
 
+## 0.4.1 — 2026-09-01
+
+### Changed
+
+- Replace direct presentation deletion with a two-step human confirmation flow.
+  `delete_presentation` now prepares an inline confirmation card without deleting;
+  only the app-only `confirm_delete_presentation` tool can consume the hidden,
+  signed token and permanently remove the exact presentation.
+- Keep ambiguous deletion requests fail-closed: the model must not inspect the
+  workspace or choose between alternative destructive targets for the user.
+- Restore a deterministic positive deletion review case that proves preparation
+  is non-destructive and one human click produces the authoritative deletion
+  result, while preserving the complete versioned 0.4.0 submission as immutable
+  evidence.
+
 ## 0.4.0 — 2026-08-31
 
 ### Changed
