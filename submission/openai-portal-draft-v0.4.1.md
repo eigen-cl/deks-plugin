@@ -41,6 +41,11 @@ el archivo `.deks`.
 - URL type: Universal
 - Production URL: https://api-deks.eigen.cl/mcp/
 - Authentication: OAuth
+- Client registration: Dynamic Client Registration (DCR).
+- OAuth default scopes: select `openid`, `email`, `read`, `write` and
+  `offline_access`.
+- OAuth base scopes: enter the same five scopes so every selected tool retains
+  the workspace write grant required by the editing and confirmation flows.
 - UI: one inline confirmation card for permanent presentation deletion.
 - UI resource: `ui://deks/confirm-presentation-deletion-v3.html`
 - UI domain: `https://api-deks.eigen.cl`
@@ -89,6 +94,10 @@ Use the exact five positive and three negative cases in
 synthetic reviewer workspace. Run the case in a new ChatGPT web conversation,
 reset again, and run it in a new mobile conversation. Compare tool calls and final
 workspace state; do not reuse mutations across surfaces.
+
+Attach only the current DEKS draft to each conversation. Remove or deselect older
+Developer-mode snapshots first; mixing a read-only snapshot with the current
+write-enabled snapshot makes tool routing and OAuth scope results ambiguous.
 
 The positive deletion case resolves exactly `Reviewer — Promotion`, prepares the
 card, then lists again to prove preparation did not delete it. The card shows the
