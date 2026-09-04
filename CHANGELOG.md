@@ -18,6 +18,12 @@ follow Semantic Versioning.
   result, while preserving the complete versioned 0.4.0 submission as immutable
   evidence.
 
+### Fixed
+
+- Keep the human-confirmation capability bound while ChatGPT refreshes unrelated
+  widget globals, and move the confirmation resource to v4 so clients cannot
+  reuse the cached v3 component.
+
 ## 0.4.0 — 2026-08-31
 
 ### Changed
