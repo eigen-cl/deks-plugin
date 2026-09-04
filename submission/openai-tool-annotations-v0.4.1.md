@@ -61,7 +61,7 @@ Creating a new presentation creates private workspace state only.
   intent. Expected revisions, idempotency keys, scopes, and DEKS history remain
   separate safeguards.
 - Raw MCP discovery contains 38 descriptors. `delete_presentation` is visible to
-  the model and app; it only prepares `ui://deks/confirm-presentation-deletion-v3.html`
+  the model and app; it only prepares `ui://deks/confirm-presentation-deletion-v4.html`
   and leaves the deck unchanged. `confirm_delete_presentation` is app-only/private,
   so the model-visible surface contains 37 tools.
 - The confirmation resource uses `text/html;profile=mcp-app`, the dedicated

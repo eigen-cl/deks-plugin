@@ -217,7 +217,7 @@ assert.match(cloudTools, /primitive nodes/);
 assert.match(cloudTools, /Lucide[\s\S]{0,100}1\.34\.0/i);
 assert.match(cloudSkill, /delete_presentation[\s\S]{0,180}prepares a confirmation card but cannot delete/i);
 assert.match(cloudSkill, /confirm_delete_presentation[\s\S]{0,180}app-only/i);
-assert.match(cloudTools, /ui:\/\/deks\/confirm-presentation-deletion-v3\.html/);
+assert.match(cloudTools, /ui:\/\/deks\/confirm-presentation-deletion-v4\.html/);
 assert.match(cloudTools, /unique `confirmationId`/i);
 assert.match(cloudTools, /card remains disabled if those IDs do not match/i);
 assert.match(cloudTools, /signed, expiring confirmation token[\s\S]{0,180}result `_meta`/i);
@@ -226,7 +226,7 @@ assert.match(cloudTools, /do not call any DEKS tool—not even `list_presentatio
 assert.match(annotations, /Raw MCP discovery contains 38 descriptors/i);
 assert.match(annotations, /model-visible surface contains 37 tools/i);
 assert.match(annotations, /idempotentHint: false/i);
-assert.match(portal, /ui:\/\/deks\/confirm-presentation-deletion-v3\.html/);
+assert.match(portal, /ui:\/\/deks\/confirm-presentation-deletion-v4\.html/);
 assert.match(portal, /unique `confirmationId`/i);
 assert.match(portal, /UI domain: `https:\/\/api-deks\.eigen\.cl`/i);
 assert.match(portal, /connectDomains: \[\]`, `resourceDomains: \[\]/i);

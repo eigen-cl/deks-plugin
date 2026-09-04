@@ -47,7 +47,7 @@ el archivo `.deks`.
 - OAuth base scopes: enter the same five scopes so every selected tool retains
   the workspace write grant required by the editing and confirmation flows.
 - UI: one inline confirmation card for permanent presentation deletion.
-- UI resource: `ui://deks/confirm-presentation-deletion-v3.html`
+- UI resource: `ui://deks/confirm-presentation-deletion-v4.html`
 - UI domain: `https://api-deks.eigen.cl`
 - Resource MIME: `text/html;profile=mcp-app`
 - Resource CSP: `connectDomains: []`, `resourceDomains: []`; no frames or external redirects.
@@ -65,7 +65,7 @@ surface contains 37 tools. `confirm_delete_presentation` must scan with
 available to the model.
 
 `delete_presentation` must link the resource through
-`ui.resourceUri: "ui://deks/confirm-presentation-deletion-v3.html"`, retain the
+`ui.resourceUri: "ui://deks/confirm-presentation-deletion-v4.html"`, retain the
 ChatGPT compatibility `openai/outputTemplate`, use
 `ui.visibility: ["model", "app"]`, advertise `openai/widgetAccessible: true`,
 use read-only/closed-world/non-destructive annotations, and allow its widget to
