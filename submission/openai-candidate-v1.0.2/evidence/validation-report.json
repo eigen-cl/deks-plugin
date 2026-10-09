@@ -68,5 +68,42 @@
     "line": 497,
     "other_whitespace_check": "passed_with_blank_at_eof_excluded",
     "archive_preserved": "Kept the exact tested ZIP; no source bytes altered for a cosmetic EOF line."
+  },
+  "deployment_and_bounded_live_checks": {
+    "evidence_source": "Coordinator verified GitHub Actions and authenticated MCP; package task did not deploy or call production MCP.",
+    "api_release_tag": "v0.16.0",
+    "merged_main_commit_prefix": "5683e395",
+    "canonical_release": {
+      "run_id": "37866996719",
+      "url": "https://github.com/eigen-cl/deks-api/actions/runs/37866996719",
+      "result": "SUCCESS",
+      "jobs": [
+        "verify",
+        "deploy"
+      ]
+    },
+    "main_ci": {
+      "run_id": "37866973859",
+      "url": "https://github.com/eigen-cl/deks-api/actions/runs/37866973859",
+      "result": "SUCCESS"
+    },
+    "tag_ci": {
+      "run_id": "37866996745",
+      "url": "https://github.com/eigen-cl/deks-api/actions/runs/37866996745",
+      "result": "SUCCESS"
+    },
+    "authenticated_mcp_reads": "list and fixture reads succeeded using the existing session; does not prove fresh OAuth or reviewer access",
+    "removed_dispatcher_probe": {
+      "tool": "apply_commands",
+      "input": "commands=[]",
+      "result": "Unknown tool: apply_commands",
+      "fixture_recheck": "Layout fixture remained revision 1 after the rejected probe; no mutation observed."
+    },
+    "exact_live_catalog_sha256_verified": false,
+    "verification_limits": [
+      "Existing portal MCP app configuration remains Unavailable and rescan is disabled.",
+      "Direct public health verification was blocked by the client/WAF; no Heroku CLI login was available.",
+      "A deployed release and successful bounded reads do not prove equality of all 37 live descriptors with the pinned export."
+    ]
   }
 }

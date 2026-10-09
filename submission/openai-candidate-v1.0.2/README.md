@@ -66,7 +66,12 @@ no debe usarse para reconstruir las instrucciones finales adaptadas manualmente.
 ejecuciones. El comando `package_validation.py --submission-ready` rechaza la
 entrega mientras falte la demo o los gates del candidato.
 
-1. Desplegar el contrato API final y contrastar su discovery en el endpoint vigente.
+1. Restaurar la configuración de la app MCP existente y contrastar los 37
+   descriptores live con el contrato exacto. El coordinador verificó el release
+   canónico `v0.16.0` (verify/deploy) y ambos CI en verde, además de lecturas MCP
+   autenticadas y rechazo de `apply_commands` sin mutación. El catálogo completo
+   sigue sin hash verificado; la configuración del portal aparece `Unavailable`
+   y su rescan está deshabilitado.
 2. Verificar OAuth/acceso reviewer del candidato y ejecutar los casos contra la
    versión exacta guardada en el portal, con fixtures independientes y resets
    autorizados. Test A/Test B fueron observados por el coordinador en revisión 3;

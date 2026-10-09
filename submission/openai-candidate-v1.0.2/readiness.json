@@ -7,8 +7,8 @@
   "contract_sha256": "152e579e92f25f1aa9fc6fe350e6de0eaf220d6cd3ac19f91e28c661661ddc63",
   "gates": {
     "live_contract": {
-      "status": "not_verified",
-      "next_action": "After the API deployment, compare live discovery with the exact final source contract; the unchanged URL alone does not prove the new metadata."
+      "status": "partially_verified",
+      "next_action": "Restore the existing portal MCP app configuration and compare all 37 live descriptors against the exact pinned source contract. Canonical v0.16.0 verify/deploy and both CI runs succeeded; bounded authenticated reads and dispatcher-removal probe passed, but full discovery hash was not verified."
     },
     "reviewer_access": {
       "status": "not_verified",
@@ -73,5 +73,42 @@
     "second": "rejected_existing_mcp_app_configuration_before_draft_creation",
     "draft_created": false,
     "archive_unchanged": true
+  },
+  "deployment_and_bounded_live_checks": {
+    "evidence_source": "Coordinator verified GitHub Actions and authenticated MCP; package task did not deploy or call production MCP.",
+    "api_release_tag": "v0.16.0",
+    "merged_main_commit_prefix": "5683e395",
+    "canonical_release": {
+      "run_id": "37866996719",
+      "url": "https://github.com/eigen-cl/deks-api/actions/runs/37866996719",
+      "result": "SUCCESS",
+      "jobs": [
+        "verify",
+        "deploy"
+      ]
+    },
+    "main_ci": {
+      "run_id": "37866973859",
+      "url": "https://github.com/eigen-cl/deks-api/actions/runs/37866973859",
+      "result": "SUCCESS"
+    },
+    "tag_ci": {
+      "run_id": "37866996745",
+      "url": "https://github.com/eigen-cl/deks-api/actions/runs/37866996745",
+      "result": "SUCCESS"
+    },
+    "authenticated_mcp_reads": "list and fixture reads succeeded using the existing session; does not prove fresh OAuth or reviewer access",
+    "removed_dispatcher_probe": {
+      "tool": "apply_commands",
+      "input": "commands=[]",
+      "result": "Unknown tool: apply_commands",
+      "fixture_recheck": "Layout fixture remained revision 1 after the rejected probe; no mutation observed."
+    },
+    "exact_live_catalog_sha256_verified": false,
+    "verification_limits": [
+      "Existing portal MCP app configuration remains Unavailable and rescan is disabled.",
+      "Direct public health verification was blocked by the client/WAF; no Heroku CLI login was available.",
+      "A deployed release and successful bounded reads do not prove equality of all 37 live descriptors with the pinned export."
+    ]
   }
 }
