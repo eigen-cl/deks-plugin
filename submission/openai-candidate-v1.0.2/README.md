@@ -2,8 +2,9 @@
 
 Paquete preparado y validado localmente, actualizado el 9 de octubre de 2026.
 Existe un nuevo borrador 1.0.2 después de la eliminación confirmada del registro
-anterior. Esta actualización agrega la URL de una demo existente verificada; no
-acredita envío a revisión ni ejecución de los ocho casos contra la versión guardada.
+anterior. La demo existente verificada ya se incluyó en el ZIP cargado. Esta actualización
+aclara el propósito Productivity y agrega cinco capacidades soportadas; no acredita
+envío a revisión ni ejecución de los ocho casos contra la versión guardada.
 
 El ZIP `dist/deks-openai-1.0.2.zip` conserva el nombre técnico empaquetado: `app-6a8bb31ee2b481919a609ef99cae1422`. Contiene un solo directorio raíz,
 `plugin.json` portable, `mcp.json`, las cuatro skills Cloud y el icono real DEKS
@@ -80,10 +81,12 @@ tarjeta de borrado ni ejecución/passing de los ocho casos del borrador exacto.
 falte acceso reviewer, ejecución de casos, verificación de la actualización del
 portal o declaraciones del desarrollador.
 
-1. Cargar esta actualización, cuyo único cambio dentro del paquete es
-   `review.demo_recording_url`, en el nuevo borrador 1.0.2 y verificar la URL
-   importada y los scans. El ZIP cargado anteriormente, SHA256 `9707be7b…`, se
-   preservó aparte como evidencia. La recreación tuvo metadata No Issues, cuatro
+1. Cargar esta única aclaración del listado en el nuevo borrador 1.0.2 y verificar
+   la descripción principal, traducción es-419 y cinco capabilities importadas.
+   Tras cargar el ZIP con demo, SHA256 `9206f854…`, apareció un warning de categoría
+   Productivity explícitamente no bloqueante. Se mantiene la categoría válida;
+   si persiste el warning no se harán más rerolls del listado. Los ZIP cargados
+   anteriormente `9707be7b…` y `9206f854…` se preservaron aparte como evidencia. La recreación tuvo metadata No Issues, cuatro
    skills Checks Passed y 37 herramientas/instrucciones con cero issues; el
    catálogo escaneado coincide semánticamente con el contrato fijado.
 2. Verificar acceso reviewer y ejecutar los casos contra la versión exacta

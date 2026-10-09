@@ -11,7 +11,7 @@
       "interface": {
         "displayName": "DEKS",
         "shortDescription": "Create and edit presentations",
-        "longDescription": "DEKS helps people and AI agents create, continue, review and share the same editable presentation in a Cloud workspace. Stable element identities preserve continuity between slides. Through ChatGPT, inspect and edit slides, set rehearsal scripts and pauses, reuse or upload attached images, check layouts, render previews, publish live presentations and export portable .deks files. Permanent presentation deletion requires a human confirmation card. Image upload does not accept narration audio; .deks import and PowerPoint export use the DEKS web application.",
+        "longDescription": "DEKS is a productivity app for creating and editing slide presentations. People and AI agents collaborate on the same editable presentation in a Cloud workspace. Stable element identities preserve continuity between slides. Through ChatGPT, inspect and edit slides, set rehearsal scripts and pauses, reuse or upload attached images, check layouts, render previews, publish live presentations and export portable .deks files. Permanent presentation deletion requires a human confirmation card. Image upload does not accept narration audio; .deks import and PowerPoint export use the DEKS web application.",
         "developerName": "EIGEN",
         "category": "Productivity",
         "defaultPrompt": [
@@ -26,7 +26,14 @@
         "logo": "./assets/deks-icon.png",
         "composerIcon": "./assets/deks-icon.png",
         "logoDark": "./assets/deks-icon.png",
-        "brandColor": "#FF7043"
+        "brandColor": "#FF7043",
+        "capabilities": [
+          "Create presentations",
+          "Edit slides and elements",
+          "Set slide motion",
+          "Validate layouts and render previews",
+          "Export portable .deks files"
+        ]
       },
       "review": {
         "test_cases": {
@@ -85,7 +92,7 @@
         "translations": {
           "es-419": {
             "subtitle": "Crea y edita presentaciones",
-            "description": "DEKS permite que personas y agentes de IA creen, continúen, revisen y compartan una misma presentación editable en un workspace Cloud. Conserva la identidad de los elementos entre diapositivas, admite guiones y pausas de ensayo, permite validar y renderizar el diseño, publicar una vista viva y exportar el archivo portable .deks. La eliminación permanente requiere confirmación humana."
+            "description": "DEKS es una aplicación de productividad para crear y editar presentaciones con diapositivas. Personas y agentes de IA colaboran en una misma presentación editable dentro de un workspace Cloud. Conserva la identidad de los elementos entre diapositivas, admite guiones y pausas de ensayo, permite validar y renderizar el diseño, publicar una vista viva y exportar el archivo portable .deks. La eliminación permanente requiere confirmación humana."
           }
         }
       }

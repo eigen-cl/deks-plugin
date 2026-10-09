@@ -3,7 +3,7 @@
   "package_name": "app-6a8bb31ee2b481919a609ef99cae1422",
   "checked_date": "2026-10-09",
   "package_status": "prepared_and_validated_locally",
-  "submission_status": "draft_created_demo_update_pending_reupload",
+  "submission_status": "draft_created_listing_clarification_pending_reupload",
   "contract_sha256": "152e579e92f25f1aa9fc6fe350e6de0eaf220d6cd3ac19f91e28c661661ddc63",
   "gates": {
     "live_contract": {
@@ -12,7 +12,7 @@
     },
     "reviewer_access": {
       "status": "not_verified",
-      "next_action": "Verify complete secure access fields and an independent reviewer session on the recreated draft. Fresh coordinator OAuth was verified; private reviewer fields remain outside the package and this check does not prove reviewer access."
+      "next_action": "Verify complete private reviewer access fields and an independent reviewer session. The coordinator saved public login/workspace instructions and username in secure UI; reviewer password was not entered. No credential values are retrieved or stored in the package."
     },
     "saved_version_cases": {
       "status": "not_run",
@@ -20,15 +20,15 @@
     },
     "demo_recording": {
       "status": "verified",
-      "next_action": "Reupload this URL-only package update into the new 1.0.2 draft, then verify the imported demo URL and reviewer playback. Reuse the verified core walkthrough; do not require a new video solely because of the metadata version."
+      "next_action": "Existing unlisted core walkthrough URL was included in the uploaded 9206 package; preserve it and verify reviewer playback. A new recording is not required solely for version change."
     },
     "portal_metadata": {
       "status": "partially_verified_reupload_pending",
-      "next_action": "The recreated draft was Configured, Authorized and Domain verified with metadata No Issues, four skills Checks Passed, and 37 tools/server instructions Issues found:0. Reupload this URL-only update to that new draft and verify imported demo and scans; attestations may reset."
+      "next_action": "Reupload this one listing clarification in the new draft and verify imported longDescription, es-419 description and five capabilities. Productivity warning after the demo URL update was explicitly nonblocking. If it persists, retain the valid category and do not reroll further metadata."
     },
     "developer_attestations": {
       "status": "not_completed",
-      "next_action": "The accountable developer must complete current legal/policy declarations after the saved draft is final; reupload resets attestations."
+      "next_action": "Six legal declarations are still unchecked; accountable developer completion is pending and no submission occurred."
     }
   },
   "cases": {
@@ -126,6 +126,22 @@
     "draft": "appsub_6ac860bdef1881919460506019ca6190",
     "previous_plugin_deletion": "human_confirmed_and_verified",
     "draft_created": true,
-    "current_package_update_uploaded": false
+    "current_package_update_uploaded": false,
+    "last_uploaded_archive_sha256": "9206f8548477b341536500f12d003904952beefa5d80d9fac03582e5ff0812c1"
+  },
+  "listing_clarification": {
+    "category": "Productivity",
+    "warning_nonblocking": true,
+    "english_opening_sentence": "DEKS is a productivity app for creating and editing slide presentations.",
+    "capabilities": [
+      "Create presentations",
+      "Edit slides and elements",
+      "Set slide motion",
+      "Validate layouts and render previews",
+      "Export portable .deks files"
+    ],
+    "translation_updated": "es-419 description only",
+    "clarification_uploaded": false,
+    "no_further_rerolls_if_warning_persists": true
   }
 }
