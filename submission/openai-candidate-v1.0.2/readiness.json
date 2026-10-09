@@ -1,0 +1,172 @@
+{
+  "candidate_version": "1.0.2",
+  "package_name": "app-6a8bb31ee2b481919a609ef99cae1422",
+  "checked_date": "2026-10-09",
+  "package_status": "prepared_and_validated_locally",
+  "submission_status": "case_constraints_update_prepared_pending_reupload",
+  "contract_sha256": "152e579e92f25f1aa9fc6fe350e6de0eaf220d6cd3ac19f91e28c661661ddc63",
+  "gates": {
+    "live_contract": {
+      "status": "verified",
+      "next_action": "Preserve the scanned 37-definition/instructions audit matching the pinned contract semantically. No claim of identical portal serialization hash is made."
+    },
+    "reviewer_access": {
+      "status": "human_save_reported_pending_verification",
+      "next_action": "Felipe reported Save details with the new reviewer password. Root verifies presence/persistence and access without retrieving secret values; the direct response permits continuation and a blank coordination Form is not another authorization barrier."
+    },
+    "saved_version_cases": {
+      "status": "not_run",
+      "next_action": "Run cases independently using latest returned IDs/revisions and preserved existing fixtures. P4 primarily prepares the card and waits; actual human deletion is optional. P5 creates exactly one new returned-ID deck even if same-name decks exist and preserves all baseline IDs/history. Exact saved-client execution is not claimed; the reported saved-client attempt returned PluginNotFound."
+    },
+    "demo_recording": {
+      "status": "verified",
+      "next_action": "Existing unlisted core walkthrough URL was included in the uploaded 9206 package; preserve it and verify reviewer playback. A new recording is not required solely for version change."
+    },
+    "portal_metadata": {
+      "status": "case_update_prepared_pending_reupload",
+      "next_action": "The uploaded 25387966 package had No Issues and four skills Checks passed with resolved category warning. Import this case-metadata-only update into the same recreated draft and verify cases/scans; root owns the portal."
+    },
+    "developer_attestations": {
+      "status": "approved_by_human_pending_portal_completion",
+      "next_action": "Human approval covers the six legal declarations and continuation/submission. Root applies them after the final reupload and verifies the resulting portal state without asking for the same approval again."
+    }
+  },
+  "cases": {
+    "read_only_layout": {
+      "web": "not_run",
+      "mobile": "not_run"
+    },
+    "portable_narration": {
+      "web": "not_run",
+      "mobile": "not_run"
+    },
+    "center_existing_text": {
+      "web": "not_run",
+      "mobile": "not_run"
+    },
+    "human_confirmed_deletion": {
+      "web": "not_run",
+      "mobile": "not_run"
+    },
+    "create_numeric_continuity_and_render": {
+      "web": "not_run",
+      "mobile": "not_run"
+    },
+    "ambiguous_deletion": {
+      "web": "not_run",
+      "mobile": "not_run"
+    },
+    "unattached_local_image": {
+      "web": "not_run",
+      "mobile": "not_run"
+    },
+    "secret_request": {
+      "web": "not_run",
+      "mobile": "not_run"
+    }
+  },
+  "fixture_note": "Use latest returned revisions; do not assume a fixed starting revision. Test A may already match narration and use an idempotent no-change branch. Reviewer establishes canonical Test B content without requiring global fixture replacement. P4 records actual deck count and only prepares a card; human executor is optional. P5 records baseline IDs/revisions and adds exactly one new deck by its returned ID even when the canonical name already exists, preserving all earlier IDs/history.",
+  "publication_note": "countries:[] deliberately retains global targeting for the unchanged product audience. Commerce remains omitted and must be checked explicitly in the recreated record; the verified existing core-demo URL is now included and does not rely on inheritance from the deleted record.",
+  "scope_note": "This package task performed no endpoint deployment, portal upload, review submission, credential operation or change to shared skill masters. API deployment and runtime verification are coordinated separately.",
+  "portal_attempts": {
+    "first": "rejected_translation_overlay_before_draft_creation",
+    "second": "rejected_existing_mcp_app_configuration_before_draft_creation",
+    "draft_created": false,
+    "archive_unchanged": true
+  },
+  "deployment_and_bounded_live_checks": {
+    "evidence_source": "Coordinator verified GitHub Actions and authenticated MCP; package task did not deploy or call production MCP.",
+    "api_release_tag": "v0.16.0",
+    "merged_main_commit_prefix": "5683e395",
+    "canonical_release": {
+      "run_id": "37866996719",
+      "url": "https://github.com/eigen-cl/deks-api/actions/runs/37866996719",
+      "result": "SUCCESS",
+      "jobs": [
+        "verify",
+        "deploy"
+      ]
+    },
+    "main_ci": {
+      "run_id": "37866973859",
+      "url": "https://github.com/eigen-cl/deks-api/actions/runs/37866973859",
+      "result": "SUCCESS"
+    },
+    "tag_ci": {
+      "run_id": "37866996745",
+      "url": "https://github.com/eigen-cl/deks-api/actions/runs/37866996745",
+      "result": "SUCCESS"
+    },
+    "authenticated_mcp_reads": "list and fixture reads succeeded using the existing session; does not prove fresh OAuth or reviewer access",
+    "removed_dispatcher_probe": {
+      "tool": "apply_commands",
+      "input": "commands=[]",
+      "result": "Unknown tool: apply_commands",
+      "fixture_recheck": "Layout fixture remained revision 1 after the rejected probe; no mutation observed."
+    },
+    "exact_live_catalog_sha256_verified": false,
+    "verification_limits": [
+      "Existing portal MCP app configuration remains Unavailable and rescan is disabled.",
+      "Direct public health verification was blocked by the client/WAF; no Heroku CLI login was available.",
+      "A deployed release and successful bounded reads do not prove equality of all 37 live descriptors with the pinned export."
+    ]
+  },
+  "reusable_demo": {
+    "url": "https://www.youtube.com/watch?v=0Pj75qxVRL8",
+    "visibility": "Unlisted",
+    "duration_seconds": 88.461,
+    "verified_date": "2026-10-09",
+    "evidence_source": "Coordinator reviewed current YouTube playback and content; no new video upload.",
+    "scope": "Reusable core functional walkthrough: ChatGPT creates and iterates a DEKS presentation with three slides, blocks, numbers, motion and shared identities in the editor. The 1.0.2 changes concern MCP dispatch, names and annotations; this visual core workflow is retained and current endpoint v2 authoring 40 to 65 was independently observed by the coordinator.",
+    "limits": "Does not certify the complete 37-tool catalog, four package 1.0.2 skills loaded, new deletion card, or execution/passing of all eight cases against the exact saved draft. Version change alone is not a reason to require a new recording."
+  },
+  "portal_record": {
+    "plugin": "plugin_asdk_app_6ac860bdeee48191afe0ab2a4536a64d",
+    "app": "asdk_app_6ac860bdeee48191afe0ab2a4536a64d",
+    "draft": "appsub_6ac860bdef1881919460506019ca6190",
+    "previous_plugin_deletion": "human_confirmed_and_verified",
+    "draft_created": true,
+    "current_package_update_uploaded": false,
+    "last_uploaded_archive_sha256": "9206f8548477b341536500f12d003904952beefa5d80d9fac03582e5ff0812c1"
+  },
+  "listing_clarification": {
+    "category": "Productivity",
+    "warning_nonblocking": true,
+    "english_opening_sentence": "DEKS is a productivity app for creating and editing slide presentations.",
+    "capabilities": [
+      "Create presentations",
+      "Edit slides and elements",
+      "Set slide motion",
+      "Validate layouts and render previews",
+      "Export portable .deks files"
+    ],
+    "translation_updated": "es-419 description only",
+    "clarification_uploaded": false,
+    "no_further_rerolls_if_warning_persists": true
+  },
+  "case_procedure_update": {
+    "previous_archive_sha256": "25387966fc316d85e3ecc4a75d84b6926e8f9651cbddc33c6c41a17ee579457c",
+    "new_archive_sha256": "fed33af77fdfe16e6a1b36ae7d88b63baa39cdb268576bee7ce788c9dcbd2694",
+    "prompts_preserved": 8,
+    "requires_destructive_reset": false,
+    "human_optional_executor_only": true,
+    "existing_same_name_decks_allowed_for_creation": true,
+    "uploaded": false,
+    "committed": false
+  },
+  "latest_limited_runtime_evidence": {
+    "source": "Coordinator verified explicit MCP v2 helper rehearsals; exact four-skill saved client is not established.",
+    "p2_p3": {
+      "result": "functional assertions passed, revisions 4 to 5 independently",
+      "restoration": "Reviewer fixtures A/B restored safely to revision 6, preserving history; no destructive reset.",
+      "proof": "reports/openai-review-2026-10-09/reviewer-backup/p2-p3-explicit-mcp-rehearsal.json"
+    },
+    "p4_primary": {
+      "result": "Helper card showed exact Promotion target, revision 1, irreversible warning, Delete and Cancel; model waited.",
+      "executor_invoked": false,
+      "presentation_deleted": false,
+      "private_confirmation_metadata_read_or_output": false
+    },
+    "interpretation": "Representative helper behavior is verified; no complete exact-saved-version runtime pass is claimed."
+  }
+}

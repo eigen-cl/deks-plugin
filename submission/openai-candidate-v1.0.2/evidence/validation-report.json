@@ -1,0 +1,198 @@
+{
+  "checked_date": "2026-10-09",
+  "package_version": "1.0.2",
+  "package_name": "app-6a8bb31ee2b481919a609ef99cae1422",
+  "archive_sha256": "fed33af77fdfe16e6a1b36ae7d88b63baa39cdb268576bee7ce788c9dcbd2694",
+  "archive_files": 22,
+  "contract_sha256": "152e579e92f25f1aa9fc6fe350e6de0eaf220d6cd3ac19f91e28c661661ddc63",
+  "descriptor_count": 37,
+  "model_tool_count": 36,
+  "case_counts": {
+    "positive": 5,
+    "negative": 3
+  },
+  "public_binding_or_private_files": false,
+  "source_and_zip_bytes_identical": true,
+  "repeated_build_bytes_identical": true,
+  "preservation_files_verified": 43,
+  "specifications": {
+    "status": "passed",
+    "count": 11,
+    "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s submission/openai-candidate-v1.0.2/tests -v"
+  },
+  "legacy_candidate_validator": "passed",
+  "official_portable_schemas": {
+    "validator": "ajv-cli@5.0.0",
+    "spec": "draft2020",
+    "strict": true,
+    "plugin_manifest": "passed",
+    "mcp_configuration": "passed",
+    "schema_sources": [
+      "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+      "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json"
+    ]
+  },
+  "peer_read_only_audit": "passed before translation overlay correction; original archive 2133aa6c6c3b64bf600fbbbb0f62b4cfee9433b0a01529d4929aed2bb96d2278; the subsequent field-only correction is covered by the local semantic regression",
+  "package_gaps": [],
+  "submission_gaps": [
+    "reviewer_access",
+    "saved_version_cases",
+    "portal_metadata",
+    "developer_attestations"
+  ],
+  "new_demo_or_case_execution_claimed": false,
+  "portal_upload_or_submission_performed_by_package_task": false,
+  "openai_translation_overlay": {
+    "status": "passed_local_semantic_regression",
+    "fields": [
+      "subtitle",
+      "description"
+    ],
+    "limits": {
+      "subtitle": 30,
+      "description": 4000
+    },
+    "source": "https://developers.openai.com/plugins/deploy/submission",
+    "portal_attempt_1": "rejected_before_draft_creation",
+    "post_fix_portal_import": "rejected_before_draft_creation_existing_mcp_app_configuration"
+  },
+  "git_whitespace": {
+    "tracked_preexisting_diff_check": "passed",
+    "new_candidate_staged_diff_check": "one_cosmetic_blank_line_at_eof",
+    "file": "source/app-6a8bb31ee2b481919a609ef99cae1422/skills/deks-cloud-mcp/references/tools.md",
+    "line": 497,
+    "other_whitespace_check": "passed_with_blank_at_eof_excluded",
+    "archive_preserved": "Kept the exact tested ZIP; no source bytes altered for a cosmetic EOF line.",
+    "demo_url_update_diff_check": "passed"
+  },
+  "deployment_and_bounded_live_checks": {
+    "evidence_source": "Coordinator verified GitHub Actions and authenticated MCP; package task did not deploy or call production MCP.",
+    "api_release_tag": "v0.16.0",
+    "merged_main_commit_prefix": "5683e395",
+    "canonical_release": {
+      "run_id": "37866996719",
+      "url": "https://github.com/eigen-cl/deks-api/actions/runs/37866996719",
+      "result": "SUCCESS",
+      "jobs": [
+        "verify",
+        "deploy"
+      ]
+    },
+    "main_ci": {
+      "run_id": "37866973859",
+      "url": "https://github.com/eigen-cl/deks-api/actions/runs/37866973859",
+      "result": "SUCCESS"
+    },
+    "tag_ci": {
+      "run_id": "37866996745",
+      "url": "https://github.com/eigen-cl/deks-api/actions/runs/37866996745",
+      "result": "SUCCESS"
+    },
+    "authenticated_mcp_reads": "list and fixture reads succeeded using the existing session; does not prove fresh OAuth or reviewer access",
+    "removed_dispatcher_probe": {
+      "tool": "apply_commands",
+      "input": "commands=[]",
+      "result": "Unknown tool: apply_commands",
+      "fixture_recheck": "Layout fixture remained revision 1 after the rejected probe; no mutation observed."
+    },
+    "exact_live_catalog_sha256_verified": false,
+    "verification_limits": [
+      "Existing portal MCP app configuration remains Unavailable and rescan is disabled.",
+      "Direct public health verification was blocked by the client/WAF; no Heroku CLI login was available.",
+      "A deployed release and successful bounded reads do not prove equality of all 37 live descriptors with the pinned export."
+    ]
+  },
+  "reusable_demo": {
+    "url": "https://www.youtube.com/watch?v=0Pj75qxVRL8",
+    "visibility": "Unlisted",
+    "duration_seconds": 88.461,
+    "verified_date": "2026-10-09",
+    "evidence_source": "Coordinator reviewed current YouTube playback and content; no new video upload.",
+    "scope": "Reusable core functional walkthrough: ChatGPT creates and iterates a DEKS presentation with three slides, blocks, numbers, motion and shared identities in the editor. The 1.0.2 changes concern MCP dispatch, names and annotations; this visual core workflow is retained and current endpoint v2 authoring 40 to 65 was independently observed by the coordinator.",
+    "limits": "Does not certify the complete 37-tool catalog, four package 1.0.2 skills loaded, new deletion card, or execution/passing of all eight cases against the exact saved draft. Version change alone is not a reason to require a new recording."
+  },
+  "new_video_upload_performed": false,
+  "current_portal_progress": {
+    "old_plugin_deleted": true,
+    "new_1_0_2_draft_created": true,
+    "coordinator_fresh_oauth": "verified",
+    "configured_authorized_domain_verified": true,
+    "metadata": "No Issues",
+    "four_skills": "Checks Passed",
+    "37_tools_and_server_instructions": "Issues found: 0",
+    "case_values_compared_against_uploaded_zip": "5+3 exact after portal-field name mapping; not execution",
+    "demo_url_update_uploaded": true
+  },
+  "historical_portal_block_before_recreation": "Existing MCP app must be configured before updating its plugin ZIP; coordinator reports original app Unavailable. No 1.0.2 draft created.",
+  "current_portal_block": "Root verifies human-saved reviewer details, applies approved legal declarations and imports this robust case-metadata update. No credential values are retrieved; the direct human response permits continuation. Exact-saved-client runtime cases remain unproved.",
+  "category_warning_clarification": {
+    "warning_nonblocking": true,
+    "category_preserved": "Productivity",
+    "capabilities_count": 5,
+    "capability_limits_verified": true,
+    "capability_primary_source": "https://developers.openai.com/plugins/deploy/submission",
+    "cases_skills_contract_runtime_demo_unchanged": true,
+    "uploaded": false
+  },
+  "historical_url_only_package_delta": {
+    "old_uploaded_archive_sha256": "9707be7bb36dfc214897c2d6189c8bdeab609fed5ca7159a430fe7a8c4969a98",
+    "new_archive_sha256": "9206f8548477b341536500f12d003904952beefa5d80d9fac03582e5ff0812c1",
+    "archive_members_changed": [
+      "app-6a8bb31ee2b481919a609ef99cae1422/plugin.json"
+    ],
+    "only_manifest_field_added": "extensions.com.openai.review.demo_recording_url",
+    "all_other_21_members_byte_identical": true,
+    "all_original_manifest_values_unchanged": true,
+    "old_uploaded_archive_preserved": true,
+    "candidate_update_uploaded": false
+  },
+  "historical_listing_only_package_delta": {
+    "previous_uploaded_archive_sha256": "9206f8548477b341536500f12d003904952beefa5d80d9fac03582e5ff0812c1",
+    "new_archive_sha256": "25387966fc316d85e3ecc4a75d84b6926e8f9651cbddc33c6c41a17ee579457c",
+    "archive_members_changed": [
+      "app-6a8bb31ee2b481919a609ef99cae1422/plugin.json"
+    ],
+    "manifest_fields_changed": [
+      "extensions.com.openai.interface.longDescription",
+      "extensions.com.openai.interface.capabilities",
+      "extensions.com.openai.publication.translations.es-419.description"
+    ],
+    "all_other_21_members_byte_identical": true,
+    "all_other_json_values_unchanged": true,
+    "category_and_review_demo_cases_unchanged": true,
+    "previous_uploaded_archives_preserved": true,
+    "uploaded": false
+  },
+  "case_procedure_package_delta": {
+    "previous_archive_sha256": "25387966fc316d85e3ecc4a75d84b6926e8f9651cbddc33c6c41a17ee579457c",
+    "new_archive_sha256": "fed33af77fdfe16e6a1b36ae7d88b63baa39cdb268576bee7ce788c9dcbd2694",
+    "archive_members_changed": [
+      "app-6a8bb31ee2b481919a609ef99cae1422/plugin.json"
+    ],
+    "only_json_section_changed": "extensions.com.openai.review.test_cases",
+    "prompts_identical": 8,
+    "other_21_members_byte_identical": true,
+    "listing_demo_skills_contract_unchanged": true,
+    "no_upload_commit_or_push": true
+  },
+  "case_constraints_bdd": {
+    "specification_written_before_metadata_edit": true,
+    "red_result": "Existing integration spec failed on the old reset instruction before implementation.",
+    "green_result": "All 11 tests pass with latest-revision, optional-human-preparation, new-ID/count+1 preservation assertions and unchanged prompts."
+  },
+  "latest_limited_runtime_evidence": {
+    "source": "Coordinator verified explicit MCP v2 helper rehearsals; exact four-skill saved client is not established.",
+    "p2_p3": {
+      "result": "functional assertions passed, revisions 4 to 5 independently",
+      "restoration": "Reviewer fixtures A/B restored safely to revision 6, preserving history; no destructive reset.",
+      "proof": "reports/openai-review-2026-10-09/reviewer-backup/p2-p3-explicit-mcp-rehearsal.json"
+    },
+    "p4_primary": {
+      "result": "Helper card showed exact Promotion target, revision 1, irreversible warning, Delete and Cancel; model waited.",
+      "executor_invoked": false,
+      "presentation_deleted": false,
+      "private_confirmation_metadata_read_or_output": false
+    },
+    "interpretation": "Representative helper behavior is verified; no complete exact-saved-version runtime pass is claimed."
+  }
+}
