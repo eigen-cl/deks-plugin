@@ -17,7 +17,15 @@
       "investigation": "Coordinator is inspecting the existing app configuration; no duplicate app is authorized or created by this package task."
     }
   ],
-  "current_state": "No 1.0.2 draft created; same existing plugin and MCP connection must be preserved.",
+  "current_state": "Previous plugin deletion was human-confirmed and verified; recreated 1.0.2 draft exists. Candidate update now adds the verified existing core-demo URL; root will reupload only into the new draft.",
   "source": "Coordinator verified portal UI; package task did not operate the portal.",
-  "current_live_state": "API v0.16.0 canonical release verify/deploy and CI succeeded; bounded authenticated MCP reads and dispatcher removal were observed. Existing portal app configuration remains Unavailable and rescan is disabled; no 1.0.2 draft or full live catalog comparison."
+  "current_live_state": "Recreated app is Configured, Authorized and Domain verified after fresh coordinator OAuth. Scanned 37 definitions and instructions match the pinned contract semantically with no issues, and four skills passed checks. All eight exact-saved-version cases, independent reviewer access and attestations remain pending.",
+  "reusable_demo_update": {
+    "url": "https://www.youtube.com/watch?v=0Pj75qxVRL8",
+    "verified_scope": "Current unlisted core walkthrough; no new recording required solely by version change",
+    "uploaded": false,
+    "old_uploaded_zip_sha256": "9707be7bb36dfc214897c2d6189c8bdeab609fed5ca7159a430fe7a8c4969a98",
+    "old_zip_backup": "reports/openai-review-2026-10-09/deks-openai-1.0.2.uploaded-9707be7b.zip",
+    "new_archive_sha256": "9206f8548477b341536500f12d003904952beefa5d80d9fac03582e5ff0812c1"
+  }
 }

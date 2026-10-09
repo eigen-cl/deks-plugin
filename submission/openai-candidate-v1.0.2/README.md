@@ -1,10 +1,11 @@
 # DEKS 1.0.2 — candidato público separado
 
-Paquete preparado y validado localmente el 8 de octubre de 2026. No está enviado
-a revisión ni acredita ejecución del contrato nuevo en producción o ChatGPT.
+Paquete preparado y validado localmente, actualizado el 9 de octubre de 2026.
+Existe un nuevo borrador 1.0.2 después de la eliminación confirmada del registro
+anterior. Esta actualización agrega la URL de una demo existente verificada; no
+acredita envío a revisión ni ejecución de los ocho casos contra la versión guardada.
 
-El ZIP `dist/deks-openai-1.0.2.zip` conserva el nombre técnico del complemento
-existente: `app-6a8bb31ee2b481919a609ef99cae1422`. Contiene un solo directorio raíz,
+El ZIP `dist/deks-openai-1.0.2.zip` conserva el nombre técnico empaquetado: `app-6a8bb31ee2b481919a609ef99cae1422`. Contiene un solo directorio raíz,
 `plugin.json` portable, `mcp.json`, las cuatro skills Cloud y el icono real DEKS
 de 512 × 512 px. No contiene bindings `.app.json`, declaraciones `apps`, manifests
 de compatibilidad, credenciales, `.DS_Store`, Git, contratos ni notas internas.
@@ -51,8 +52,10 @@ caracteres); se corrigió el mapeo conservando el texto. Una prueba semántica
 rechaza los alias anteriores, además del schema portable. El segundo intento
 también fue rechazado antes de crear un draft: el portal exige configurar la
 conexión MCP existente antes de actualizar el ZIP y el coordinador observó la
-app original como `Unavailable`. El coordinador investiga esa configuración;
-este candidato preserva la misma identidad y conexión, sin crear otra app. Véase
+app original como `Unavailable`. Posteriormente, Felipe confirmó eliminar ese
+registro y el coordinador verificó su desaparición; se recreó el nuevo borrador
+1.0.2, ahora configurado y autorizado. Los dos rechazos quedan como evidencia
+histórica y no describen el estado actual. Véase
 `evidence/portal-validation.json` y la [guía oficial](https://developers.openai.com/plugins/deploy/submission).
 
 `scripts/sync_contract.py` actualiza solo este candidato a partir de un export
@@ -60,28 +63,37 @@ API y un hash explícitamente verificado. `prepare_source.py` registra el stagin
 inicial desde el ZIP 1.0.1 y se niega a sobrescribir este candidato o sus hashes;
 no debe usarse para reconstruir las instrucciones finales adaptadas manualmente.
 
-## Pendientes para la nueva postulación
+## Demo reutilizada y pendientes
 
-`readiness.json` mantiene los gates y resultados por superficie sin inventar
-ejecuciones. El comando `package_validation.py --submission-ready` rechaza la
-entrega mientras falte la demo o los gates del candidato.
+El coordinador revisó la [demo existente no listada](https://www.youtube.com/watch?v=0Pj75qxVRL8)
+el 9 de octubre: 88,461 segundos, autoría ChatGPT → DEKS/editor con tres slides,
+bloques, números, movimiento, identidades compartidas e iteración sobre la misma
+presentación. Se reutiliza como walkthrough funcional del core. El flujo visual
+se conserva; los cambios 1.0.2 corresponden a dispatch, nombres y anotaciones MCP,
+y el coordinador observó además autoría real 40% → 65% con parámetros v2 actuales.
+No se exige una nueva grabación solamente por el número de versión. Esta demo
+no certifica todos los descriptores, las cuatro skills 1.0.2 cargadas, la nueva
+tarjeta de borrado ni ejecución/passing de los ocho casos del borrador exacto.
 
-1. Restaurar la configuración de la app MCP existente y contrastar los 37
-   descriptores live con el contrato exacto. El coordinador verificó el release
-   canónico `v0.16.0` (verify/deploy) y ambos CI en verde, además de lecturas MCP
-   autenticadas y rechazo de `apply_commands` sin mutación. El catálogo completo
-   sigue sin hash verificado; la configuración del portal aparece `Unavailable`
-   y su rescan está deshabilitado.
-2. Verificar OAuth/acceso reviewer del candidato y ejecutar los casos contra la
-   versión exacta guardada en el portal, con fixtures independientes y resets
-   autorizados. Test A/Test B fueron observados por el coordinador en revisión 3;
-   la revisión 1 del setup requiere reset y no se asume como estado actual.
-3. Registrar una demo real 1.0.2, revisar reproducción/contenido sin secretos y
-   agregar su URL verificada al manifiesto antes de reconstruir el ZIP. La demo
-   histórica no se declara suficiente para la nueva UI o herramientas.
-4. Verificar en el mismo complemento las importaciones, scans, targeting,
-   translations y campos omitidos preservados, luego completar las declaraciones
-   del desarrollador y enviar solo dentro de la autorización vigente.
+`readiness.json` mantiene los gates sin inventar ejecuciones. El comando
+`package_validation.py --submission-ready` sigue rechazando la entrega mientras
+falte acceso reviewer, ejecución de casos, verificación de la actualización del
+portal o declaraciones del desarrollador.
+
+1. Cargar esta actualización, cuyo único cambio dentro del paquete es
+   `review.demo_recording_url`, en el nuevo borrador 1.0.2 y verificar la URL
+   importada y los scans. El ZIP cargado anteriormente, SHA256 `9707be7b…`, se
+   preservó aparte como evidencia. La recreación tuvo metadata No Issues, cuatro
+   skills Checks Passed y 37 herramientas/instrucciones con cero issues; el
+   catálogo escaneado coincide semánticamente con el contrato fijado.
+2. Verificar acceso reviewer y ejecutar los casos contra la versión exacta
+   guardada, con fixtures independientes y resets autorizados. La autorización
+   OAuth fresca del coordinador ya se verificó y no reemplaza el acceso reviewer.
+   El worksheet no prueba la revisión actual de las fixtures ni ejecución exitosa.
+3. Comprobar la reproducción de la demo desde el contexto reviewer, revisar
+   targeting, translations y commerce en el nuevo registro y completar las
+   declaraciones del desarrollador antes del envío. Los campos omitidos no
+   pueden depender de herencia del registro eliminado.
 
 Los cuatro enlaces de listado reutilizan las URLs confirmadas de DEKS. El
 coordinador verificó sus páginas públicas en Chrome durante esta entrega.

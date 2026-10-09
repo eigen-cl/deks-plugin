@@ -1,30 +1,30 @@
 {
   "candidate_version": "1.0.2",
   "package_name": "app-6a8bb31ee2b481919a609ef99cae1422",
-  "checked_date": "2026-10-08",
+  "checked_date": "2026-10-09",
   "package_status": "prepared_and_validated_locally",
-  "submission_status": "not_submitted_no_1_0_2_draft_created",
+  "submission_status": "draft_created_demo_update_pending_reupload",
   "contract_sha256": "152e579e92f25f1aa9fc6fe350e6de0eaf220d6cd3ac19f91e28c661661ddc63",
   "gates": {
     "live_contract": {
-      "status": "partially_verified",
-      "next_action": "Restore the existing portal MCP app configuration and compare all 37 live descriptors against the exact pinned source contract. Canonical v0.16.0 verify/deploy and both CI runs succeeded; bounded authenticated reads and dispatcher-removal probe passed, but full discovery hash was not verified."
+      "status": "verified",
+      "next_action": "Preserve the scanned 37-definition/instructions audit matching the pinned contract semantically. No claim of identical portal serialization hash is made."
     },
     "reviewer_access": {
       "status": "not_verified",
-      "next_action": "Verify fresh-session OAuth and bounded reviewer access for this candidate through secure portal fields, without exporting credentials."
+      "next_action": "Verify complete secure access fields and an independent reviewer session on the recreated draft. Fresh coordinator OAuth was verified; private reviewer fields remain outside the package and this check does not prove reviewer access."
     },
     "saved_version_cases": {
       "status": "not_run",
       "next_action": "Run all five positive and three negative cases independently against the exact saved 1.0.2 version, resetting only the dedicated synthetic workspace before and after each case."
     },
     "demo_recording": {
-      "status": "not_verified",
-      "next_action": "Record and review actual 1.0.2 interactions, host the recording at a reviewer-accessible destination, verify playback, then add the real URL to review.demo_recording_url and rebuild. The old 1.0.1 recording is not evidence of this contract."
+      "status": "verified",
+      "next_action": "Reupload this URL-only package update into the new 1.0.2 draft, then verify the imported demo URL and reviewer playback. Reuse the verified core walkthrough; do not require a new video solely because of the metadata version."
     },
     "portal_metadata": {
-      "status": "blocked_existing_mcp_configuration",
-      "next_action": "Resolve the existing MCP app configuration (reported Unavailable) without replacing its connection or creating a duplicate app, then import the exact ZIP into the same existing plugin and verify saved metadata."
+      "status": "partially_verified_reupload_pending",
+      "next_action": "The recreated draft was Configured, Authorized and Domain verified with metadata No Issues, four skills Checks Passed, and 37 tools/server instructions Issues found:0. Reupload this URL-only update to that new draft and verify imported demo and scans; attestations may reset."
     },
     "developer_attestations": {
       "status": "not_completed",
@@ -66,7 +66,7 @@
     }
   },
   "fixture_note": "Reset revision 1 is a prerequisite, not an observed current state. The coordinator reported live Test A and Test B at revision 3; fresh state/reset must be established before execution.",
-  "publication_note": "countries:[] deliberately preserves the documented Allow all audience from the submitted 1.0.1 record. Commerce and a new demo URL are omitted because no verified candidate-specific declaration or recording was supplied; inspect preserved values in the portal.",
+  "publication_note": "countries:[] deliberately retains global targeting for the unchanged product audience. Commerce remains omitted and must be checked explicitly in the recreated record; the verified existing core-demo URL is now included and does not rely on inheritance from the deleted record.",
   "scope_note": "This package task performed no endpoint deployment, portal upload, review submission, credential operation or change to shared skill masters. API deployment and runtime verification are coordinated separately.",
   "portal_attempts": {
     "first": "rejected_translation_overlay_before_draft_creation",
@@ -110,5 +110,22 @@
       "Direct public health verification was blocked by the client/WAF; no Heroku CLI login was available.",
       "A deployed release and successful bounded reads do not prove equality of all 37 live descriptors with the pinned export."
     ]
+  },
+  "reusable_demo": {
+    "url": "https://www.youtube.com/watch?v=0Pj75qxVRL8",
+    "visibility": "Unlisted",
+    "duration_seconds": 88.461,
+    "verified_date": "2026-10-09",
+    "evidence_source": "Coordinator reviewed current YouTube playback and content; no new video upload.",
+    "scope": "Reusable core functional walkthrough: ChatGPT creates and iterates a DEKS presentation with three slides, blocks, numbers, motion and shared identities in the editor. The 1.0.2 changes concern MCP dispatch, names and annotations; this visual core workflow is retained and current endpoint v2 authoring 40 to 65 was independently observed by the coordinator.",
+    "limits": "Does not certify the complete 37-tool catalog, four package 1.0.2 skills loaded, new deletion card, or execution/passing of all eight cases against the exact saved draft. Version change alone is not a reason to require a new recording."
+  },
+  "portal_record": {
+    "plugin": "plugin_asdk_app_6ac860bdeee48191afe0ab2a4536a64d",
+    "app": "asdk_app_6ac860bdeee48191afe0ab2a4536a64d",
+    "draft": "appsub_6ac860bdef1881919460506019ca6190",
+    "previous_plugin_deletion": "human_confirmed_and_verified",
+    "draft_created": true,
+    "current_package_update_uploaded": false
   }
 }

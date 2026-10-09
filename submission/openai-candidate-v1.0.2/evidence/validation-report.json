@@ -1,8 +1,8 @@
 {
-  "checked_date": "2026-10-08",
+  "checked_date": "2026-10-09",
   "package_version": "1.0.2",
   "package_name": "app-6a8bb31ee2b481919a609ef99cae1422",
-  "archive_sha256": "9707be7bb36dfc214897c2d6189c8bdeab609fed5ca7159a430fe7a8c4969a98",
+  "archive_sha256": "9206f8548477b341536500f12d003904952beefa5d80d9fac03582e5ff0812c1",
   "archive_files": 22,
   "contract_sha256": "152e579e92f25f1aa9fc6fe350e6de0eaf220d6cd3ac19f91e28c661661ddc63",
   "descriptor_count": 37,
@@ -33,14 +33,10 @@
     ]
   },
   "peer_read_only_audit": "passed before translation overlay correction; original archive 2133aa6c6c3b64bf600fbbbb0f62b4cfee9433b0a01529d4929aed2bb96d2278; the subsequent field-only correction is covered by the local semantic regression",
-  "package_gaps": [
-    "demo_recording_url"
-  ],
+  "package_gaps": [],
   "submission_gaps": [
-    "live_contract",
     "reviewer_access",
     "saved_version_cases",
-    "demo_recording",
     "portal_metadata",
     "developer_attestations"
   ],
@@ -60,14 +56,14 @@
     "portal_attempt_1": "rejected_before_draft_creation",
     "post_fix_portal_import": "rejected_before_draft_creation_existing_mcp_app_configuration"
   },
-  "portal_current_block": "Existing MCP app must be configured before updating its plugin ZIP; coordinator reports original app Unavailable. No 1.0.2 draft created.",
   "git_whitespace": {
     "tracked_preexisting_diff_check": "passed",
     "new_candidate_staged_diff_check": "one_cosmetic_blank_line_at_eof",
     "file": "source/app-6a8bb31ee2b481919a609ef99cae1422/skills/deks-cloud-mcp/references/tools.md",
     "line": 497,
     "other_whitespace_check": "passed_with_blank_at_eof_excluded",
-    "archive_preserved": "Kept the exact tested ZIP; no source bytes altered for a cosmetic EOF line."
+    "archive_preserved": "Kept the exact tested ZIP; no source bytes altered for a cosmetic EOF line.",
+    "demo_url_update_diff_check": "passed"
   },
   "deployment_and_bounded_live_checks": {
     "evidence_source": "Coordinator verified GitHub Actions and authenticated MCP; package task did not deploy or call production MCP.",
@@ -105,5 +101,40 @@
       "Direct public health verification was blocked by the client/WAF; no Heroku CLI login was available.",
       "A deployed release and successful bounded reads do not prove equality of all 37 live descriptors with the pinned export."
     ]
-  }
+  },
+  "reusable_demo": {
+    "url": "https://www.youtube.com/watch?v=0Pj75qxVRL8",
+    "visibility": "Unlisted",
+    "duration_seconds": 88.461,
+    "verified_date": "2026-10-09",
+    "evidence_source": "Coordinator reviewed current YouTube playback and content; no new video upload.",
+    "scope": "Reusable core functional walkthrough: ChatGPT creates and iterates a DEKS presentation with three slides, blocks, numbers, motion and shared identities in the editor. The 1.0.2 changes concern MCP dispatch, names and annotations; this visual core workflow is retained and current endpoint v2 authoring 40 to 65 was independently observed by the coordinator.",
+    "limits": "Does not certify the complete 37-tool catalog, four package 1.0.2 skills loaded, new deletion card, or execution/passing of all eight cases against the exact saved draft. Version change alone is not a reason to require a new recording."
+  },
+  "new_video_upload_performed": false,
+  "current_portal_progress": {
+    "old_plugin_deleted": true,
+    "new_1_0_2_draft_created": true,
+    "coordinator_fresh_oauth": "verified",
+    "configured_authorized_domain_verified": true,
+    "metadata": "No Issues",
+    "four_skills": "Checks Passed",
+    "37_tools_and_server_instructions": "Issues found: 0",
+    "case_values_compared_against_uploaded_zip": "5+3 exact after portal-field name mapping; not execution",
+    "demo_url_update_uploaded": false
+  },
+  "url_only_package_delta": {
+    "old_uploaded_archive_sha256": "9707be7bb36dfc214897c2d6189c8bdeab609fed5ca7159a430fe7a8c4969a98",
+    "new_archive_sha256": "9206f8548477b341536500f12d003904952beefa5d80d9fac03582e5ff0812c1",
+    "archive_members_changed": [
+      "app-6a8bb31ee2b481919a609ef99cae1422/plugin.json"
+    ],
+    "only_manifest_field_added": "extensions.com.openai.review.demo_recording_url",
+    "all_other_21_members_byte_identical": true,
+    "all_original_manifest_values_unchanged": true,
+    "old_uploaded_archive_preserved": true,
+    "candidate_update_uploaded": false
+  },
+  "historical_portal_block_before_recreation": "Existing MCP app must be configured before updating its plugin ZIP; coordinator reports original app Unavailable. No 1.0.2 draft created.",
+  "current_portal_block": "Verified existing demo URL package update awaits import into the recreated draft; independent reviewer access, exact-saved-version cases and developer attestations remain incomplete."
 }
