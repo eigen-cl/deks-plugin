@@ -3,7 +3,7 @@
   "package_name": "app-6a8bb31ee2b481919a609ef99cae1422",
   "checked_date": "2026-10-09",
   "package_status": "prepared_and_validated_locally",
-  "submission_status": "draft_created_listing_clarification_pending_reupload",
+  "submission_status": "case_constraints_update_prepared_pending_reupload",
   "contract_sha256": "152e579e92f25f1aa9fc6fe350e6de0eaf220d6cd3ac19f91e28c661661ddc63",
   "gates": {
     "live_contract": {
@@ -11,24 +11,24 @@
       "next_action": "Preserve the scanned 37-definition/instructions audit matching the pinned contract semantically. No claim of identical portal serialization hash is made."
     },
     "reviewer_access": {
-      "status": "not_verified",
-      "next_action": "Verify complete private reviewer access fields and an independent reviewer session. The coordinator saved public login/workspace instructions and username in secure UI; reviewer password was not entered. No credential values are retrieved or stored in the package."
+      "status": "human_save_reported_pending_verification",
+      "next_action": "Felipe reported Save details with the new reviewer password. Root verifies presence/persistence and access without retrieving secret values; the direct response permits continuation and a blank coordination Form is not another authorization barrier."
     },
     "saved_version_cases": {
       "status": "not_run",
-      "next_action": "Run all five positive and three negative cases independently against the exact saved 1.0.2 version, resetting only the dedicated synthetic workspace before and after each case."
+      "next_action": "Run cases independently using latest returned IDs/revisions and preserved existing fixtures. P4 primarily prepares the card and waits; actual human deletion is optional. P5 creates exactly one new returned-ID deck even if same-name decks exist and preserves all baseline IDs/history. Exact saved-client execution is not claimed; the reported saved-client attempt returned PluginNotFound."
     },
     "demo_recording": {
       "status": "verified",
       "next_action": "Existing unlisted core walkthrough URL was included in the uploaded 9206 package; preserve it and verify reviewer playback. A new recording is not required solely for version change."
     },
     "portal_metadata": {
-      "status": "partially_verified_reupload_pending",
-      "next_action": "Reupload this one listing clarification in the new draft and verify imported longDescription, es-419 description and five capabilities. Productivity warning after the demo URL update was explicitly nonblocking. If it persists, retain the valid category and do not reroll further metadata."
+      "status": "case_update_prepared_pending_reupload",
+      "next_action": "The uploaded 25387966 package had No Issues and four skills Checks passed with resolved category warning. Import this case-metadata-only update into the same recreated draft and verify cases/scans; root owns the portal."
     },
     "developer_attestations": {
-      "status": "not_completed",
-      "next_action": "Six legal declarations are still unchecked; accountable developer completion is pending and no submission occurred."
+      "status": "approved_by_human_pending_portal_completion",
+      "next_action": "Human approval covers the six legal declarations and continuation/submission. Root applies them after the final reupload and verifies the resulting portal state without asking for the same approval again."
     }
   },
   "cases": {
@@ -65,7 +65,7 @@
       "mobile": "not_run"
     }
   },
-  "fixture_note": "Reset revision 1 is a prerequisite, not an observed current state. The coordinator reported live Test A and Test B at revision 3; fresh state/reset must be established before execution.",
+  "fixture_note": "Use latest returned revisions; do not assume a fixed starting revision. Test A may already match narration and use an idempotent no-change branch. Reviewer establishes canonical Test B content without requiring global fixture replacement. P4 records actual deck count and only prepares a card; human executor is optional. P5 records baseline IDs/revisions and adds exactly one new deck by its returned ID even when the canonical name already exists, preserving all earlier IDs/history.",
   "publication_note": "countries:[] deliberately retains global targeting for the unchanged product audience. Commerce remains omitted and must be checked explicitly in the recreated record; the verified existing core-demo URL is now included and does not rely on inheritance from the deleted record.",
   "scope_note": "This package task performed no endpoint deployment, portal upload, review submission, credential operation or change to shared skill masters. API deployment and runtime verification are coordinated separately.",
   "portal_attempts": {
@@ -143,5 +143,30 @@
     "translation_updated": "es-419 description only",
     "clarification_uploaded": false,
     "no_further_rerolls_if_warning_persists": true
+  },
+  "case_procedure_update": {
+    "previous_archive_sha256": "25387966fc316d85e3ecc4a75d84b6926e8f9651cbddc33c6c41a17ee579457c",
+    "new_archive_sha256": "fed33af77fdfe16e6a1b36ae7d88b63baa39cdb268576bee7ce788c9dcbd2694",
+    "prompts_preserved": 8,
+    "requires_destructive_reset": false,
+    "human_optional_executor_only": true,
+    "existing_same_name_decks_allowed_for_creation": true,
+    "uploaded": false,
+    "committed": false
+  },
+  "latest_limited_runtime_evidence": {
+    "source": "Coordinator verified explicit MCP v2 helper rehearsals; exact four-skill saved client is not established.",
+    "p2_p3": {
+      "result": "functional assertions passed, revisions 4 to 5 independently",
+      "restoration": "Reviewer fixtures A/B restored safely to revision 6, preserving history; no destructive reset.",
+      "proof": "reports/openai-review-2026-10-09/reviewer-backup/p2-p3-explicit-mcp-rehearsal.json"
+    },
+    "p4_primary": {
+      "result": "Helper card showed exact Promotion target, revision 1, irreversible warning, Delete and Cancel; model waited.",
+      "executor_invoked": false,
+      "presentation_deleted": false,
+      "private_confirmation_metadata_read_or_output": false
+    },
+    "interpretation": "Representative helper behavior is verified; no complete exact-saved-version runtime pass is claimed."
   }
 }

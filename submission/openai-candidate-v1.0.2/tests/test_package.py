@@ -153,6 +153,37 @@ class PreparedCandidateIntegrationSpec(unittest.TestCase):
         manifest = json.loads((source / "plugin.json").read_text())
         cases = json.loads((candidate / "review-cases.json").read_text())
         self.assertEqual(manifest["extensions"]["com.openai"]["review"]["test_cases"], {k: cases[k] for k in ["positive", "negative"]})
+        # Review procedures must operate on current state without clearing fixtures.
+        for group in ("positive", "negative"):
+            for case in cases[group]:
+                procedure = case["description"] + " " + case.get("expected_behavior", "")
+                self.assertNotRegex(procedure.lower(), r"\breset\b|\bpurge\b|\bcleanup\b|clean up")
+                self.assertNotRegex(procedure.lower(), r"(?:revision|expected_revision)\s*[:=]?\s*1\b")
+        positive = cases["positive"]
+        narration = positive[1]["expected_behavior"].lower()
+        self.assertIn("latest returned revision", narration)
+        self.assertIn("idempotent", narration)
+        self.assertIn("no audio", narration)
+        self.assertIn("Content remains Test B", positive[2]["expected_behavior"])
+        deletion = positive[3]
+        self.assertNotIn("confirm_delete_presentation", deletion["tools_triggered"].split(", "))
+        self.assertIn("agent never", deletion["expected_behavior"].lower())
+        self.assertIn("optional", deletion["expected_behavior"].lower())
+        self.assertIn("deck count remains unchanged", deletion["expected_behavior"].lower())
+        creation = positive[4]["expected_behavior"].lower()
+        self.assertIn("baseline", creation)
+        self.assertIn("count + 1", creation)
+        self.assertIn("new returned presentation id", creation)
+        self.assertIn("preserve existing", creation)
+        self.assertIn("history", creation)
+        prior_archive = candidate / "evidence" / "before-case-constraints-25387966.zip"
+        self.assertEqual(validation.sha256(prior_archive.read_bytes()),
+                         "25387966fc316d85e3ecc4a75d84b6926e8f9651cbddc33c6c41a17ee579457c")
+        with zipfile.ZipFile(prior_archive) as prior:
+            prior_manifest = json.loads(prior.read(source.name + "/plugin.json"))
+        prior_cases = prior_manifest["extensions"]["com.openai"]["review"]["test_cases"]
+        for group in ("positive", "negative"):
+            self.assertEqual([c["prompt"] for c in cases[group]], [c["prompt"] for c in prior_cases[group]])
         tools_reference = (source / "skills" / "deks-cloud-mcp" / "references" / "tools.md").read_text()
         declared = set(validation.re.findall(r"^### `([^`]+)`$", tools_reference, validation.re.MULTILINE))
         self.assertEqual(declared, {t["name"] for t in contract["tools"]})

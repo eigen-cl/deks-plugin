@@ -1,0 +1,51 @@
+{
+  "prior_archive_sha256": "25387966fc316d85e3ecc4a75d84b6926e8f9651cbddc33c6c41a17ee579457c",
+  "source_manifest_sha256": "f8ab1e669e70371650f2518058e94b38fa9be061e540b5181074f7e521c80237",
+  "review_cases_sha256": "ee26d01829afda85175680b71035eb56e3f4002b67e2f99826a183c2b5df8faf",
+  "test_file_sha256": "7b166d903464afdf55739586b2becd7581abd8c17517eb7d4a2842eabe88f391",
+  "prior_archive_backup": "evidence/before-case-constraints-25387966.zip",
+  "changes_authorized": "Review case metadata/procedure robustness only; prompts, skills, contract, listing and runtime preserved.",
+  "new_archive_sha256": "fed33af77fdfe16e6a1b36ae7d88b63baa39cdb268576bee7ce788c9dcbd2694",
+  "bdd_red_observed": true,
+  "tests_passed": 11,
+  "changed_archive_members": [
+    "app-6a8bb31ee2b481919a609ef99cae1422/plugin.json"
+  ],
+  "all_eight_prompts_unchanged": true,
+  "runtime_exact_saved_version": "not claimed; known client attempt PluginNotFound",
+  "no_cloud_fixture_mutations": true,
+  "upload_commit_push_performed": false,
+  "latest_limited_runtime_evidence": {
+    "source": "Coordinator verified explicit MCP v2 helper rehearsals; exact four-skill saved client is not established.",
+    "p2_p3": {
+      "result": "functional assertions passed, revisions 4 to 5 independently",
+      "restoration": "Reviewer fixtures A/B restored safely to revision 6, preserving history; no destructive reset.",
+      "proof": "reports/openai-review-2026-10-09/reviewer-backup/p2-p3-explicit-mcp-rehearsal.json"
+    },
+    "p4_primary": {
+      "result": "Helper card showed exact Promotion target, revision 1, irreversible warning, Delete and Cancel; model waited.",
+      "executor_invoked": false,
+      "presentation_deleted": false,
+      "private_confirmation_metadata_read_or_output": false
+    },
+    "interpretation": "Representative helper behavior is verified; no complete exact-saved-version runtime pass is claimed."
+  },
+  "changed_candidate_files": [
+    "submission/openai-candidate-v1.0.2/COMMIT_FILES.txt",
+    "submission/openai-candidate-v1.0.2/README.md",
+    "submission/openai-candidate-v1.0.2/dist/SHA256SUMS",
+    "submission/openai-candidate-v1.0.2/dist/deks-openai-1.0.2.zip",
+    "submission/openai-candidate-v1.0.2/evidence/before-case-constraints-25387966.zip",
+    "submission/openai-candidate-v1.0.2/evidence/case-constraints-update.json",
+    "submission/openai-candidate-v1.0.2/evidence/portal-validation.json",
+    "submission/openai-candidate-v1.0.2/evidence/validation-report.json",
+    "submission/openai-candidate-v1.0.2/readiness.json",
+    "submission/openai-candidate-v1.0.2/review-cases.json",
+    "submission/openai-candidate-v1.0.2/source/app-6a8bb31ee2b481919a609ef99cae1422/plugin.json",
+    "submission/openai-candidate-v1.0.2/tests/test_package.py"
+  ],
+  "protected_preexisting_dirty_files_verified": 46,
+  "ajv_changed_manifest": "passed",
+  "git_diff_check": "passed",
+  "deterministic_rebuild_hash": "fed33af77fdfe16e6a1b36ae7d88b63baa39cdb268576bee7ce788c9dcbd2694"
+}

@@ -17,7 +17,7 @@
       "investigation": "Coordinator is inspecting the existing app configuration; no duplicate app is authorized or created by this package task."
     }
   ],
-  "current_state": "Recreated 1.0.2 draft exists and demo URL update was uploaded. A real nonblocking Productivity-category warning prompted this one metadata clarification; root will reupload only into that new draft.",
+  "current_state": "Uploaded 25387966 candidate had final No Issues/category resolved and four skills passed. This case-procedure-only update is prepared locally for the same draft; no upload or submission by this task.",
   "source": "Coordinator verified portal UI; package task did not operate the portal.",
   "current_live_state": "Recreated app is Configured, Authorized and Domain verified after fresh coordinator OAuth. Scanned 37 definitions and instructions match the pinned contract semantically with no issues, and four skills passed checks. All eight exact-saved-version cases, independent reviewer access and attestations remain pending.",
   "reusable_demo_update": {
@@ -44,5 +44,15 @@
     "new_archive_sha256": "25387966fc316d85e3ecc4a75d84b6926e8f9651cbddc33c6c41a17ee579457c",
     "warning_excerpt": "We couldn\u2019t confirm the selected category...",
     "warning_summary": "The listing should clearly explain the main purpose of the app."
+  },
+  "case_procedure_update": {
+    "previous_archive_sha256": "25387966fc316d85e3ecc4a75d84b6926e8f9651cbddc33c6c41a17ee579457c",
+    "new_archive_sha256": "fed33af77fdfe16e6a1b36ae7d88b63baa39cdb268576bee7ce788c9dcbd2694",
+    "uploaded": false,
+    "latest_returned_revision": true,
+    "no_destructive_fixture_precondition": true,
+    "prompt_values_preserved": 8,
+    "p4_primary_expected_executor": "prepare only; wait for human; optional human extension",
+    "p5_expected_inventory": "baseline count + 1, new returned ID, all baseline IDs/revisions/history preserved"
   }
 }

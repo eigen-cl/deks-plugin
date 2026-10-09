@@ -5,6 +5,8 @@ submission/openai-candidate-v1.0.2/SPEC.md
 submission/openai-candidate-v1.0.2/contract/openai-mcp-contract.json
 submission/openai-candidate-v1.0.2/dist/SHA256SUMS
 submission/openai-candidate-v1.0.2/dist/deks-openai-1.0.2.zip
+submission/openai-candidate-v1.0.2/evidence/before-case-constraints-25387966.zip
+submission/openai-candidate-v1.0.2/evidence/case-constraints-update.json
 submission/openai-candidate-v1.0.2/evidence/mcp.schema.json
 submission/openai-candidate-v1.0.2/evidence/plugin.schema.json
 submission/openai-candidate-v1.0.2/evidence/portal-validation.json

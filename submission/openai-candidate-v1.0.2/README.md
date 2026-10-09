@@ -2,9 +2,10 @@
 
 Paquete preparado y validado localmente, actualizado el 9 de octubre de 2026.
 Existe un nuevo borrador 1.0.2 después de la eliminación confirmada del registro
-anterior. La demo existente verificada ya se incluyó en el ZIP cargado. Esta actualización
-aclara el propósito Productivity y agrega cinco capacidades soportadas; no acredita
-envío a revisión ni ejecución de los ocho casos contra la versión guardada.
+anterior. La demo y la aclaración Productivity ya se incluyeron en el ZIP cargado. Esta
+actualización modifica únicamente procedimientos de casos para usar revisiones
+actuales y preservar fixtures; no acredita envío ni ejecución completa de casos
+contra el cliente exacto de la versión guardada.
 
 El ZIP `dist/deks-openai-1.0.2.zip` conserva el nombre técnico empaquetado: `app-6a8bb31ee2b481919a609ef99cae1422`. Contiene un solo directorio raíz,
 `plugin.json` portable, `mcp.json`, las cuatro skills Cloud y el icono real DEKS
@@ -15,7 +16,9 @@ La metadata de listado, los cinco casos positivos, tres negativos y las notas
 de release viven dentro de `extensions.com.openai`. Los prompts expresan metas
 naturales; herramientas, argumentos y condiciones observables aparecen en las
 expectativas. Los casos cubren lectura de layout, narración, centrado conservando
-texto/identidad, borrado humano y creación con continuidad de un número más QA.
+texto/identidad, preparación de tarjeta con espera humana y creación con
+continuidad de un número más QA. El executor de borrado queda como extensión
+opcional exclusivamente humana.
 Los negativos comprueban ambigüedad destructiva, archivo local sin adjunto y secretos.
 
 El contrato fuente copiado de API es `openai-v2`: 37 descriptores, 36 visibles al
@@ -81,22 +84,30 @@ tarjeta de borrado ni ejecución/passing de los ocho casos del borrador exacto.
 falte acceso reviewer, ejecución de casos, verificación de la actualización del
 portal o declaraciones del desarrollador.
 
-1. Cargar esta única aclaración del listado en el nuevo borrador 1.0.2 y verificar
-   la descripción principal, traducción es-419 y cinco capabilities importadas.
-   Tras cargar el ZIP con demo, SHA256 `9206f854…`, apareció un warning de categoría
-   Productivity explícitamente no bloqueante. Se mantiene la categoría válida;
-   si persiste el warning no se harán más rerolls del listado. Los ZIP cargados
-   anteriormente `9707be7b…` y `9206f854…` se preservaron aparte como evidencia. La recreación tuvo metadata No Issues, cuatro
-   skills Checks Passed y 37 herramientas/instrucciones con cero issues; el
-   catálogo escaneado coincide semánticamente con el contrato fijado.
-2. Verificar acceso reviewer y ejecutar los casos contra la versión exacta
-   guardada, con fixtures independientes y resets autorizados. La autorización
-   OAuth fresca del coordinador ya se verificó y no reemplaza el acceso reviewer.
-   El worksheet no prueba la revisión actual de las fixtures ni ejecución exitosa.
-3. Comprobar la reproducción de la demo desde el contexto reviewer, revisar
-   targeting, translations y commerce en el nuevo registro y completar las
-   declaraciones del desarrollador antes del envío. Los campos omitidos no
-   pueden depender de herencia del registro eliminado.
+1. Cargar esta actualización únicamente de metadata de casos en el mismo
+   borrador. El ZIP anterior `25387966…` tenía No Issues, cuatro skills Checks
+   passed y categoría resuelta. Su copia exacta se conserva en
+   `evidence/before-case-constraints-25387966.zip`. Los ocho prompts, listing,
+   demo, skills y contrato permanecen iguales.
+2. Verificar las pruebas con revisiones/IDs recién devueltos, preservando todas
+   las fixtures. Narración admite no-change idempotente si ya coincide. Test B
+   requiere el texto canónico establecido por el reviewer, conservado en la
+   edición. La tarjeta se prepara usando el count/revisión actuales y el agente
+   espera; la ejecución irreversible es solo una extensión humana opcional.
+3. La creación permite decks anteriores con el mismo nombre: debe crear
+   exactamente un deck NUEVO y usar exclusivamente sus IDs retornados. El count
+   final es baseline + 1; todos los IDs, revisiones e historia anteriores se
+   preservan. No requiere ausencia del nombre ni eliminar ensayos anteriores.
+4. Root verifica el guardado de acceso reviewer reportado por Felipe y aplica
+   las seis declaraciones legales ya aprobadas después de la última recarga.
+   La respuesta humana directa permite continuar; un Form vacío no agrega
+   otra solicitud de aprobación. Ensayos MCP v2 del helper verificaron narración
+   y centrado de A/B (4→5; restaurados seguros a 6 con historia conservada) y
+   preparación de tarjeta de Promotion con espera, sin executor o borrado.
+   Son pruebas funcionales representativas, no pase del cliente con las cuatro
+   skills exactas cargadas. El intento reportado del cliente exacto devolvió
+   PluginNotFound y no se declara pase global. Comprobar el estado actual del
+   cliente/portal sin tratar ese evento anterior como prueba de su estado futuro.
 
 Los cuatro enlaces de listado reutilizan las URLs confirmadas de DEKS. El
 coordinador verificó sus páginas públicas en Chrome durante esta entrega.

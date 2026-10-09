@@ -2,7 +2,7 @@
   "checked_date": "2026-10-09",
   "package_version": "1.0.2",
   "package_name": "app-6a8bb31ee2b481919a609ef99cae1422",
-  "archive_sha256": "25387966fc316d85e3ecc4a75d84b6926e8f9651cbddc33c6c41a17ee579457c",
+  "archive_sha256": "fed33af77fdfe16e6a1b36ae7d88b63baa39cdb268576bee7ce788c9dcbd2694",
   "archive_files": 22,
   "contract_sha256": "152e579e92f25f1aa9fc6fe350e6de0eaf220d6cd3ac19f91e28c661661ddc63",
   "descriptor_count": 37,
@@ -124,7 +124,7 @@
     "demo_url_update_uploaded": true
   },
   "historical_portal_block_before_recreation": "Existing MCP app must be configured before updating its plugin ZIP; coordinator reports original app Unavailable. No 1.0.2 draft created.",
-  "current_portal_block": "One listing-clarification update awaits import; category warning is explicitly nonblocking. Complete reviewer access, exact-saved-version case execution and six legal declarations remain pending.",
+  "current_portal_block": "Root verifies human-saved reviewer details, applies approved legal declarations and imports this robust case-metadata update. No credential values are retrieved; the direct human response permits continuation. Exact-saved-client runtime cases remain unproved.",
   "category_warning_clarification": {
     "warning_nonblocking": true,
     "category_preserved": "Productivity",
@@ -146,7 +146,7 @@
     "old_uploaded_archive_preserved": true,
     "candidate_update_uploaded": false
   },
-  "listing_only_package_delta": {
+  "historical_listing_only_package_delta": {
     "previous_uploaded_archive_sha256": "9206f8548477b341536500f12d003904952beefa5d80d9fac03582e5ff0812c1",
     "new_archive_sha256": "25387966fc316d85e3ecc4a75d84b6926e8f9651cbddc33c6c41a17ee579457c",
     "archive_members_changed": [
@@ -162,5 +162,37 @@
     "category_and_review_demo_cases_unchanged": true,
     "previous_uploaded_archives_preserved": true,
     "uploaded": false
+  },
+  "case_procedure_package_delta": {
+    "previous_archive_sha256": "25387966fc316d85e3ecc4a75d84b6926e8f9651cbddc33c6c41a17ee579457c",
+    "new_archive_sha256": "fed33af77fdfe16e6a1b36ae7d88b63baa39cdb268576bee7ce788c9dcbd2694",
+    "archive_members_changed": [
+      "app-6a8bb31ee2b481919a609ef99cae1422/plugin.json"
+    ],
+    "only_json_section_changed": "extensions.com.openai.review.test_cases",
+    "prompts_identical": 8,
+    "other_21_members_byte_identical": true,
+    "listing_demo_skills_contract_unchanged": true,
+    "no_upload_commit_or_push": true
+  },
+  "case_constraints_bdd": {
+    "specification_written_before_metadata_edit": true,
+    "red_result": "Existing integration spec failed on the old reset instruction before implementation.",
+    "green_result": "All 11 tests pass with latest-revision, optional-human-preparation, new-ID/count+1 preservation assertions and unchanged prompts."
+  },
+  "latest_limited_runtime_evidence": {
+    "source": "Coordinator verified explicit MCP v2 helper rehearsals; exact four-skill saved client is not established.",
+    "p2_p3": {
+      "result": "functional assertions passed, revisions 4 to 5 independently",
+      "restoration": "Reviewer fixtures A/B restored safely to revision 6, preserving history; no destructive reset.",
+      "proof": "reports/openai-review-2026-10-09/reviewer-backup/p2-p3-explicit-mcp-rehearsal.json"
+    },
+    "p4_primary": {
+      "result": "Helper card showed exact Promotion target, revision 1, irreversible warning, Delete and Cancel; model waited.",
+      "executor_invoked": false,
+      "presentation_deleted": false,
+      "private_confirmation_metadata_read_or_output": false
+    },
+    "interpretation": "Representative helper behavior is verified; no complete exact-saved-version runtime pass is claimed."
   }
 }
