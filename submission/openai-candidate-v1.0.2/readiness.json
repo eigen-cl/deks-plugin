@@ -1,0 +1,77 @@
+{
+  "candidate_version": "1.0.2",
+  "package_name": "app-6a8bb31ee2b481919a609ef99cae1422",
+  "checked_date": "2026-10-08",
+  "package_status": "prepared_and_validated_locally",
+  "submission_status": "not_submitted_no_1_0_2_draft_created",
+  "contract_sha256": "152e579e92f25f1aa9fc6fe350e6de0eaf220d6cd3ac19f91e28c661661ddc63",
+  "gates": {
+    "live_contract": {
+      "status": "not_verified",
+      "next_action": "After the API deployment, compare live discovery with the exact final source contract; the unchanged URL alone does not prove the new metadata."
+    },
+    "reviewer_access": {
+      "status": "not_verified",
+      "next_action": "Verify fresh-session OAuth and bounded reviewer access for this candidate through secure portal fields, without exporting credentials."
+    },
+    "saved_version_cases": {
+      "status": "not_run",
+      "next_action": "Run all five positive and three negative cases independently against the exact saved 1.0.2 version, resetting only the dedicated synthetic workspace before and after each case."
+    },
+    "demo_recording": {
+      "status": "not_verified",
+      "next_action": "Record and review actual 1.0.2 interactions, host the recording at a reviewer-accessible destination, verify playback, then add the real URL to review.demo_recording_url and rebuild. The old 1.0.1 recording is not evidence of this contract."
+    },
+    "portal_metadata": {
+      "status": "blocked_existing_mcp_configuration",
+      "next_action": "Resolve the existing MCP app configuration (reported Unavailable) without replacing its connection or creating a duplicate app, then import the exact ZIP into the same existing plugin and verify saved metadata."
+    },
+    "developer_attestations": {
+      "status": "not_completed",
+      "next_action": "The accountable developer must complete current legal/policy declarations after the saved draft is final; reupload resets attestations."
+    }
+  },
+  "cases": {
+    "read_only_layout": {
+      "web": "not_run",
+      "mobile": "not_run"
+    },
+    "portable_narration": {
+      "web": "not_run",
+      "mobile": "not_run"
+    },
+    "center_existing_text": {
+      "web": "not_run",
+      "mobile": "not_run"
+    },
+    "human_confirmed_deletion": {
+      "web": "not_run",
+      "mobile": "not_run"
+    },
+    "create_numeric_continuity_and_render": {
+      "web": "not_run",
+      "mobile": "not_run"
+    },
+    "ambiguous_deletion": {
+      "web": "not_run",
+      "mobile": "not_run"
+    },
+    "unattached_local_image": {
+      "web": "not_run",
+      "mobile": "not_run"
+    },
+    "secret_request": {
+      "web": "not_run",
+      "mobile": "not_run"
+    }
+  },
+  "fixture_note": "Reset revision 1 is a prerequisite, not an observed current state. The coordinator reported live Test A and Test B at revision 3; fresh state/reset must be established before execution.",
+  "publication_note": "countries:[] deliberately preserves the documented Allow all audience from the submitted 1.0.1 record. Commerce and a new demo URL are omitted because no verified candidate-specific declaration or recording was supplied; inspect preserved values in the portal.",
+  "scope_note": "This package task performed no endpoint deployment, portal upload, review submission, credential operation or change to shared skill masters. API deployment and runtime verification are coordinated separately.",
+  "portal_attempts": {
+    "first": "rejected_translation_overlay_before_draft_creation",
+    "second": "rejected_existing_mcp_app_configuration_before_draft_creation",
+    "draft_created": false,
+    "archive_unchanged": true
+  }
+}

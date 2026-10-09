@@ -1,0 +1,72 @@
+{
+  "checked_date": "2026-10-08",
+  "package_version": "1.0.2",
+  "package_name": "app-6a8bb31ee2b481919a609ef99cae1422",
+  "archive_sha256": "9707be7bb36dfc214897c2d6189c8bdeab609fed5ca7159a430fe7a8c4969a98",
+  "archive_files": 22,
+  "contract_sha256": "152e579e92f25f1aa9fc6fe350e6de0eaf220d6cd3ac19f91e28c661661ddc63",
+  "descriptor_count": 37,
+  "model_tool_count": 36,
+  "case_counts": {
+    "positive": 5,
+    "negative": 3
+  },
+  "public_binding_or_private_files": false,
+  "source_and_zip_bytes_identical": true,
+  "repeated_build_bytes_identical": true,
+  "preservation_files_verified": 43,
+  "specifications": {
+    "status": "passed",
+    "count": 11,
+    "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s submission/openai-candidate-v1.0.2/tests -v"
+  },
+  "legacy_candidate_validator": "passed",
+  "official_portable_schemas": {
+    "validator": "ajv-cli@5.0.0",
+    "spec": "draft2020",
+    "strict": true,
+    "plugin_manifest": "passed",
+    "mcp_configuration": "passed",
+    "schema_sources": [
+      "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+      "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json"
+    ]
+  },
+  "peer_read_only_audit": "passed before translation overlay correction; original archive 2133aa6c6c3b64bf600fbbbb0f62b4cfee9433b0a01529d4929aed2bb96d2278; the subsequent field-only correction is covered by the local semantic regression",
+  "package_gaps": [
+    "demo_recording_url"
+  ],
+  "submission_gaps": [
+    "live_contract",
+    "reviewer_access",
+    "saved_version_cases",
+    "demo_recording",
+    "portal_metadata",
+    "developer_attestations"
+  ],
+  "new_demo_or_case_execution_claimed": false,
+  "portal_upload_or_submission_performed_by_package_task": false,
+  "openai_translation_overlay": {
+    "status": "passed_local_semantic_regression",
+    "fields": [
+      "subtitle",
+      "description"
+    ],
+    "limits": {
+      "subtitle": 30,
+      "description": 4000
+    },
+    "source": "https://developers.openai.com/plugins/deploy/submission",
+    "portal_attempt_1": "rejected_before_draft_creation",
+    "post_fix_portal_import": "rejected_before_draft_creation_existing_mcp_app_configuration"
+  },
+  "portal_current_block": "Existing MCP app must be configured before updating its plugin ZIP; coordinator reports original app Unavailable. No 1.0.2 draft created.",
+  "git_whitespace": {
+    "tracked_preexisting_diff_check": "passed",
+    "new_candidate_staged_diff_check": "one_cosmetic_blank_line_at_eof",
+    "file": "source/app-6a8bb31ee2b481919a609ef99cae1422/skills/deks-cloud-mcp/references/tools.md",
+    "line": 497,
+    "other_whitespace_check": "passed_with_blank_at_eof_excluded",
+    "archive_preserved": "Kept the exact tested ZIP; no source bytes altered for a cosmetic EOF line."
+  }
+}

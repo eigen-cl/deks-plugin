@@ -1,0 +1,22 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "outcome": "rejected_before_draft_creation",
+      "error": "Invalid Codex compatibility overlay: extensions.com.openai.publication.translations.es-419.shortDescription: Extra inputs are not permitted.",
+      "fix": "Use translations.<locale>.subtitle and description, preserving the same localized text.",
+      "primary_source": "https://developers.openai.com/plugins/deploy/submission",
+      "post_fix_portal_validation": "not_run_by_package_task"
+    },
+    {
+      "attempt": 2,
+      "archive_sha256": "9707be7bb36dfc214897c2d6189c8bdeab609fed5ca7159a430fe7a8c4969a98",
+      "outcome": "rejected_before_draft_creation",
+      "error": "Keep the existing MCP connection ... Configure the existing MCP app before updating its plugin ZIP.",
+      "existing_app_status_reported_by_coordinator": "Unavailable",
+      "investigation": "Coordinator is inspecting the existing app configuration; no duplicate app is authorized or created by this package task."
+    }
+  ],
+  "current_state": "No 1.0.2 draft created; same existing plugin and MCP connection must be preserved.",
+  "source": "Coordinator verified portal UI; package task did not operate the portal."
+}
